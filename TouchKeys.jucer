@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="iju11L" name="TouchKeys" projectType="guiapp" version="0.1.0"
+              bundleIdentifier="uk.ac.qmul.eecs.touchkeys" companyName="Queen Mary, University of London"
+              includeBinaryInAppConfig="1" displaySplashScreen="1" jucerFormatVersion="1"
+              addUsingNamespaceToJuceHeader="0">
+  <MAINGROUP id="GloKS2" name="TouchKeys">
+    <FILE id="mbX6Jp" name="tk-icon-128.png" compile="0" resource="1" file="Resources/tk-icon-128.png"/>
+    <FILE id="b3DhPc" name="tk-icon-256.png" compile="0" resource="1" file="Resources/tk-icon-256.png"/>
+    <FILE id="TLhblr" name="tk-icon-512.png" compile="0" resource="1" file="Resources/tk-icon-512.png"/>
+    <GROUP id="{76BA3848-7941-BF85-9F61-26651AA83B29}" name="Source">
+      <GROUP id="{A75C239F-4C55-DB1F-52C8-665A12DD86F8}" name="GUI">
+        <FILE id="MNTGnN" name="PreferencesWindow.h" compile="0" resource="0"
+              file="Source/GUI/PreferencesWindow.h"/>
+        <FILE id="pQJbuq" name="PreferencesComponent.cpp" compile="1" resource="0"
+              file="Source/GUI/PreferencesComponent.cpp"/>
+        <FILE id="NJXJef" name="PreferencesComponent.h" compile="0" resource="0"
+              file="Source/GUI/PreferencesComponent.h"/>
+        <FILE id="EqmxWo" name="MainWindow.cpp" compile="1" resource="0" file="Source/GUI/MainWindow.cpp"/>
+        <FILE id="dCLyAi" name="MainWindow.h" compile="0" resource="0" file="Source/GUI/MainWindow.h"/>
+        <FILE id="AJnPIz" name="KeyboardZoneComponent.cpp" compile="1" resource="0"
+              file="Source/GUI/KeyboardZoneComponent.cpp"/>
+        <FILE id="OsFkQp" name="KeyboardZoneComponent.h" compile="0" resource="0"
+              file="Source/GUI/KeyboardZoneComponent.h"/>
+        <FILE id="a6rTwb" name="ControlWindowMainComponent.cpp" compile="1"
+              resource="0" file="Source/GUI/ControlWindowMainComponent.cpp"/>
+        <FILE id="g3Ow0S" name="ControlWindowMainComponent.h" compile="0" resource="0"
+              file="Source/GUI/ControlWindowMainComponent.h"/>
+        <FILE id="e7mlWc" name="GraphicsDisplayWindow.h" compile="0" resource="0"
+              file="Source/GUI/GraphicsDisplayWindow.h"/>
+        <FILE id="hVr0Gt" name="MappingListComponent.cpp" compile="1" resource="0"
+              file="Source/GUI/MappingListComponent.cpp"/>
+        <FILE id="EtaGAk" name="MappingListComponent.h" compile="0" resource="0"
+              file="Source/GUI/MappingListComponent.h"/>
+        <FILE id="W0HKEg" name="MappingListItem.cpp" compile="1" resource="0"
+              file="Source/GUI/MappingListItem.cpp"/>
+        <FILE id="MphYDA" name="MappingListItem.h" compile="0" resource="0"
+              file="Source/GUI/MappingListItem.h"/>
+        <FILE id="xrkguc" name="MappingEditorComponent.h" compile="0" resource="0"
+              file="Source/GUI/MappingEditorComponent.h"/>
+        <FILE id="E9Won5" name="MappingExtendedEditorWindow.h" compile="0"
+              resource="0" file="Source/GUI/MappingExtendedEditorWindow.h"/>
+      </GROUP>
+      <GROUP id="{C6DAB7D2-B0E8-B89F-2891-B0D8BD8F53F7}" name="Mappings">
+        <GROUP id="{555624D9-7465-1F1E-FFBD-8A4D46B28C27}" name="Vibrato">
+          <FILE id="CvPuHB" name="TouchkeyVibratoMappingShortEditor.cpp" compile="1"
+                resource="0" file="Source/Mappings/Vibrato/TouchkeyVibratoMappingShortEditor.cpp"/>
+          <FILE id="iHpq1T" name="TouchkeyVibratoMappingShortEditor.h" compile="0"
+                resource="0" file="Source/Mappings/Vibrato/TouchkeyVibratoMappingShortEditor.h"/>
+          <FILE id="VUYRp4" name="TouchkeyVibratoMapping.cpp" compile="1" resource="0"
+                file="Source/Mappings/Vibrato/TouchkeyVibratoMapping.cpp"/>
+          <FILE id="Kp2iYP" name="TouchkeyVibratoMapping.h" compile="0" resource="0"
+                file="Source/Mappings/Vibrato/TouchkeyVibratoMapping.h"/>
+          <FILE id="VBkn4c" name="TouchkeyVibratoMappingFactory.cpp" compile="1"
+                resource="0" file="Source/Mappings/Vibrato/TouchkeyVibratoMappingFactory.cpp"/>
+          <FILE id="qFYahM" name="TouchkeyVibratoMappingFactory.h" compile="0"
+                resource="0" file="Source/Mappings/Vibrato/TouchkeyVibratoMappingFactory.h"/>
+        </GROUP>
+        <GROUP id="{E8E7436B-8FBA-DCC3-A9A3-B7FA7AF31483}" name="ReleaseAngle">
+          <FILE id="kQ9zEZ" name="TouchkeyReleaseAngleMappingExtendedEditor.cpp"
+                compile="1" resource="0" file="Source/Mappings/ReleaseAngle/TouchkeyReleaseAngleMappingExtendedEditor.cpp"/>
+          <FILE id="vyYFkY" name="TouchkeyReleaseAngleMappingExtendedEditor.h"
+                compile="0" resource="0" file="Source/Mappings/ReleaseAngle/TouchkeyReleaseAngleMappingExtendedEditor.h"/>
+          <FILE id="JOJw40" name="TouchkeyReleaseAngleMapping.cpp" compile="1"
+                resource="0" file="Source/Mappings/ReleaseAngle/TouchkeyReleaseAngleMapping.cpp"/>
+          <FILE id="Au4RmN" name="TouchkeyReleaseAngleMapping.h" compile="0"
+                resource="0" file="Source/Mappings/ReleaseAngle/TouchkeyReleaseAngleMapping.h"/>
+          <FILE id="EIaDVC" name="TouchkeyReleaseAngleMappingFactory.cpp" compile="1"
+                resource="0" file="Source/Mappings/ReleaseAngle/TouchkeyReleaseAngleMappingFactory.cpp"/>
+          <FILE id="DjxdVQ" name="TouchkeyReleaseAngleMappingFactory.h" compile="0"
+                resource="0" file="Source/Mappings/ReleaseAngle/TouchkeyReleaseAngleMappingFactory.h"/>
+        </GROUP>
+        <GROUP id="{4CB88454-26B8-23E4-EE3F-C8D99344F71A}" name="PitchBend">
+          <FILE id="Z78LMB" name="TouchkeyPitchBendMappingShortEditor.cpp" compile="1"
+                resource="0" file="Source/Mappings/PitchBend/TouchkeyPitchBendMappingShortEditor.cpp"/>
+          <FILE id="P8ScT2" name="TouchkeyPitchBendMappingShortEditor.h" compile="0"
+                resource="0" file="Source/Mappings/PitchBend/TouchkeyPitchBendMappingShortEditor.h"/>
+          <FILE id="d65sU7" name="TouchkeyPitchBendMapping.cpp" compile="1" resource="0"
+                file="Source/Mappings/PitchBend/TouchkeyPitchBendMapping.cpp"/>
+          <FILE id="SJfG9z" name="TouchkeyPitchBendMapping.h" compile="0" resource="0"
+                file="Source/Mappings/PitchBend/TouchkeyPitchBendMapping.h"/>
+          <FILE id="Su26l3" name="TouchkeyPitchBendMappingFactory.cpp" compile="1"
+                resource="0" file="Source/Mappings/PitchBend/TouchkeyPitchBendMappingFactory.cpp"/>
+          <FILE id="zky97Z" name="TouchkeyPitchBendMappingFactory.h" compile="0"
+                resource="0" file="Source/Mappings/PitchBend/TouchkeyPitchBendMappingFactory.h"/>
+        </GROUP>
+        <GROUP id="{B2818C07-E088-E52E-2FFF-49002220585D}" name="OnsetAngle">
+          <FILE id="Tx26VU" name="TouchkeyOnsetAngleMapping.cpp" compile="1"
+                resource="0" file="Source/Mappings/OnsetAngle/TouchkeyOnsetAngleMapping.cpp"/>
+          <FILE id="z4Y2kL" name="TouchkeyOnsetAngleMapping.h" compile="0" resource="0"
+                file="Source/Mappings/OnsetAngle/TouchkeyOnsetAngleMapping.h"/>
+          <FILE id="oR7B7Q" name="TouchkeyOnsetAngleMappingFactory.cpp" compile="1"
+                resource="0" file="Source/Mappings/OnsetAngle/TouchkeyOnsetAngleMappingFactory.cpp"/>
+          <FILE id="sE5XbW" name="TouchkeyOnsetAngleMappingFactory.h" compile="0"
+                resource="0" file="Source/Mappings/OnsetAngle/TouchkeyOnsetAngleMappingFactory.h"/>
+        </GROUP>
+        <GROUP id="{03E557AC-E333-5406-F3E0-F4A2F6D0E90B}" name="MultiFingerTrigger">
+          <FILE id="eBw76c" name="TouchkeyMultiFingerTriggerMappingShortEditor.cpp"
+                compile="1" resource="0" file="Source/Mappings/MultiFingerTrigger/TouchkeyMultiFingerTriggerMappingShortEditor.cpp"/>
+          <FILE id="otOw9f" name="TouchkeyMultiFingerTriggerMappingShortEditor.h"
+                compile="0" resource="0" file="Source/Mappings/MultiFingerTrigger/TouchkeyMultiFingerTriggerMappingShortEditor.h"/>
+          <FILE id="DKcOhm" name="TouchkeyMultiFingerTriggerMapping.cpp" compile="1"
+                resource="0" file="Source/Mappings/MultiFingerTrigger/TouchkeyMultiFingerTriggerMapping.cpp"/>
+          <FILE id="rYM1Os" name="TouchkeyMultiFingerTriggerMapping.h" compile="0"
+                resource="0" file="Source/Mappings/MultiFingerTrigger/TouchkeyMultiFingerTriggerMapping.h"/>
+          <FILE id="yTu5p6" name="TouchkeyMultiFingerTriggerMappingFactory.cpp"
+                compile="1" resource="0" file="Source/Mappings/MultiFingerTrigger/TouchkeyMultiFingerTriggerMappingFactory.cpp"/>
+          <FILE id="pGbaGz" name="TouchkeyMultiFingerTriggerMappingFactory.h"
+                compile="0" resource="0" file="Source/Mappings/MultiFingerTrigger/TouchkeyMultiFingerTriggerMappingFactory.h"/>
+        </GROUP>
+        <GROUP id="{B7052E7F-7DB4-7699-AD97-74D46364BDA3}" name="KeyDivision">
+          <FILE id="EPa41J" name="TouchkeyKeyDivisionMappingShortEditor.cpp"
+                compile="1" resource="0" file="Source/Mappings/KeyDivision/TouchkeyKeyDivisionMappingShortEditor.cpp"/>
+          <FILE id="KtBp9r" name="TouchkeyKeyDivisionMappingShortEditor.h" compile="0"
+                resource="0" file="Source/Mappings/KeyDivision/TouchkeyKeyDivisionMappingShortEditor.h"/>
+          <FILE id="eVkMwv" name="TouchkeyKeyDivisionMapping.cpp" compile="1"
+                resource="0" file="Source/Mappings/KeyDivision/TouchkeyKeyDivisionMapping.cpp"/>
+          <FILE id="ooctzV" name="TouchkeyKeyDivisionMapping.h" compile="0" resource="0"
+                file="Source/Mappings/KeyDivision/TouchkeyKeyDivisionMapping.h"/>
+          <FILE id="GLwueD" name="TouchkeyKeyDivisionMappingFactory.cpp" compile="1"
+                resource="0" file="Source/Mappings/KeyDivision/TouchkeyKeyDivisionMappingFactory.cpp"/>
+          <FILE id="RTMYLK" name="TouchkeyKeyDivisionMappingFactory.h" compile="0"
+                resource="0" file="Source/Mappings/KeyDivision/TouchkeyKeyDivisionMappingFactory.h"/>
+        </GROUP>
+        <GROUP id="{F18CE313-6599-FF00-12CD-4CDA50007E1C}" name="Control">
+          <FILE id="Fh9cxx" name="TouchkeyControlMappingExtendedEditor.cpp" compile="1"
+                resource="0" file="Source/Mappings/Control/TouchkeyControlMappingExtendedEditor.cpp"/>
+          <FILE id="FfUw61" name="TouchkeyControlMappingExtendedEditor.h" compile="0"
+                resource="0" file="Source/Mappings/Control/TouchkeyControlMappingExtendedEditor.h"/>
+          <FILE id="sTWDBG" name="TouchkeyControlMappingShortEditor.cpp" compile="1"
+                resource="0" file="Source/Mappings/Control/TouchkeyControlMappingShortEditor.cpp"/>
+          <FILE id="j4D4dO" name="TouchkeyControlMappingShortEditor.h" compile="0"
+                resource="0" file="Source/Mappings/Control/TouchkeyControlMappingShortEditor.h"/>
+          <FILE id="k1oSNB" name="TouchkeyControlMapping.cpp" compile="1" resource="0"
+                file="Source/Mappings/Control/TouchkeyControlMapping.cpp"/>
+          <FILE id="SFlnLM" name="TouchkeyControlMapping.h" compile="0" resource="0"
+                file="Source/Mappings/Control/TouchkeyControlMapping.h"/>
+          <FILE id="cCec7w" name="TouchkeyControlMappingFactory.cpp" compile="1"
+                resource="0" file="Source/Mappings/Control/TouchkeyControlMappingFactory.cpp"/>
+          <FILE id="AJ6Pp7" name="TouchkeyControlMappingFactory.h" compile="0"
+                resource="0" file="Source/Mappings/Control/TouchkeyControlMappingFactory.h"/>
+        </GROUP>
+        <FILE id="kaYKNP" name="MappingScheduler.cpp" compile="1" resource="0"
+              file="Source/Mappings/MappingScheduler.cpp"/>
+        <FILE id="GjVUvS" name="MappingScheduler.h" compile="0" resource="0"
+              file="Source/Mappings/MappingScheduler.h"/>
+        <FILE id="v71n3A" name="TouchkeyBaseMapping.cpp" compile="1" resource="0"
+              file="Source/Mappings/TouchkeyBaseMapping.cpp"/>
+        <FILE id="Ey9PUb" name="TouchkeyBaseMapping.h" compile="0" resource="0"
+              file="Source/Mappings/TouchkeyBaseMapping.h"/>
+        <FILE id="bT8j53" name="TouchkeyBaseMappingFactory.h" compile="0" resource="0"
+              file="Source/Mappings/TouchkeyBaseMappingFactory.h"/>
+        <FILE id="UYrwZZ" name="Mapping.cpp" compile="1" resource="0" file="Source/Mappings/Mapping.cpp"/>
+        <FILE id="fQVVS4" name="Mapping.h" compile="0" resource="0" file="Source/Mappings/Mapping.h"/>
+        <FILE id="KlVbXz" name="MappingFactory.h" compile="0" resource="0"
+              file="Source/Mappings/MappingFactory.h"/>
+        <FILE id="ZNbYoD" name="MappingFactorySplitter.cpp" compile="1" resource="0"
+              file="Source/Mappings/MappingFactorySplitter.cpp"/>
+        <FILE id="KtX5Qe" name="MappingFactorySplitter.h" compile="0" resource="0"
+              file="Source/Mappings/MappingFactorySplitter.h"/>
+        <FILE id="DDVlqA" name="MIDIKeyPositionMapping.cpp" compile="1" resource="0"
+              file="Source/Mappings/MIDIKeyPositionMapping.cpp"/>
+        <FILE id="ovbJ7Z" name="MIDIKeyPositionMapping.h" compile="0" resource="0"
+              file="Source/Mappings/MIDIKeyPositionMapping.h"/>
+        <FILE id="t8xbbY" name="MRPMapping.cpp" compile="1" resource="0" file="Source/Mappings/MRPMapping.cpp"/>
+        <FILE id="p4SenN" name="MRPMapping.h" compile="0" resource="0" file="Source/Mappings/MRPMapping.h"/>
+      </GROUP>
+      <GROUP id="{5C8318DB-4543-0070-6AE5-19B2ADB579EF}" name="Display">
+        <FILE id="FcI1P5" name="KeyboardTesterDisplay.cpp" compile="1" resource="0"
+              file="Source/Display/KeyboardTesterDisplay.cpp"/>
+        <FILE id="YAqpoq" name="KeyboardTesterDisplay.h" compile="0" resource="0"
+              file="Source/Display/KeyboardTesterDisplay.h"/>
+        <FILE id="M0pqeW" name="KeyboardDisplay.cpp" compile="1" resource="0"
+              file="Source/Display/KeyboardDisplay.cpp"/>
+        <FILE id="CBLGZH" name="KeyboardDisplay.h" compile="0" resource="0"
+              file="Source/Display/KeyboardDisplay.h"/>
+        <FILE id="DZC5TY" name="KeyPositionGraphDisplay.cpp" compile="1" resource="0"
+              file="Source/Display/KeyPositionGraphDisplay.cpp"/>
+        <FILE id="ysnV1L" name="KeyPositionGraphDisplay.h" compile="0" resource="0"
+              file="Source/Display/KeyPositionGraphDisplay.h"/>
+        <FILE id="DKszdG" name="OpenGLDisplayBase.h" compile="0" resource="0"
+              file="Source/Display/OpenGLDisplayBase.h"/>
+        <FILE id="ElZ9s1" name="OpenGLJuceCanvas.h" compile="0" resource="0"
+              file="Source/Display/OpenGLJuceCanvas.h"/>
+        <FILE id="QK3o7o" name="RawSensorDisplay.cpp" compile="1" resource="0"
+              file="Source/Display/RawSensorDisplay.cpp"/>
+        <FILE id="xQO3DL" name="RawSensorDisplay.h" compile="0" resource="0"
+              file="Source/Display/RawSensorDisplay.h"/>
+      </GROUP>
+      <GROUP id="{E33E13F6-89C7-11C2-6FF3-9F24287F2217}" name="Utility">
+        <FILE id="LhaE1w" name="Accumulator.h" compile="0" resource="0" file="Source/Utility/Accumulator.h"/>
+        <FILE id="NJ3PYD" name="IIRFilter.cpp" compile="1" resource="0" file="Source/Utility/IIRFilter.cpp"/>
+        <FILE id="Vr8O7B" name="IIRFilter.h" compile="0" resource="0" file="Source/Utility/IIRFilter.h"/>
+        <FILE id="cjfhQS" name="LineSegment.h" compile="0" resource="0" file="Source/Utility/LineSegment.h"/>
+        <FILE id="cN1QXR" name="Node.h" compile="0" resource="0" file="Source/Utility/Node.h"/>
+        <FILE id="efXGfp" name="Scheduler.cpp" compile="1" resource="0" file="Source/Utility/Scheduler.cpp"/>
+        <FILE id="w0DA4m" name="Scheduler.h" compile="0" resource="0" file="Source/Utility/Scheduler.h"/>
+        <FILE id="kI95eE" name="TimerNode.cpp" compile="1" resource="0" file="Source/Utility/TimerNode.cpp"/>
+        <FILE id="hzk6sP" name="TimerNode.h" compile="0" resource="0" file="Source/Utility/TimerNode.h"/>
+        <FILE id="ELtzRW" name="TimestampSynchronizer.cpp" compile="1" resource="0"
+              file="Source/Utility/TimestampSynchronizer.cpp"/>
+        <FILE id="JZDoRg" name="TimestampSynchronizer.h" compile="0" resource="0"
+              file="Source/Utility/TimestampSynchronizer.h"/>
+        <FILE id="nGoZES" name="Trigger.cpp" compile="1" resource="0" file="Source/Utility/Trigger.cpp"/>
+        <FILE id="qlZ2Ap" name="Trigger.h" compile="0" resource="0" file="Source/Utility/Trigger.h"/>
+        <FILE id="xAWxis" name="Types.h" compile="0" resource="0" file="Source/Utility/Types.h"/>
+      </GROUP>
+      <GROUP id="{0AE3BB33-5A6F-DD26-0E35-C26E9B11DB1A}" name="TouchKeys">
+        <FILE id="reT03t" name="TouchkeyEntropyGenerator.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/TouchkeyEntropyGenerator.cpp"/>
+        <FILE id="s9B35P" name="TouchkeyEntropyGenerator.h" compile="0" resource="0"
+              file="Source/TouchKeys/TouchkeyEntropyGenerator.h"/>
+        <FILE id="MIJMFz" name="TouchkeyOscEmulator.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/TouchkeyOscEmulator.cpp"/>
+        <FILE id="tbcheK" name="TouchkeyOscEmulator.h" compile="0" resource="0"
+              file="Source/TouchKeys/TouchkeyOscEmulator.h"/>
+        <FILE id="qHH5SS" name="MidiKeyboardSegment.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/MidiKeyboardSegment.cpp"/>
+        <FILE id="WjyaIm" name="MidiKeyboardSegment.h" compile="0" resource="0"
+              file="Source/TouchKeys/MidiKeyboardSegment.h"/>
+        <FILE id="th2rVg" name="KeyIdleDetector.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/KeyIdleDetector.cpp"/>
+        <FILE id="G3NgpF" name="KeyIdleDetector.h" compile="0" resource="0"
+              file="Source/TouchKeys/KeyIdleDetector.h"/>
+        <FILE id="dFtx1O" name="KeyPositionTracker.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/KeyPositionTracker.cpp"/>
+        <FILE id="y7sI2a" name="KeyPositionTracker.h" compile="0" resource="0"
+              file="Source/TouchKeys/KeyPositionTracker.h"/>
+        <FILE id="YeXt97" name="KeyTouchFrame.h" compile="0" resource="0" file="Source/TouchKeys/KeyTouchFrame.h"/>
+        <FILE id="Xk6Nll" name="LogPlayback.cpp" compile="1" resource="0" file="Source/TouchKeys/LogPlayback.cpp"/>
+        <FILE id="gTdto0" name="LogPlayback.h" compile="0" resource="0" file="Source/TouchKeys/LogPlayback.h"/>
+        <FILE id="BnkAHN" name="MidiInputController.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/MidiInputController.cpp"/>
+        <FILE id="tFCKXS" name="MidiInputController.h" compile="0" resource="0"
+              file="Source/TouchKeys/MidiInputController.h"/>
+        <FILE id="oyLQyK" name="MidiOutputController.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/MidiOutputController.cpp"/>
+        <FILE id="axcoSu" name="MidiOutputController.h" compile="0" resource="0"
+              file="Source/TouchKeys/MidiOutputController.h"/>
+        <FILE id="WZ1jo9" name="Osc.cpp" compile="1" resource="0" file="Source/TouchKeys/Osc.cpp"/>
+        <FILE id="AsgDZK" name="Osc.h" compile="0" resource="0" file="Source/TouchKeys/Osc.h"/>
+        <FILE id="kocvNY" name="OscMidiConverter.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/OscMidiConverter.cpp"/>
+        <FILE id="LsbTq0" name="OscMidiConverter.h" compile="0" resource="0"
+              file="Source/TouchKeys/OscMidiConverter.h"/>
+        <FILE id="NEo4A8" name="PianoKey.cpp" compile="1" resource="0" file="Source/TouchKeys/PianoKey.cpp"/>
+        <FILE id="hN1Q42" name="PianoKey.h" compile="0" resource="0" file="Source/TouchKeys/PianoKey.h"/>
+        <FILE id="mK2BDt" name="PianoKeyboard.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/PianoKeyboard.cpp"/>
+        <FILE id="pV7Xi8" name="PianoKeyboard.h" compile="0" resource="0" file="Source/TouchKeys/PianoKeyboard.h"/>
+        <FILE id="fcIpLw" name="PianoKeyCalibrator.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/PianoKeyCalibrator.cpp"/>
+        <FILE id="wJ2cjH" name="PianoKeyCalibrator.h" compile="0" resource="0"
+              file="Source/TouchKeys/PianoKeyCalibrator.h"/>
+        <FILE id="dGaPUo" name="PianoPedal.cpp" compile="1" resource="0" file="Source/TouchKeys/PianoPedal.cpp"/>
+        <FILE id="k401vv" name="PianoPedal.h" compile="0" resource="0" file="Source/TouchKeys/PianoPedal.h"/>
+        <FILE id="TFPgBH" name="PianoTypes.h" compile="0" resource="0" file="Source/TouchKeys/PianoTypes.h"/>
+        <FILE id="Lk7q7B" name="TouchkeyDevice.cpp" compile="1" resource="0"
+              file="Source/TouchKeys/TouchkeyDevice.cpp"/>
+        <FILE id="f3Y5ul" name="TouchkeyDevice.h" compile="0" resource="0"
+              file="Source/TouchKeys/TouchkeyDevice.h"/>
+      </GROUP>
+      <FILE id="dPFktB" name="MainApplicationController.cpp" compile="1"
+            resource="0" file="Source/MainApplicationController.cpp"/>
+      <FILE id="tDKG0C" name="MainApplicationController.h" compile="0" resource="0"
+            file="Source/MainApplicationController.h"/>
+      <FILE id="wlE8C7" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="" extraFrameworks=""
+               extraLinkerFlags="/usr/local/lib/liblo.a" smallIcon="mbX6Jp"
+               bigIcon="b3DhPc">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" osxCompatibility="10.6 SDK" osxArchitecture="64BitIntel"
+                       isDebug="1" optimisation="1" targetName="TouchKeys" headerPath="/usr/local/include"/>
+        <CONFIGURATION name="Release" osxCompatibility="10.6 SDK" osxArchitecture="64BitUniversal"
+                       isDebug="0" optimisation="2" targetName="TouchKeys" headerPath="/usr/local/include"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <LINUX_MAKE targetFolder="Builds/Linux" externalLibraries="" extraLinkerFlags="/usr/local/lib/liblo.a"
+                smallIcon="mbX6Jp" bigIcon="b3DhPc">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="TouchKeys"/>
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
+                       targetName="TouchKeys"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+    <LINUX_MAKE targetFolder="Builds/Linux32" extraLinkerFlags="-L/usr/lib/i386-linux-gnu -L/usr/lib/i386-linux-gnu/mesa -m32 /usr/local/lib/liblo32.a"
+                extraCompilerFlags="-m32" smallIcon="mbX6Jp" bigIcon="b3DhPc">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="TouchKeys"/>
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
+                       targetName="TouchKeys"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+    <VS2015 targetFolder="Builds/VisualStudio2015" externalLibraries="legacy_stdio_definitions.lib&#10;liblo.lib&#10;pthreadVC2.lib&#10;iphlpapi.lib"
+            smallIcon="mbX6Jp" bigIcon="b3DhPc">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="TouchKeys" headerPath="H:\Documents\boost_1_56_0;H:\Documents\liblo-0.26;H:\Documents\pthreads\Pre-built.2\include"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="TouchKeys" headerPath="H:\Documents\boost_1_56_0;H:\Documents\liblo-0.26;H:\Documents\pthreads\Pre-built.2\include"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../juce/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../juce/modules"/>
+        <MODULEPATH id="juce_graphics" path="../juce/modules"/>
+        <MODULEPATH id="juce_events" path="../juce/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../juce/modules"/>
+        <MODULEPATH id="juce_core" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../juce/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../juce/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+    <VS2019 targetFolder="Builds/VisualStudio2019" externalLibraries="legacy_stdio_definitions.lib&#10;liblo.lib&#10;pthreadVC2.lib&#10;iphlpapi.lib"
+            smallIcon="mbX6Jp" bigIcon="b3DhPc">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" headerPath="$(ProjectDir)..\..\..\..\libraries\liblo\&#10;$(ProjectDir)..\..\..\..\libraries\liblo\cmake\out\build\x64-Debug (default)\&#10;$(ProjectDir)..\..\..\..\libraries\boost_1_56_0\&#10;$(ProjectDir)..\..\..\..\libraries\pthreads\Pre-built.2\include"
+                       libraryPath="$(ProjectDir)..\..\..\..\libraries\liblo\cmake\out\build\x64-Debug (default)\&#10;$(ProjectDir)..\..\..\..\libraries\pthreads\Pre-built.2\lib\x64\"/>
+        <CONFIGURATION isDebug="0" name="Release" headerPath="$(ProjectDir)..\..\..\..\libraries\liblo\&#10;$(ProjectDir)..\..\..\..\libraries\liblo\cmake\out\build\x64-Release\&#10;$(ProjectDir)..\..\..\..\libraries\boost_1_56_0\&#10;$(ProjectDir)..\..\..\..\libraries\pthreads\Pre-built.2\include"
+                       libraryPath="$(ProjectDir)..\..\..\..\libraries\liblo\cmake\out\build\x64-Release\&#10;$(ProjectDir)..\..\..\..\libraries\pthreads\Pre-built.2\lib\x64\"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl"/>
+        <MODULEPATH id="juce_gui_extra"/>
+        <MODULEPATH id="juce_gui_basics"/>
+        <MODULEPATH id="juce_graphics"/>
+        <MODULEPATH id="juce_events"/>
+        <MODULEPATH id="juce_data_structures"/>
+        <MODULEPATH id="juce_core"/>
+        <MODULEPATH id="juce_audio_formats"/>
+        <MODULEPATH id="juce_audio_devices"/>
+        <MODULEPATH id="juce_audio_basics"/>
+      </MODULEPATHS>
+    </VS2019>
+  </EXPORTFORMATS>
+  <JUCEOPTIONS/>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
