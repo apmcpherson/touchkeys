@@ -182,12 +182,18 @@ void MidiKeyboardSegment::sendMidiPitchWheelRange() {
 	switch( mode_ )
 	{
 		case Mode::Polyphonic :
-			for( int i = outputChannelLowest_; i < outputChannelLowest_ + retransmitMaxPolyphony_; i++ ){
+			for( int i = outputChannelLowest_; i < outputChannelLowest_ + retransmitMaxPolyphony_; ++i ){
 				sendPWRange( i );
 			}
 		break;
 		case Mode::MPE :
+			// Set the Master Channel pitch wheel range
 			sendPWRange( 0x00 );
+
+			// Member Channels must all have the same pitch wheel range (as per spec)
+			for( int i = outputChannelLowest_; i < outputChannelLowest_ + retransmitMaxPolyphony_; ++i ) {
+				sendPWRange( i );
+			}
 		break;
 		default:
 			sendPWRange( outputChannelLowest_ );
@@ -340,6 +346,7 @@ void MidiKeyboardSegment::setPolyphony(const int polyphony) {
 		// MPE-DONE
 		// Send RPN 6 to change the zone configuration
 		// -- maybe in modePolyphonicSetupHelper()
+		modePolyphonicSetupHelper();
 		modeMPEsendConfigurationMessage( MPEZone::Lower, retransmitMaxPolyphony_ );
 
 	}else{
