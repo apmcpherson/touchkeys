@@ -52,6 +52,24 @@ const std::map< MidiKeyboardSegment::Mode, std::string > MidiKeyboardSegment::mo
 	{ MidiKeyboardSegment::Mode::MPE, "MPE" }
 };
 
+
+MIDIChannelCompare::MIDIChannelCompare( const int ch ) :
+	channel { ch }
+{
+
+}
+
+bool operator==( const std::pair< int, int >& p, const MIDIChannelCompare& c )
+{
+	return p.second == c.channel;
+}
+
+bool operator==( const MIDIChannelCompare& c, const std::pair< int, int >& p )
+{
+	return p.second == c.channel;
+}
+
+
 // Constructor
 MidiKeyboardSegment::MidiKeyboardSegment(PianoKeyboard& keyboard) : 
 	keyboard_(keyboard), 
@@ -321,7 +339,7 @@ void MidiKeyboardSegment::setModeMPE()
 
 	// MPE-DONE - currently supports only the Lower Zone
 	// Set RPN 6 to enable MPE with the appropriate zone
-	modeMPEsendConfigurationMessage( mpeZone_ );
+	modeMPEsendConfigurationMessage( mpeZone_, retransmitMaxPolyphony_ );
 }
 
 // Set the maximum polyphony, affecting polyphonic mode only
@@ -1704,9 +1722,27 @@ void MidiKeyboardSegment::modeMPENoteOn(const uint8_t note, const uint8_t veloci
 		// results. In the simplest workable implementation, a new note will be assigned to the Channel with the lowest
 		// count of active notes. Then, all else being equal, the Channel with the oldest last Note Off would be
 		// preferred. This set of rules has at least one working real - world implementation."
-		newChannel = *retransmitChannelsAvailable_.begin();
-		retransmitChannelsAvailable_.erase( newChannel );
-		retransmitChannelForNote_[ note ] = newChannel;
+		if( retransmitChannelsAvailable_.size() > 0 )
+		{
+			newChannel = *retransmitChannelsAvailable_.begin();
+			retransmitChannelsAvailable_.erase( newChannel );
+			retransmitChannelForNote_[ note ] = newChannel;
+		} else {
+			int lowestCountOfActiveNotes { 128 };
+
+			for( int ch = outputChannelLowest_; ch != outputChannelLowest_ + retransmitMaxPolyphony_; ++ch )
+			{
+				// Iterate through retransmitChannelForNote_ and count the number of notes assigned to this MIDI channel
+				const auto count { std::count( retransmitChannelForNote_.begin(), retransmitChannelForNote_.end(), MIDIChannelCompare{ ch } ) };
+
+				if( count < lowestCountOfActiveNotes ){
+					newChannel = ch;
+					lowestCountOfActiveNotes = count;
+				}
+			}
+
+			retransmitChannelForNote_[ note ] = newChannel;
+		}
 	}
 
 	if( keyboard_.key( note ) != nullptr ) {

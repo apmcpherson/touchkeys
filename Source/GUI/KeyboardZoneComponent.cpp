@@ -316,7 +316,17 @@ void KeyboardZoneComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChan
     {
         //[UserComboBoxCode_midiOutputModeComboBox] -- add your combo box handling code here..
         int mode = midiOutputModeComboBox.getSelectedId() - kMidiOutputModeComboBoxOffset;
+        
+        // Set the MIDI output mode (e.g., polyphonic, or MPE etc)
         keyboardSegment_->setMode(mode);
+
+        // TODO Call textEditorReturnKeyPressed(), which will internally call setPolyphony()
+        // NOTE In the case of MPE, setMode() above will send an MPE Configuration Message, which will create
+        // an MPE zone with a default range of 15 member channels. Then, setPolyphony() below sends another MCM, 
+        // constructing a new MPE zone, this time with the user-specified polyphonic range; it also updates the Channel
+        // text editors.
+        //textEditorReturnKeyPressed( midiOutputChannelHighEditor );
+        //repaint();
         //[/UserComboBoxCode_midiOutputModeComboBox]
     }
     else if (comboBoxThatHasChanged == &rangeLowComboBox)

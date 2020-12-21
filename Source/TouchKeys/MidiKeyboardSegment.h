@@ -41,6 +41,18 @@
 
 class OscMidiConverter;
 
+
+struct MIDIChannelCompare
+{
+    explicit MIDIChannelCompare( const int ch );
+
+    int channel;
+};
+
+bool operator==( const std::pair< int, int >& p, const MIDIChannelCompare& c );
+
+bool operator==( const MIDIChannelCompare& c, const std::pair< int, int >& p );
+
 // This class handles the processing of MIDI input data for a particular
 // segment of the keyboard. It defines the processing mode and stores certain
 // state information about active notes for this particular part of the keyboard.
