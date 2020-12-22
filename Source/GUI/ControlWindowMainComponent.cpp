@@ -1,33 +1,24 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
 #include "KeyboardZoneComponent.h"
-//[/Headers]
-
 #include "ControlWindowMainComponent.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 ControlWindowMainComponent::ControlWindowMainComponent ()
@@ -220,8 +211,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label5.setColour (juce::TextEditor::textColourId, juce::Colours::black);
     label5.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
-
-    //[UserPreSize]
     lastSelectedMidiInputID_ = -1;
     lastSelectedMidiAuxInputID_ = -1;
     lastSegmentUniqueIdentifier_ = -1;
@@ -230,38 +219,22 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     for(int i = 0; i <= kTouchkeysMaxOctave; i++) {
         touchkeyOctaveComboBox.addItem("C" + juce::String(i), i + kTouchkeysComponentComboBoxOffset);
     }
-    //[/UserPreSize]
 
     setSize (872, 444);
 
-
-    //[Constructor] You can add your own custom stuff here..
     oscHostTextEditor.addListener(this);
     oscPortTextEditor.addListener(this);
     oscInputPortTextEditor.addListener(this);
-    //[/Constructor]
 }
 
 ControlWindowMainComponent::~ControlWindowMainComponent()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
 void ControlWindowMainComponent::paint (juce::Graphics& g)
 {
-    //[UserPrePaint] Add your own custom painting code here..
-    //[/UserPrePaint]
-
     g.fillAll ( juce::Colour (0xffd2d2d2));
-
-    //[UserPaint] Add your own custom painting code here..
-    //[/UserPaint]
 }
 
 void ControlWindowMainComponent::resized()
@@ -294,27 +267,21 @@ void ControlWindowMainComponent::resized()
     touchkeyAutodetectButton.setBounds (216, 64, 79, 24);
     midiInputAuxDeviceComboBox.setBounds (80, 200, 216, 24);
     label5.setBounds (24, 200, 55, 24);
-    //[UserResized] Add your own custom resize handling here..
     
     // Resize KeyboardZoneComponent to fit new bounds
     juce::Rectangle<int> const& ourBounds = getBounds();
     juce::Rectangle<int> keyboardZoneBounds = keyboardZoneTabbedComponent.getBounds();
     keyboardZoneBounds.setHeight(ourBounds.getHeight() - keyboardZoneBounds.getY());
     keyboardZoneTabbedComponent.setBounds(keyboardZoneBounds);
-    //[/UserResized]
 }
 
 void ControlWindowMainComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
-    //[/UsercomboBoxChanged_Pre]
 
     if (comboBoxThatHasChanged == &midiInputDeviceComboBox)
     {
-        //[UserComboBoxCode_midiInputDeviceComboBox] -- add your combo box handling code here..
-
         // Look up the selected ID, remembering that Juce indices start at 1 and the first of
         // these is "Disabled"
         int selection = midiInputDeviceComboBox.getSelectedId() - kMidiInputDeviceComboBoxOffset;
@@ -333,28 +300,21 @@ void ControlWindowMainComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHa
                 controller_->midiTouchkeysStandaloneModeDisable();
             controller_->enableMIDIInputPort(deviceId, true);
         }
-        //[/UserComboBoxCode_midiInputDeviceComboBox]
     }
     else if (comboBoxThatHasChanged == &touchkeyDeviceComboBox)
     {
-        //[UserComboBoxCode_touchkeyDeviceComboBox] -- add your combo box handling code here..
         // Nothing to do here right away -- wait until start button is pressed
-        //[/UserComboBoxCode_touchkeyDeviceComboBox]
     }
     else if (comboBoxThatHasChanged == &touchkeyOctaveComboBox)
     {
-        //[UserComboBoxCode_touchkeyOctaveComboBox] -- add your combo box handling code here..
         int octave = touchkeyOctaveComboBox.getSelectedId() - kTouchkeysComponentComboBoxOffset;
 
         // Convert octave number to MIDI note (C4 = 60)
-        if(controller_ != 0)
+        if(controller_ != nullptr)
             controller_->touchkeyDeviceSetLowestMidiNote((octave + 1)*12);
-        //[/UserComboBoxCode_touchkeyOctaveComboBox]
     }
     else if (comboBoxThatHasChanged == &midiInputAuxDeviceComboBox)
     {
-        //[UserComboBoxCode_midiInputAuxDeviceComboBox] -- add your combo box handling code here..
-        
         // Look up the selected ID, remembering that Juce indices start at 1 and the first of
         // these is "Disabled"
         int selection = midiInputAuxDeviceComboBox.getSelectedId() - kMidiInputDeviceComboBoxOffset;
@@ -372,23 +332,16 @@ void ControlWindowMainComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHa
             controller_->disableAllMIDIInputPorts(true);
             controller_->enableMIDIInputPort(deviceId, false);
         }
-        //[/UserComboBoxCode_midiInputAuxDeviceComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void ControlWindowMainComponent::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
-    //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == &touchkeyStartButton)
     {
-        //[UserButtonCode_touchkeyStartButton] -- add your button handler code here..
 #ifdef ENABLE_TOUCHKEYS_SENSOR_TEST
         if(controller_->touchkeySensorTestIsRunning()) {
             // TouchKeys were performing a sensor test. Stop the test.
@@ -409,64 +362,46 @@ void ControlWindowMainComponent::buttonClicked (juce::Button* buttonThatWasClick
             // This will attempt to start the device and update the state accordingly
             controller_->touchkeyDeviceStartupSequence(devName.toUTF8());
         }
-        //[/UserButtonCode_touchkeyStartButton]
     }
     else if (buttonThatWasClicked == &oscEnableButton)
     {
-        //[UserButtonCode_oscEnableButton] -- add your button handler code here..
         controller_->oscTransmitSetEnabled(oscEnableButton.getToggleState());
-        //[/UserButtonCode_oscEnableButton]
     }
     else if (buttonThatWasClicked == &oscEnableRawButton)
     {
-        //[UserButtonCode_oscEnableRawButton] -- add your button handler code here..
         controller_->oscTransmitSetRawDataEnabled(oscEnableRawButton.getToggleState());
-        //[/UserButtonCode_oscEnableRawButton]
     }
     else if (buttonThatWasClicked == &oscInputEnableButton)
     {
-        //[UserButtonCode_oscInputEnableButton] -- add your button handler code here..
         controller_->oscReceiveSetEnabled(oscInputEnableButton.getToggleState());
-        //[/UserButtonCode_oscInputEnableButton]
     }
     else if (buttonThatWasClicked == &addZoneButton)
     {
-        //[UserButtonCode_addZoneButton] -- add your button handler code here..
         controller_->midiSegmentAdd();
-        //[/UserButtonCode_addZoneButton]
     }
     else if (buttonThatWasClicked == &removeZoneButton)
     {
-        //[UserButtonCode_removeZoneButton] -- add your button handler code here..
         int tabIndex = keyboardZoneTabbedComponent.getCurrentTabIndex();
         if(tabIndex != 0) {
             KeyboardZoneComponent* selectedComponent = static_cast<KeyboardZoneComponent*> (keyboardZoneTabbedComponent.getTabContentComponent(tabIndex));
             controller_->midiSegmentRemove(selectedComponent->keyboardSegment());
         }
-        //[/UserButtonCode_removeZoneButton]
     }
     else if (buttonThatWasClicked == &touchkeyAutodetectButton)
     {
-        //[UserButtonCode_touchkeyAutodetectButton] -- add your button handler code here..
         if(controller_->touchkeyDeviceIsAutodetecting())
             controller_->touchkeyDeviceStopAutodetecting();
         else
             controller_->touchkeyDeviceAutodetectLowestMidiNote();
-        //[/UserButtonCode_touchkeyAutodetectButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
 
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-
 void ControlWindowMainComponent::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
+
     if(&editor == &oscHostTextEditor || &editor == &oscPortTextEditor)
         updateOscHostPort();
     else if(&editor == &oscInputPortTextEditor) {
@@ -488,7 +423,7 @@ void ControlWindowMainComponent::textEditorFocusLost(juce::TextEditor &editor)
 // Update list of TouchKeys and MIDI input devices
 void ControlWindowMainComponent::updateInputDeviceList()
 {
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
 
     // *** TouchKeys devices ***
@@ -550,7 +485,7 @@ void ControlWindowMainComponent::updateInputDeviceList()
 
 void ControlWindowMainComponent::updateOscHostPort()
 {
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
 
     juce::String oscHost = oscHostTextEditor.getText();
@@ -561,7 +496,7 @@ void ControlWindowMainComponent::updateOscHostPort()
 
 // Synchronize the UI state with the underlying state of the controller
 void ControlWindowMainComponent::synchronize() {
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
 
     bool devicesUpdated = false;
@@ -726,8 +661,9 @@ juce::String ControlWindowMainComponent::currentTouchkeysSelectedPath()
 // Update the state of the keyboard segment tab bar. Called only when segments change
 void ControlWindowMainComponent::updateKeyboardSegments()
 {
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
+
     // Update the identifier to say we've matched the current state of the segments
     lastSegmentUniqueIdentifier_ = controller_->midiSegmentUniqueIdentifier();
     
@@ -818,8 +754,6 @@ void ControlWindowMainComponent::updateKeyboardSegments()
         // Eventually, we get to the end of the list of tabs an we know every existing tab matches a segment
     }
 }
-
-//[/MiscUserCode]
 
 
 //==============================================================================
@@ -944,7 +878,4 @@ END_JUCER_METADATA
 */
 #endif
 
-
-//[EndFile] You can add extra defines here...
 #endif  // TOUCHKEYS_NO_GUI
-//[/EndFile]

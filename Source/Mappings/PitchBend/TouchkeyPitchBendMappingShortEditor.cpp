@@ -1,31 +1,23 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyPitchBendMappingShortEditor.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (TouchkeyPitchBendMappingFactory& factory)
@@ -82,28 +74,17 @@ TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (Touchk
     endpointsComboBox.setTextWhenNoChoicesAvailable ("(no choices)");
     endpointsComboBox.addListener (this);
 
-
-    //[UserPreSize]
     endpointsComboBox.addItem("Variable", TouchkeyPitchBendMapping::kPitchBendModeVariableEndpoints);
     endpointsComboBox.addItem("Fixed", TouchkeyPitchBendMapping::kPitchBendModeFixedEndpoints);
-    //[/UserPreSize]
 
     setSize (328, 71);
 
-
-    //[Constructor] You can add your own custom stuff here..
     rangeEditor.addListener(this);
     thresholdEditor.addListener(this);
-    //[/Constructor]
 }
 
 TouchkeyPitchBendMappingShortEditor::~TouchkeyPitchBendMappingShortEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
@@ -122,33 +103,20 @@ void TouchkeyPitchBendMappingShortEditor::resized()
     thresholdLabel.setBounds (168, 8, 72, 24);
     controlLabel.setBounds (8, 40, 72, 24);
     endpointsComboBox.setBounds (80, 40, 80, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void TouchkeyPitchBendMappingShortEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
-
     if (comboBoxThatHasChanged == &endpointsComboBox)
     {
-        //[UserComboBoxCode_endpointsComboBox] -- add your combo box handling code here..
         int control = endpointsComboBox.getSelectedId();
         if(control == TouchkeyPitchBendMapping::kPitchBendModeVariableEndpoints)
             factory_.setBendVariableEndpoints();
         else if(control == TouchkeyPitchBendMapping::kPitchBendModeFixedEndpoints)
             factory_.setBendFixedEndpoints(factory_.getBendThresholdKeyLength(), 0);
-        //[/UserComboBoxCode_endpointsComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 void TouchkeyPitchBendMappingShortEditor::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
@@ -201,8 +169,6 @@ void TouchkeyPitchBendMappingShortEditor::synchronize()
 
     endpointsComboBox.setSelectedId(factory_.getBendMode(), juce::NotificationType::dontSendNotification);
 }
-//[/MiscUserCode]
-
 
 //==============================================================================
 #if 0
@@ -252,7 +218,4 @@ END_JUCER_METADATA
 */
 #endif
 
-
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]

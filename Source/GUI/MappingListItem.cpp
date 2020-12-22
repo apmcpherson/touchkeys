@@ -1,33 +1,26 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
 #include "MappingListComponent.h"
 #include "MappingExtendedEditorWindow.h"
-//[/Headers]
 
 #include "MappingListItem.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 MappingListItem::MappingListItem (MappingListComponent& listComponent)
@@ -70,27 +63,13 @@ MappingListItem::MappingListItem (MappingListComponent& listComponent)
     deleteButton.setButtonText ("Delete...");
     deleteButton.addListener (this);
 
-
-    //[UserPreSize]
-    //[/UserPreSize]
-
     setSize (544, 72);
-
-
-    //[Constructor] You can add your own custom stuff here..
-    //[/Constructor]
 }
 
 MappingListItem::~MappingListItem()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
-//==============================================================================
 void MappingListItem::paint (juce::Graphics& g)
 {
     // NOTE white colour obscures the text of the label components
@@ -107,13 +86,11 @@ void MappingListItem::paint (juce::Graphics& g)
     g.setColour(juce::Colours::black);
     g.strokePath (internalPath2, juce::PathStrokeType (0.500f));
 
-    //[UserPaint] Add your own custom painting code here..
     /*MappingListComponent *parent = static_cast<MappingListComponent*>(getParentComponent());
     if(parent->isComponentSelected(this)) {
         g.setColour(juce::Colours::lightblue);
         g.drawRect (0, 0, 544, 72, 5);
     }*/
-    //[/UserPaint]
 }
 
 void MappingListItem::resized()
@@ -133,28 +110,20 @@ void MappingListItem::resized()
     internalPath2.startNewSubPath (119.0f, 16.0f);
     internalPath2.lineTo (119.0f, 56.0f);
     internalPath2.closeSubPath();
-
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void MappingListItem::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
     if(factory_ == nullptr)
         return;
-    //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == &bypassToggleButton)
     {
-        //[UserButtonCode_bypassToggleButton] -- add your button handler code here..
         bool bypass = bypassToggleButton.getToggleState();
         factory_->setBypassed(bypass);
-        //[/UserButtonCode_bypassToggleButton]
     }
     else if (buttonThatWasClicked == &showDetailsButton)
     {
-        //[UserButtonCode_showDetailsButton] -- add your button handler code here..
         // Create an extended editor window
         MappingExtendedEditorWindow *window = listComponent_.extendedEditorWindowForFactory(factory_);
         if(window != 0) {
@@ -163,11 +132,9 @@ void MappingListItem::buttonClicked (juce::Button* buttonThatWasClicked)
         }
         else if(factory_->hasExtendedEditor())
             listComponent_.openExtendedEditorWindow(factory_);
-        //[/UserButtonCode_showDetailsButton]
     }
     else if (buttonThatWasClicked == &deleteButton)
     {
-        //[UserButtonCode_deleteButton] -- add your button handler code here..
         // Display an alert to confirm the user wants to delete this mapping
         juce::AlertWindow::showOkCancelBox ( juce::AlertWindow::QuestionIcon,
                                       "Delete mapping",
@@ -176,16 +143,9 @@ void MappingListItem::buttonClicked (juce::Button* buttonThatWasClicked)
                                       juce::String{},
                                       0,
             juce::ModalCallbackFunction::forComponent (alertBoxResultChosen, this));
-        //[/UserButtonCode_deleteButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 // Called when user clicks a result in the alert box to confirm deletion
 void MappingListItem::alertBoxResultChosen(int result, MappingListItem *item)
@@ -246,8 +206,6 @@ void MappingListItem::synchronize()
     if(mappingShortEditorComponent != nullptr)
         mappingShortEditorComponent->synchronize();
 }
-//[/MiscUserCode]
-
 
 //==============================================================================
 #if 0

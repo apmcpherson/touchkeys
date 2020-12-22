@@ -1,31 +1,25 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "KeyboardZoneComponent.h"
 
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 KeyboardZoneComponent::KeyboardZoneComponent ()
@@ -191,8 +185,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     keyboardControllersButton.setButtonText (" Controllers...");
     keyboardControllersButton.addListener (this);
 
-
-    //[UserPreSize]
     // Add modes to MIDI mode toggle box
     //midiOutputModeComboBox.addItem("Passthrough", MidiKeyboardSegment::ModePassThrough + kMidiOutputModeComboBoxOffset);
     //midiOutputModeComboBox.addItem("Monophonic", MidiKeyboardSegment::ModeMonophonic + kMidiOutputModeComboBoxOffset);
@@ -209,41 +201,24 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
 
     lastSelectedMidiOutputID_ = kInvalidMidiOutputId;
 
-    //[/UserPreSize]
-
     setSize (552, 400);
 
-
-    //[Constructor] You can add your own custom stuff here..
     midiOutputChannelLowEditor.addListener(this);
     midiOutputChannelHighEditor.addListener(this);
     midiOutputTransposeEditor.addListener(this);
     pitchWheelRangeEditor.addListener(this);
     addMappingButton.setTriggeredOnMouseDown(true);
     keyboardControllersButton.setTriggeredOnMouseDown(true);
-    //[/Constructor]
 }
 
 KeyboardZoneComponent::~KeyboardZoneComponent()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
 void KeyboardZoneComponent::paint (juce::Graphics& g)
 {
-    //[UserPrePaint] Add your own custom painting code here..
-    //[/UserPrePaint]
-
     g.fillAll (juce::Colour (0xffd2d2d2));
-
-    //[UserPaint] Add your own custom painting code here..
-    //[/UserPaint]
 }
 
 void KeyboardZoneComponent::resized()
@@ -270,29 +245,21 @@ void KeyboardZoneComponent::resized()
     label9.setBounds (24, 68, 104, 24);
     pitchWheelRangeEditor.setBounds (128, 68, 48, 24);
     keyboardControllersButton.setBounds (24, 100, 152, 20);
-    
-    //[UserResized] Add your own custom resize handling here..
-    
+        
     // Resize the mapping list to fit the bottom of the window
     juce::Rectangle<int> const& ourBounds = getBounds();
     juce::Rectangle<int> mappingBounds = mappingListComponent.getBounds();
     mappingBounds.setHeight(ourBounds.getHeight() - mappingBounds.getY());
     mappingListComponent.setBounds(mappingBounds);
-    
-    //[/UserResized]
 }
 
 void KeyboardZoneComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
     if(keyboardSegment_ == nullptr || controller_ == nullptr )
         return;
-    //[/UsercomboBoxChanged_Pre]
 
     if (comboBoxThatHasChanged == &midiOutputDeviceComboBox)
     {
-        //[UserComboBoxCode_midiOutputDeviceComboBox] -- add your combo box handling code here..
-
         // Look up the selected ID, remembering that Juce indices start at 1 and the first of
         // these is "Disabled" followed by "Virtual Output Port"
         int selection = midiOutputDeviceComboBox.getSelectedId() - kMidiOutputDeviceComboBoxOffset;
@@ -310,11 +277,9 @@ void KeyboardZoneComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChan
             int deviceId = midiOutputDeviceIDs_[selection];
             controller_->enableMIDIOutputPort(keyboardSegment_->outputPort(), deviceId);
         }
-        //[/UserComboBoxCode_midiOutputDeviceComboBox]
     }
     else if (comboBoxThatHasChanged == &midiOutputModeComboBox)
     {
-        //[UserComboBoxCode_midiOutputModeComboBox] -- add your combo box handling code here..
         int mode = midiOutputModeComboBox.getSelectedId() - kMidiOutputModeComboBoxOffset;
         
         // Set the MIDI output mode (e.g., polyphonic, or MPE etc)
@@ -327,59 +292,37 @@ void KeyboardZoneComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChan
         // text editors.
         //textEditorReturnKeyPressed( midiOutputChannelHighEditor );
         //repaint();
-        //[/UserComboBoxCode_midiOutputModeComboBox]
     }
     else if (comboBoxThatHasChanged == &rangeLowComboBox)
     {
-        //[UserComboBoxCode_rangeLowComboBox] -- add your combo box handling code here..
         updateSegmentRange();
-        //[/UserComboBoxCode_rangeLowComboBox]
     }
     else if (comboBoxThatHasChanged == &rangeHighComboBox)
     {
-        //[UserComboBoxCode_rangeHighComboBox] -- add your combo box handling code here..
         updateSegmentRange();
-        //[/UserComboBoxCode_rangeHighComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void KeyboardZoneComponent::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    if(keyboardSegment_ == 0)
+    if(keyboardSegment_ == nullptr)
         return;
-    //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == &midiOutputVoiceStealingButton)
     {
-        //[UserButtonCode_midiOutputVoiceStealingButton] -- add your button handler code here..
         bool stealing = midiOutputVoiceStealingButton.getToggleState();
         keyboardSegment_->setVoiceStealingEnabled(stealing);
-        //[/UserButtonCode_midiOutputVoiceStealingButton]
     }
     else if (buttonThatWasClicked == &addMappingButton)
     {
-        //[UserButtonCode_addMappingButton] -- add your button handler code here..
         createMappingListPopup();
-        //[/UserButtonCode_addMappingButton]
     }
     else if (buttonThatWasClicked == &keyboardControllersButton)
     {
-        //[UserButtonCode_keyboardControllersButton] -- add your button handler code here..
         createKeyboardControllerPopup();
-        //[/UserButtonCode_keyboardControllersButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 void KeyboardZoneComponent::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
@@ -710,7 +653,6 @@ void KeyboardZoneComponent::keyboardControllerChosenCallback(int result)
         keyboardSegment_->sendMidiPitchWheelRange();
     }
 }
-//[/MiscUserCode]
 
 
 //==============================================================================

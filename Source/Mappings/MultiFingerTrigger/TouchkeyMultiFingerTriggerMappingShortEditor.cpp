@@ -1,33 +1,28 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyMultiFingerTriggerMappingShortEditor.h"
 
 
-//[MiscUserDefs] You can add your own user definitions and misc code here...
 const int TouchkeyMultiFingerTriggerMappingShortEditor::kNoteSame = 256;
 const int TouchkeyMultiFingerTriggerMappingShortEditor::kNoteOffset = 1;
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingShortEditor (TouchkeyMultiFingerTriggerMappingFactory& factory)
@@ -86,8 +81,6 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     sendOnReleaseButton.setButtonText ("Also send on release");
     sendOnReleaseButton.addListener (this);
 
-
-    //[UserPreSize]
     for(int i = 1; i <= 3; i++) {
         touchesComboBox.addItem(juce::String(i), i);
     }
@@ -98,22 +91,12 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     for(int i = 0; i <= 127; i++) {
         noteComboBox.addItem(juce::String(i), i + kNoteOffset);
     }
-    //[/UserPreSize]
 
     setSize (328, 71);
-
-
-    //[Constructor] You can add your own custom stuff here..
-    //[/Constructor]
 }
 
 TouchkeyMultiFingerTriggerMappingShortEditor::~TouchkeyMultiFingerTriggerMappingShortEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
@@ -133,30 +116,20 @@ void TouchkeyMultiFingerTriggerMappingShortEditor::resized()
     controlLabel3.setBounds (8, 40, 64, 24);
     noteComboBox.setBounds (72, 40, 80, 24);
     sendOnReleaseButton.setBounds (168, 40, 152, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void TouchkeyMultiFingerTriggerMappingShortEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
-
     if (comboBoxThatHasChanged == &touchesComboBox)
     {
-        //[UserComboBoxCode_touchesComboBox] -- add your combo box handling code here..
         factory_.setTouchesForTrigger(touchesComboBox.getSelectedId());
-        //[/UserComboBoxCode_touchesComboBox]
     }
     else if (comboBoxThatHasChanged == &tapsComboBox)
     {
-        //[UserComboBoxCode_tapsComboBox] -- add your combo box handling code here..
         factory_.setConsecutiveTapsForTrigger(tapsComboBox.getSelectedId());
-        //[/UserComboBoxCode_tapsComboBox]
     }
     else if (comboBoxThatHasChanged == &noteComboBox)
     {
-        //[UserComboBoxCode_noteComboBox] -- add your combo box handling code here..
         int note = noteComboBox.getSelectedId();
         if(note == kNoteSame)
             note = -1;
@@ -164,37 +137,23 @@ void TouchkeyMultiFingerTriggerMappingShortEditor::comboBoxChanged (juce::ComboB
             note -= kNoteOffset;
         factory_.setTriggerOnNoteNumber(note);
         factory_.setTriggerOffNoteNumber(note);
-        //[/UserComboBoxCode_noteComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void TouchkeyMultiFingerTriggerMappingShortEditor::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    //[/UserbuttonClicked_Pre]
-
     if (buttonThatWasClicked == &sendOnReleaseButton)
     {
-        //[UserButtonCode_sendOnReleaseButton] -- add your button handler code here..
         if(sendOnReleaseButton.getToggleState()) {
             factory_.setTriggerOffAction(TouchkeyMultiFingerTriggerMapping::kActionNoteOn);
         }
         else {
             factory_.setTriggerOffAction(TouchkeyMultiFingerTriggerMapping::kActionNone);
         }
-        //[/UserButtonCode_sendOnReleaseButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
 
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void TouchkeyMultiFingerTriggerMappingShortEditor::synchronize() {
     using jNT = juce::NotificationType;
 
@@ -212,7 +171,6 @@ void TouchkeyMultiFingerTriggerMappingShortEditor::synchronize() {
     else
         sendOnReleaseButton.setToggleState(false, jNT::dontSendNotification);
 }
-//[/MiscUserCode]
 
 
 //==============================================================================

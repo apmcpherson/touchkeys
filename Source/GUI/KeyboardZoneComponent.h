@@ -1,60 +1,44 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
 
-//[Headers]     -- You can add your own extra header files here --
 #ifndef TOUCHKEYS_NO_GUI
 
 #include "MappingListComponent.h"
 #include "../MainApplicationController.h"
 #include "../TouchKeys/MidiKeyboardSegment.h"
 #include <JuceHeader.h>
-//[/Headers]
 
-
-
-//==============================================================================
-/**
-                                                                    //[Comments]
-    An auto-generated component, created by the Introjucer.
-
-    Describe your class and how it works here!
-                                                                    //[/Comments]
-*/
 class KeyboardZoneComponent  : public juce::Component,
                                public juce::TextEditor::Listener,
                                public juce::ComboBox::Listener,
                                public juce::Button::Listener
 {
 public:
-    //==============================================================================
     KeyboardZoneComponent ();
     ~KeyboardZoneComponent();
 
-    //==============================================================================
-    //[UserMethods]     -- You can add your own custom methods in this section.
     void setMainApplicationController(MainApplicationController *controller) {
         // Attach the user interface to the controller and vice-versa
         controller_ = controller;
         mappingListComponent.setMainApplicationController(controller_);
-        if(controller_ != 0) {
+        if(controller_ != nullptr) {
             synchronize(true);
         }
     }
@@ -63,7 +47,7 @@ public:
         keyboardSegment_ = segment;
         keyboardZone_ = zone;
         mappingListComponent.setKeyboardSegment(keyboardSegment_);
-        if(controller_ != 0) {
+        if(controller_ != nullptr) {
             synchronize(true);
         }
     }
@@ -74,10 +58,10 @@ public:
     int keyboardZone() { return keyboardZone_; }
 
     // juce::TextEditor listener methods
-    void textEditorTextChanged(juce::TextEditor& /*editor*/) {}
-    void textEditorReturnKeyPressed(juce::TextEditor &editor);
-    void textEditorEscapeKeyPressed(juce::TextEditor &editor);
-    void textEditorFocusLost(juce::TextEditor &editor);
+    void textEditorTextChanged(juce::TextEditor& /*editor*/) override {}
+    void textEditorReturnKeyPressed(juce::TextEditor &editor) override;
+    void textEditorEscapeKeyPressed(juce::TextEditor &editor) override;
+    void textEditorFocusLost(juce::TextEditor &editor) override;
 
     // Synchronize UI state to match underlying state of the back end
     void synchronize(bool forceUpdates = false);
@@ -96,7 +80,6 @@ public:
             component->keyboardControllerChosenCallback(result);
     }
     void keyboardControllerChosenCallback(int result);
-    //[/UserMethods]
 
     void paint (juce::Graphics& g) override;
     void resized() override;
@@ -106,7 +89,6 @@ public:
 
 
 private:
-    //[UserVariables]   -- You can add your own custom variables in this section.
 
     enum {
         kInvalidMidiOutputId = -100
@@ -139,9 +121,7 @@ private:
     int keyboardZone_;                      // Which zone this corresponds to (for UI sync purposes)
     std::vector<int> midiOutputDeviceIDs_;
     int lastSelectedMidiOutputID_;
-    //[/UserVariables]
 
-    //==============================================================================
     MappingListComponent mappingListComponent;
     juce::GroupComponent midiOutputGroupComponent;
     juce::ComboBox midiOutputDeviceComboBox;
@@ -165,11 +145,7 @@ private:
     juce::TextEditor pitchWheelRangeEditor;
     juce::TextButton keyboardControllersButton;
 
-
-    //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardZoneComponent)
 };
 
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]

@@ -1,31 +1,23 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyReleaseAngleMappingExtendedEditor.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEditor (TouchkeyReleaseAngleMappingFactory& factory)
@@ -296,7 +288,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     downEnableButton.setButtonText (TRANS("Enable"));
     downEnableButton.addListener (this);
 
-    //[UserPreSize]
     for(int i = 0; i < factory_.getNumConfigurations(); i++) {
         presetComboBox.addItem(factory_.getConfigurationName(i).c_str(), i+1);
     }
@@ -316,35 +307,18 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     downVelocity1Editor.addListener(this);
     downVelocity2Editor.addListener(this);
     downVelocity3Editor.addListener(this);
-    //[/UserPreSize]
 
     setSize (342, 328);
-
-
-    //[Constructor] You can add your own custom stuff here..
-    //[/Constructor]
 }
 
 TouchkeyReleaseAngleMappingExtendedEditor::~TouchkeyReleaseAngleMappingExtendedEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
 void TouchkeyReleaseAngleMappingExtendedEditor::paint (juce::Graphics& g)
 {
-    //[UserPrePaint] Add your own custom painting code here..
-    //[/UserPrePaint]
-
     g.fillAll ( juce::Colour (0xffd2d2d2));
-
-    //[UserPaint] Add your own custom painting code here..
-    //[/UserPaint]
 }
 
 void TouchkeyReleaseAngleMappingExtendedEditor::resized()
@@ -379,52 +353,29 @@ void TouchkeyReleaseAngleMappingExtendedEditor::resized()
     downVelocity3Editor.setBounds (272, 288, 56, 24);
     upEnableButton.setBounds (208, 112, 72, 24);
     downEnableButton.setBounds (208, 216, 72, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void TouchkeyReleaseAngleMappingExtendedEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
-
     if (comboBoxThatHasChanged == &presetComboBox)
     {
-        //[UserComboBoxCode_presetComboBox] -- add your combo box handling code here..
         int index = presetComboBox.getSelectedItemIndex();
         factory_.setCurrentConfiguration(index);
-        //[/UserComboBoxCode_presetComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void TouchkeyReleaseAngleMappingExtendedEditor::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    //[/UserbuttonClicked_Pre]
-
     if (buttonThatWasClicked == &upEnableButton)
     {
-        //[UserButtonCode_upEnableButton] -- add your button handler code here..
         factory_.setUpMessagesEnabled(upEnableButton.getToggleState());
-        //[/UserButtonCode_upEnableButton]
     }
     else if (buttonThatWasClicked == &downEnableButton)
     {
-        //[UserButtonCode_downEnableButton] -- add your button handler code here..
         factory_.setDownMessagesEnabled(downEnableButton.getToggleState());
-        //[/UserButtonCode_downEnableButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 void TouchkeyReleaseAngleMappingExtendedEditor::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
@@ -613,8 +564,6 @@ void TouchkeyReleaseAngleMappingExtendedEditor::intToString(char *st, int value)
     snprintf(st, 16, "%d", value);
 #endif
 }
-
-//[/MiscUserCode]
 
 
 //==============================================================================

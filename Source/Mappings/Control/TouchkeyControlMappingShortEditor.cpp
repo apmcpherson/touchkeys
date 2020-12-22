@@ -1,31 +1,24 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyControlMappingShortEditor.h"
 
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyControlMappingFactory& factory)
@@ -115,8 +108,6 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     rangeLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
     rangeLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
-
-    //[UserPreSize]
     parameterComboBox.addItem("X Position", TouchkeyControlMapping::kInputParameterXPosition);
     parameterComboBox.addItem("Y Position", TouchkeyControlMapping::kInputParameterYPosition);
     parameterComboBox.addItem("Contact Area", TouchkeyControlMapping::kInputParameterTouchSize);
@@ -133,25 +124,16 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     for(int i = 1; i <= 119; i++) {
         controlComboBox.addItem(juce::String(i), i);
     }
-    //[/UserPreSize]
 
     setSize (328, 71);
 
-
-    //[Constructor] You can add your own custom stuff here..
     inputRangeLowEditor.addListener(this);
     inputRangeHighEditor.addListener(this);
-    //[/Constructor]
+
 }
 
 TouchkeyControlMappingShortEditor::~TouchkeyControlMappingShortEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
@@ -174,44 +156,29 @@ void TouchkeyControlMappingShortEditor::resized()
     typeComboBox.setBounds (232, 40, 88, 24);
     inputRangeHighEditor.setBounds (136, 40, 40, 24);
     rangeLabel2.setBounds (120, 40, 16, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
+
 }
 
 void TouchkeyControlMappingShortEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
-
     if (comboBoxThatHasChanged == &controlComboBox)
     {
-        //[UserComboBoxCode_controlComboBox] -- add your combo box handling code here..
         int controller = controlComboBox.getSelectedId();
         factory_.setController(controller);
-        //[/UserComboBoxCode_controlComboBox]
+
     }
     else if (comboBoxThatHasChanged == &parameterComboBox)
     {
-        //[UserComboBoxCode_parameterComboBox] -- add your combo box handling code here..
         int param = parameterComboBox.getSelectedId();
         factory_.setInputParameter(param);
-        //[/UserComboBoxCode_parameterComboBox]
     }
     else if (comboBoxThatHasChanged == &typeComboBox)
     {
-        //[UserComboBoxCode_typeComboBox] -- add your combo box handling code here..
         int type = typeComboBox.getSelectedId();
         factory_.setInputType(type);
-        //[/UserComboBoxCode_typeComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 void TouchkeyControlMappingShortEditor::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
@@ -266,7 +233,6 @@ void TouchkeyControlMappingShortEditor::synchronize()
     typeComboBox.setSelectedId(factory_.getInputType(), juce::NotificationType::dontSendNotification);
     controlComboBox.setSelectedId(factory_.getController(), juce::NotificationType::dontSendNotification);
 }
-//[/MiscUserCode]
 
 
 //==============================================================================

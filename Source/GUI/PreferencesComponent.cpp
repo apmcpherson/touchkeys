@@ -1,32 +1,25 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
 #include "../MainApplicationController.h"
-//[/Headers]
 
 #include "PreferencesComponent.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 PreferencesComponent::PreferencesComponent ()
@@ -63,44 +56,22 @@ PreferencesComponent::PreferencesComponent ()
     defaultsButton.setButtonText ("Reset to Defaults...");
     defaultsButton.addListener (this);
 
-
-    //[UserPreSize]
-    //[/UserPreSize]
-
     setSize (296, 152);
-
-
-    //[Constructor] You can add your own custom stuff here..
 
     // Initialise the combo box
     startupPresetComboBox.addItem("None", kStartupPresetNone);
     startupPresetComboBox.addItem("Vibrato and Pitch Bend", kStartupPresetVibratoPitchBend);
     startupPresetComboBox.addItem("Last Saved", kStartupPresetLastSaved);
     startupPresetComboBox.addItem("Choose...", kStartupPresetChoose);
-
-    //[/Constructor]
 }
 
 PreferencesComponent::~PreferencesComponent()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
-//==============================================================================
 void PreferencesComponent::paint (juce::Graphics& g)
 {
-    //[UserPrePaint] Add your own custom painting code here..
-    //[/UserPrePaint]
-
     g.fillAll (juce::Colour (0xffd2d2d2));
-
-    //[UserPaint] Add your own custom painting code here..
-    //[/UserPaint]
 }
 
 void PreferencesComponent::resized()
@@ -110,20 +81,15 @@ void PreferencesComponent::resized()
     startTouchKeysButton.setBounds (16, 64, 208, 24);
     autodetectButton.setBounds (16, 88, 272, 24);
     defaultsButton.setBounds (16, 120, 144, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void PreferencesComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
-    //[/UsercomboBoxChanged_Pre]
 
     if (comboBoxThatHasChanged == &startupPresetComboBox)
     {
-        //[UserComboBoxCode_startupPresetComboBox] -- add your combo box handling code here..
         int selection = startupPresetComboBox.getSelectedId();
         if(selection == kStartupPresetNone) {
             controller_->setPrefsStartupPresetNone();
@@ -144,46 +110,28 @@ void PreferencesComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChang
             }
             // Otherwise user clicked cancel and we go back to whatever was there before
         }
-        //[/UserComboBoxCode_startupPresetComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void PreferencesComponent::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
-    //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == &startTouchKeysButton)
     {
-        //[UserButtonCode_startTouchKeysButton] -- add your button handler code here..
         controller_->setPrefsAutoStartTouchKeys(startTouchKeysButton.getToggleState());
-        //[/UserButtonCode_startTouchKeysButton]
     }
     else if (buttonThatWasClicked == &autodetectButton)
     {
-        //[UserButtonCode_autodetectButton] -- add your button handler code here..
         controller_->setPrefsAutodetectOctave(autodetectButton.getToggleState());
-        //[/UserButtonCode_autodetectButton]
     }
     else if (buttonThatWasClicked == &defaultsButton)
     {
-        //[UserButtonCode_defaultsButton] -- add your button handler code here..
         controller_->resetPreferences();
-        //[/UserButtonCode_defaultsButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 // Synchronize the UI state with the underlying state of the controller
 void PreferencesComponent::synchronize(bool forceUpdates) {
@@ -204,9 +152,6 @@ void PreferencesComponent::synchronize(bool forceUpdates) {
         startupPresetComboBox.setText(path);
     }
 }
-
-//[/MiscUserCode]
-
 
 //==============================================================================
 #if 0

@@ -1,31 +1,23 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.1
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyKeyDivisionMappingShortEditor.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (TouchkeyKeyDivisionMappingFactory& factory)
@@ -70,7 +62,6 @@ TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (To
     retriggerButton.addListener (this);
 
 
-    //[UserPreSize]
     controlComboBox.addItem("Position", TouchkeyKeyDivisionMapping::kDetectionParameterYPosition);
     controlComboBox.addItem("Number of Touches", TouchkeyKeyDivisionMapping::kDetectionParameterNumberOfTouches);
     controlComboBox.addItem("Both", TouchkeyKeyDivisionMapping::kDetectionParameterYPositionAndNumberOfTouches);
@@ -80,22 +71,12 @@ TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (To
     tuningComboBox.addItem("31-tone Equal Temperament", TouchkeyKeyDivisionMappingFactory::kTuningPreset31TET + 1);
     tuningComboBox.addItem("36-tone Equal Temperament", TouchkeyKeyDivisionMappingFactory::kTuningPreset36TET + 1);
     tuningComboBox.addItem("Yarman-24c Maqam Tuning", TouchkeyKeyDivisionMappingFactory::kTuningPresetYarman24c + 1);
-    //[/UserPreSize]
 
     setSize (328, 71);
-
-
-    //[Constructor] You can add your own custom stuff here..
-    //[/Constructor]
 }
 
 TouchkeyKeyDivisionMappingShortEditor::~TouchkeyKeyDivisionMappingShortEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
@@ -108,67 +89,41 @@ void TouchkeyKeyDivisionMappingShortEditor::paint (juce::Graphics& g)
 
 void TouchkeyKeyDivisionMappingShortEditor::resized()
 {
-    //[UserPreResize] Add your own custom resize code here..
-    //[/UserPreResize]
-
     tuningComboBox.setBounds (72, 8, 248, 24);
     tuningLabel.setBounds (8, 8, 72, 24);
     controlLabel.setBounds (8, 40, 72, 24);
     controlComboBox.setBounds (72, 40, 88, 24);
     retriggerButton.setBounds (176, 40, 136, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void TouchkeyKeyDivisionMappingShortEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
-
     if (comboBoxThatHasChanged == &tuningComboBox)
     {
-        //[UserComboBoxCode_tuningComboBox] -- add your combo box handling code here..
         // Offset the value by 1 since preset numbering starts from 0 but combo box IDs start from 1...
         factory_.setTuningPreset(tuningComboBox.getSelectedId() - 1);
-        //[/UserComboBoxCode_tuningComboBox]
     }
     else if (comboBoxThatHasChanged == &controlComboBox)
     {
-        //[UserComboBoxCode_controlComboBox] -- add your combo box handling code here..
         factory_.setDetectionParameter(controlComboBox.getSelectedId());
-        //[/UserComboBoxCode_controlComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void TouchkeyKeyDivisionMappingShortEditor::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    //[/UserbuttonClicked_Pre]
-
     if (buttonThatWasClicked == &retriggerButton)
     {
-        //[UserButtonCode_retriggerButton] -- add your button handler code here..
         factory_.setRetriggerable(retriggerButton.getToggleState());
-        //[/UserButtonCode_retriggerButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
 
 
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void TouchkeyKeyDivisionMappingShortEditor::synchronize()
 {
     retriggerButton.setToggleState(factory_.getRetriggerable(), juce::NotificationType::dontSendNotification);
     controlComboBox.setSelectedId(factory_.getDetectionParameter());
     tuningComboBox.setSelectedId(factory_.getTuningPreset() + 1);
 }
-//[/MiscUserCode]
 
 
 //==============================================================================

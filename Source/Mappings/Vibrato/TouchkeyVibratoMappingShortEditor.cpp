@@ -1,31 +1,24 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyVibratoMappingShortEditor.h"
-
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyVibratoMappingShortEditor::TouchkeyVibratoMappingShortEditor (TouchkeyVibratoMappingFactory& factory)
@@ -84,34 +77,22 @@ TouchkeyVibratoMappingShortEditor::TouchkeyVibratoMappingShortEditor (TouchkeyVi
     controlComboBox.setTextWhenNoChoicesAvailable ("(no choices)");
     controlComboBox.addListener (this);
 
-    //[UserPreSize]
     // Populate controllers field
     controlComboBox.addItem("Pitch Wheel", MidiKeyboardSegment::kControlPitchWheel);
     for(int i = 1; i <= 120; i++) {
         controlComboBox.addItem(juce::String(i), i);
     }
-    //[/UserPreSize]
 
     setSize (328, 71);
 
-
-    //[Constructor] You can add your own custom stuff here..
     rangeEditor.addListener(this);
     thresholdEditor.addListener(this);
-    //[/Constructor]
 }
 
 TouchkeyVibratoMappingShortEditor::~TouchkeyVibratoMappingShortEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
-
-
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
-//==============================================================================
 void TouchkeyVibratoMappingShortEditor::paint (juce::Graphics& g)
 {
     // NOTE white colour obscures the text of the label components
@@ -127,30 +108,17 @@ void TouchkeyVibratoMappingShortEditor::resized()
     thresholdLabel.setBounds (160, 8, 72, 24);
     controlLabel.setBounds (8, 40, 56, 24);
     controlComboBox.setBounds (64, 40, 88, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void TouchkeyVibratoMappingShortEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
-
     if (comboBoxThatHasChanged == &controlComboBox)
     {
-        //[UserComboBoxCode_controlComboBox] -- add your combo box handling code here..
         int control = controlComboBox.getSelectedId();
         factory_.setVibratoControl(control);
-        //[/UserComboBoxCode_controlComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 void TouchkeyVibratoMappingShortEditor::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
@@ -203,8 +171,6 @@ void TouchkeyVibratoMappingShortEditor::synchronize()
 
     controlComboBox.setSelectedId(factory_.getVibratoControl(), juce::NotificationType::dontSendNotification);
 }
-//[/MiscUserCode]
-
 
 //==============================================================================
 #if 0

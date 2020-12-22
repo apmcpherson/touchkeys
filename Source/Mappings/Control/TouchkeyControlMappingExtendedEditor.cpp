@@ -1,31 +1,25 @@
 /*
-  ==============================================================================
+  TouchKeys: multi-touch musical keyboard control software
+  Copyright (c) 2013 Andrew McPherson
 
-  This is an automatically generated GUI class created by the Introjucer!
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-  Be careful when adding custom code to these files, as only the code within
-  the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
-  and re-saved.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-  Created with Introjucer version: 3.1.0
-
-  ------------------------------------------------------------------------------
-
-  The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
-
-  ==============================================================================
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//[Headers] You can add your own extra header files here...
 #ifndef TOUCHKEYS_NO_GUI
-//[/Headers]
 
 #include "TouchkeyControlMappingExtendedEditor.h"
 
-
-//[MiscUserDefs] You can add your own user definitions and misc code here...
-//[/MiscUserDefs]
 
 //==============================================================================
 TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (TouchkeyControlMappingFactory& factory)
@@ -245,7 +239,6 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     outputDefaultEditor.setText (juce::String{});
 
 
-    //[UserPreSize]
     parameterComboBox.addItem("X Position", TouchkeyControlMapping::kInputParameterXPosition);
     parameterComboBox.addItem("Y Position", TouchkeyControlMapping::kInputParameterYPosition);
     parameterComboBox.addItem("Contact Area", TouchkeyControlMapping::kInputParameterTouchSize);
@@ -270,40 +263,27 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     outOfRangeComboBox.addItem("Ignore", OscMidiConverter::kOutOfRangeIgnore);
     outOfRangeComboBox.addItem("Clip", OscMidiConverter::kOutOfRangeClip);
     outOfRangeComboBox.addItem("Extrapolate", OscMidiConverter::kOutOfRangeExtrapolate);
-    //[/UserPreSize]
 
     setSize (448, 248);
 
 
-    //[Constructor] You can add your own custom stuff here..
     inputRangeLowEditor.addListener(this);
     inputRangeHighEditor.addListener(this);
     outputRangeLowEditor.addListener(this);
     outputRangeHighEditor.addListener(this);
     outputDefaultEditor.addListener(this);
     thresholdEditor.addListener(this);
-    //[/Constructor]
 }
 
 TouchkeyControlMappingExtendedEditor::~TouchkeyControlMappingExtendedEditor()
 {
-    //[Destructor_pre]. You can add your own custom destruction code here..
-    //[/Destructor_pre]
 
-    //[Destructor]. You can add your own custom destruction code here..
-    //[/Destructor]
 }
 
 //==============================================================================
 void TouchkeyControlMappingExtendedEditor::paint (juce::Graphics& g)
 {
-    //[UserPrePaint] Add your own custom painting code here..
-    //[/UserPrePaint]
-
     g.fillAll ( juce::Colour (0xffd2d2d2));
-
-    //[UserPaint] Add your own custom painting code here..
-    //[/UserPaint]
 }
 
 void TouchkeyControlMappingExtendedEditor::resized()
@@ -334,86 +314,56 @@ void TouchkeyControlMappingExtendedEditor::resized()
     outOfRangeComboBox.setBounds (320, 168, 112, 24);
     rangeLabel6.setBounds (8, 136, 96, 24);
     outputDefaultEditor.setBounds (112, 136, 56, 24);
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
+
 }
 
 void TouchkeyControlMappingExtendedEditor::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
 {
-    //[UsercomboBoxChanged_Pre]
-    //[/UsercomboBoxChanged_Pre]
 
     if (comboBoxThatHasChanged == &controlComboBox)
     {
-        //[UserComboBoxCode_controlComboBox] -- add your combo box handling code here..
         int controller = controlComboBox.getSelectedId();
         factory_.setController(controller);
-        //[/UserComboBoxCode_controlComboBox]
+
     }
     else if (comboBoxThatHasChanged == &parameterComboBox)
     {
-        //[UserComboBoxCode_parameterComboBox] -- add your combo box handling code here..
         int param = parameterComboBox.getSelectedId();
         factory_.setInputParameter(param);
-        //[/UserComboBoxCode_parameterComboBox]
+
     }
     else if (comboBoxThatHasChanged == &typeComboBox)
     {
-        //[UserComboBoxCode_typeComboBox] -- add your combo box handling code here..
         int type = typeComboBox.getSelectedId();
         factory_.setInputType(type);
-        //[/UserComboBoxCode_typeComboBox]
     }
     else if (comboBoxThatHasChanged == &directionComboBox)
     {
-        //[UserComboBoxCode_directionComboBox] -- add your combo box handling code here..
         int direction = directionComboBox.getSelectedId();
         factory_.setDirection(direction);
-        //[/UserComboBoxCode_directionComboBox]
     }
     else if (comboBoxThatHasChanged == &outOfRangeComboBox)
     {
-        //[UserComboBoxCode_outOfRangeComboBox] -- add your combo box handling code here..
         int behavior = outOfRangeComboBox.getSelectedId();
         factory_.setOutOfRangeBehavior(behavior);
-        //[/UserComboBoxCode_outOfRangeComboBox]
     }
-
-    //[UsercomboBoxChanged_Post]
-    //[/UsercomboBoxChanged_Post]
 }
 
 void TouchkeyControlMappingExtendedEditor::buttonClicked (juce::Button* buttonThatWasClicked)
 {
-    //[UserbuttonClicked_Pre]
-    //[/UserbuttonClicked_Pre]
-
     if (buttonThatWasClicked == &cc14BitButton)
     {
-        //[UserButtonCode_cc14BitButton] -- add your button handler code here..
         factory_.setUses14BitControl(cc14BitButton.getToggleState());
-        //[/UserButtonCode_cc14BitButton]
     }
     else if (buttonThatWasClicked == &ignore2FingersButton)
     {
-        //[UserButtonCode_ignore2FingersButton] -- add your button handler code here..
         factory_.setIgnoresTwoFingers(ignore2FingersButton.getToggleState());
-        //[/UserButtonCode_ignore2FingersButton]
     }
     else if (buttonThatWasClicked == &ignore3FingersButton)
     {
-        //[UserButtonCode_ignore3FingersButton] -- add your button handler code here..
         factory_.setIgnoresThreeFingers(ignore3FingersButton.getToggleState());
-        //[/UserButtonCode_ignore3FingersButton]
     }
-
-    //[UserbuttonClicked_Post]
-    //[/UserbuttonClicked_Post]
 }
-
-
-
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 
 void TouchkeyControlMappingExtendedEditor::textEditorReturnKeyPressed(juce::TextEditor &editor)
 {
@@ -605,8 +555,6 @@ juce::String TouchkeyControlMappingExtendedEditor::getDescriptionHelper(juce::St
     return desc;
 }
 
-//[/MiscUserCode]
-
 
 //==============================================================================
 #if 0
@@ -738,7 +686,4 @@ END_JUCER_METADATA
 */
 #endif
 
-
-//[EndFile] You can add extra defines here...
 #endif  // TOUCHKEYS_NO_GUI
-//[/EndFile]
