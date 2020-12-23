@@ -25,21 +25,6 @@
 
 #undef DEBUG_PITCHBEND_MAPPING
 
-// Class constants
-const int TouchkeyPitchBendMapping::kDefaultMIDIChannel = 0;
-const int TouchkeyPitchBendMapping::kDefaultFilterBufferLength = 30;
-
-const float TouchkeyPitchBendMapping::kDefaultBendRangeSemitones = 2.0;
-const float TouchkeyPitchBendMapping::kDefaultBendThresholdSemitones = 0.2;
-const float TouchkeyPitchBendMapping::kDefaultBendThresholdKeyLength = 0.1;
-const float TouchkeyPitchBendMapping::kDefaultSnapZoneSemitones = 0.5;
-const int TouchkeyPitchBendMapping::kDefaultPitchBendMode = TouchkeyPitchBendMapping::kPitchBendModeVariableEndpoints;
-const float TouchkeyPitchBendMapping::kDefaultFixedModeEnableDistance = 0.1;
-const float TouchkeyPitchBendMapping::kDefaultFixedModeBufferDistance = 0;
-
-const bool TouchkeyPitchBendMapping::kDefaultIgnoresTwoFingers = false;
-const bool TouchkeyPitchBendMapping::kDefaultIgnoresThreeFingers = false;
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

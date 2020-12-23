@@ -49,18 +49,20 @@ private:
     constexpr static const int kDefaultNumFramesForTrigger = 2;
     constexpr static const int kDefaultNumConsecutiveTapsForTrigger = 1;
     constexpr static const timestamp_diff_type kDefaultMaxTapSpacing = milliseconds_to_timestamp(500.0);*/
-    static const int kDefaultFilterBufferLength;
-    static const int kDefaultNumTouchesForTrigger;
-    static const int kDefaultNumFramesForTrigger;
-    static const int kDefaultNumConsecutiveTapsForTrigger;
-    static const timestamp_diff_type kDefaultMaxTapSpacing;
-    static const int kDefaultTriggerOnAction;
-    static const int kDefaultTriggerOffAction;
-    static const int kDefaultTriggerOnNoteNum;
-    static const int kDefaultTriggerOffNoteNum;
-    static const int kDefaultTriggerOnNoteVel;
-    static const int kDefaultTriggerOffNoteVel;
-    
+
+    // Class constants
+    static constexpr int kDefaultFilterBufferLength = 30;
+    static constexpr int kDefaultNumTouchesForTrigger = 2;
+    static constexpr int kDefaultNumFramesForTrigger = 2;
+    static constexpr int kDefaultNumConsecutiveTapsForTrigger = 1;
+    static constexpr timestamp_diff_type kDefaultMaxTapSpacing = milliseconds_to_timestamp( 300.0 );
+    static constexpr int kDefaultTriggerOnAction = TouchkeyMultiFingerTriggerMapping::kActionNoteOn;
+    static constexpr int kDefaultTriggerOffAction = TouchkeyMultiFingerTriggerMapping::kActionNone;
+    static constexpr int kDefaultTriggerOnNoteNum = -1;
+    static constexpr int kDefaultTriggerOffNoteNum = -1;
+    static constexpr int kDefaultTriggerOnNoteVel = -1;
+    static constexpr int kDefaultTriggerOffNoteVel = -1;
+
 public:
 	// ***** Constructors *****
 	

@@ -21,9 +21,6 @@
 #include "TouchkeyMultiFingerTriggerMappingShortEditor.h"
 
 
-const int TouchkeyMultiFingerTriggerMappingShortEditor::kNoteSame = 256;
-const int TouchkeyMultiFingerTriggerMappingShortEditor::kNoteOffset = 1;
-
 //==============================================================================
 TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingShortEditor (TouchkeyMultiFingerTriggerMappingFactory& factory)
     : factory_(factory),

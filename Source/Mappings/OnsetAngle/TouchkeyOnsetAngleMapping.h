@@ -34,11 +34,11 @@ private:
     // Default values
     /*constexpr static const int kDefaultFilterBufferLength = 30;
      constexpr static const timestamp_diff_type kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);*/
-    
-    static const int kDefaultFilterBufferLength;
-    static const timestamp_diff_type kDefaultMaxLookbackTime;
-    static const int kDefaultMaxLookbackSamples;
-    
+
+    // Class constants
+    static constexpr int TouchkeyOnsetAngleMapping::kDefaultFilterBufferLength = 30;
+    static constexpr timestamp_diff_type TouchkeyOnsetAngleMapping::kDefaultMaxLookbackTime = milliseconds_to_timestamp( 100 );
+    static constexpr int TouchkeyOnsetAngleMapping::kDefaultMaxLookbackSamples = 3;
 public:
 	// ***** Constructors *****
 	

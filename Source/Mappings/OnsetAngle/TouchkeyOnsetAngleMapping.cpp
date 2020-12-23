@@ -26,11 +26,6 @@
 
 #define DEBUG_NOTE_ONSET_MAPPING
 
-// Class constants
-const int TouchkeyOnsetAngleMapping::kDefaultFilterBufferLength = 30;
-const timestamp_diff_type TouchkeyOnsetAngleMapping::kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);
-const int TouchkeyOnsetAngleMapping::kDefaultMaxLookbackSamples = 3;
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

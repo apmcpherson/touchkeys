@@ -44,42 +44,25 @@ class TouchkeyVibratoMapping : public TouchkeyBaseMapping {
 
 private:
     // Useful constants for mapping MRP messages
-    /*constexpr static const int kDefaultMIDIChannel = 0;
-    constexpr static const int kDefaultFilterBufferLength = 30;
-    
-    constexpr static const float kDefaultVibratoThresholdX = 0.05;
-    constexpr static const float kDefaultVibratoRatioX = 0.3;
-    constexpr static const float kDefaultVibratoThresholdY = 0.02;
-    constexpr static const float kDefaultVibratoRatioY = 0.8;
-    constexpr static const timestamp_diff_type kDefaultVibratoTimeout = microseconds_to_timestamp(400000); // 0.4s
-    constexpr static const float kDefaultVibratoPrescaler = 2.0;
-    constexpr static const float kDefaultVibratoRangeSemitones = 1.25;
-    
-    constexpr static const timestamp_diff_type kZeroCrossingMinimumTime = microseconds_to_timestamp(50000); // 50ms
-    constexpr static const timestamp_diff_type kMinimumOnsetTime = microseconds_to_timestamp(30000); // 30ms
-    constexpr static const timestamp_diff_type kMaximumOnsetTime = microseconds_to_timestamp(300000); // 300ms
-    constexpr static const timestamp_diff_type kMinimumReleaseTime = microseconds_to_timestamp(30000); // 30ms
-    constexpr static const timestamp_diff_type kMaximumReleaseTime = microseconds_to_timestamp(300000); // 300ms*/
-    
-    static const int kDefaultMIDIChannel;
-    static const int kDefaultFilterBufferLength;
-    
-    static const float kDefaultVibratoThresholdX;
-    static const float kDefaultVibratoRatioX;
-    static const float kDefaultVibratoThresholdY;
-    static const float kDefaultVibratoRatioY;
-    static const timestamp_diff_type kDefaultVibratoTimeout;
-    static const float kDefaultVibratoPrescaler;
-    static const float kDefaultVibratoRangeSemitones;
-    
-    static const timestamp_diff_type kZeroCrossingMinimumTime;
-    static const timestamp_diff_type kMinimumOnsetTime;
-    static const timestamp_diff_type kMaximumOnsetTime;
-    static const timestamp_diff_type kMinimumReleaseTime;
-    static const timestamp_diff_type kMaximumReleaseTime;
-    
-    static const float kWhiteKeySingleAxisThreshold;
-    
+    static constexpr int kDefaultMIDIChannel = 0;
+    static constexpr int kDefaultFilterBufferLength = 30;
+
+    static constexpr float kDefaultVibratoThresholdX = 0.05f;
+    static constexpr float kDefaultVibratoRatioX = 0.3f;
+    static constexpr float kDefaultVibratoThresholdY = 0.02f;
+    static constexpr float kDefaultVibratoRatioY = 0.8f;
+    static constexpr timestamp_diff_type kDefaultVibratoTimeout = microseconds_to_timestamp( 400000 ); // 0.4s
+    static constexpr float kDefaultVibratoPrescaler = 2.0f;
+    static constexpr float kDefaultVibratoRangeSemitones = 1.25f;
+
+    static constexpr timestamp_diff_type kZeroCrossingMinimumTime = microseconds_to_timestamp( 50000 ); // 50ms
+    static constexpr timestamp_diff_type kMinimumOnsetTime = microseconds_to_timestamp( 30000 ); // 30ms
+    static constexpr timestamp_diff_type kMaximumOnsetTime = microseconds_to_timestamp( 300000 ); // 300ms
+    static constexpr timestamp_diff_type kMinimumReleaseTime = microseconds_to_timestamp( 30000 ); // 30ms
+    static constexpr timestamp_diff_type kMaximumReleaseTime = microseconds_to_timestamp( 300000 ); // 300ms
+
+    static constexpr float kWhiteKeySingleAxisThreshold = 7.0f / 19.0f;
+
     enum {
         kStateInactive = 0,
         kStateSwitchingOn,

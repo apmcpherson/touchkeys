@@ -24,19 +24,7 @@
 
 #include "KeyPositionGraphDisplay.h"
 
-// Class constants
-// Display margins
-const float KeyPositionGraphDisplay::kDisplaySideMargin = 0.5;
-const float KeyPositionGraphDisplay::kDisplayBottomMargin = 0.5;
-const float KeyPositionGraphDisplay::kDisplayTopMargin = 0.5;
-
-// Size of the graph area
-const float KeyPositionGraphDisplay::kDisplayGraphWidth = 20.0;
-const float KeyPositionGraphDisplay::kDisplayGraphHeight = 10.0;
-
-KeyPositionGraphDisplay::KeyPositionGraphDisplay() : canvas_(0),
-displayPixelWidth_(1.0), displayPixelHeight_(1.0), totalDisplayWidth_(1.0), totalDisplayHeight_(1.0), 
-xMin_(0.0), xMax_(1.0), yMin_(-0.2), yMax_(1.2)
+KeyPositionGraphDisplay::KeyPositionGraphDisplay()
 {
 	// Initialize OpenGL settings: 2D only
     

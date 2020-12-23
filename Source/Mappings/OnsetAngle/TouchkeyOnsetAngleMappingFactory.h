@@ -29,8 +29,9 @@
 
 class TouchkeyOnsetAngleMappingFactory : public TouchkeyBaseMappingFactory<TouchkeyOnsetAngleMapping> {
 private:
-    static const timestamp_diff_type kDefaultMaxLookbackTime;
-    
+    // Class constants
+    static constexpr timestamp_diff_type kDefaultMaxLookbackTime = milliseconds_to_timestamp( 100 );
+
 public:
     // ***** Constructor *****
     

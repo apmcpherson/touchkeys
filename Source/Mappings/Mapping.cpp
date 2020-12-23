@@ -28,9 +28,6 @@
 #include "MappingFactory.h"
 #include "MappingScheduler.h"
 
-// Class constants
-const timestamp_diff_type Mapping::kDefaultUpdateInterval = microseconds_to_timestamp(5500);
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

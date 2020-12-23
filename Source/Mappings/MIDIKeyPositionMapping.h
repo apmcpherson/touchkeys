@@ -35,19 +35,13 @@
 
 class MIDIKeyPositionMapping : public Mapping {
 private:
-    /*const int kDefaultMIDIChannel = 0;
-    const float kDefaultAftertouchScaler = 127.0 / 0.03;   // Default aftertouch sensitivity: MIDI 127 = 0.03
-    const float kMinimumAftertouchPosition = 0.99;         // Position at which aftertouch messages start
-    const float kDefaultPercussivenessScaler = 1.0 / 300.0; // Default scaler from percussiveness feature to MIDI
-    const key_velocity kPianoKeyVelocityForMaxMIDI = scale_key_velocity(40.0);           // Press velocity for MIDI 127
-    const key_velocity kPianoKeyReleaseVelocityForMaxMIDI = scale_key_velocity(-50.0);   // Release velocity for MIDI 127*/
-    static const int kDefaultMIDIChannel;
-    static const float kDefaultAftertouchScaler;  // Default aftertouch sensitivity: MIDI 127 = 0.03
-    static const float kMinimumAftertouchPosition; // Position at which aftertouch messages start
-    static const float kDefaultPercussivenessScaler; // Default scaler from percussiveness feature to MIDI
-    static const key_velocity kPianoKeyVelocityForMaxMIDI;           // Press velocity for MIDI 127
-    static const key_velocity kPianoKeyReleaseVelocityForMaxMIDI;    // Release velocity for MIDI 127
-    
+    static constexpr int kDefaultMIDIChannel = 0;
+    static constexpr float kDefaultAftertouchScaler = 127.0f / 0.03f;   // Default aftertouch sensitivity: MIDI 127 = 0.03
+    static constexpr float kMinimumAftertouchPosition = 0.99f;         // Position at which aftertouch messages start
+    static constexpr float kDefaultPercussivenessScaler = 1.0f / 300.0f; // Default scaler from percussiveness feature to MIDI
+    static constexpr key_velocity kPianoKeyVelocityForMaxMIDI = scale_key_velocity( 40.0 );           // Press velocity for MIDI 127
+    static constexpr key_velocity kPianoKeyReleaseVelocityForMaxMIDI = scale_key_velocity( -50.0 );   // Release velocity for MIDI 127
+
 public:
 	// ***** Constructors *****
 	

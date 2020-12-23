@@ -50,21 +50,19 @@ public:
     
 private:
     // Useful constants for mapping MRP messages
-    
-    static const int kDefaultMIDIChannel;
-    static const int kDefaultFilterBufferLength;
-    
-    static const float kDefaultBendRangeSemitones;
-    static const float kDefaultBendThresholdSemitones;
-    static const float kDefaultBendThresholdKeyLength;
-    static const float kDefaultSnapZoneSemitones;
-    static const int kDefaultPitchBendMode;
-    static const float kDefaultFixedModeEnableDistance;
-    static const float kDefaultFixedModeBufferDistance;
-    
-    static const bool kDefaultIgnoresTwoFingers;
-    static const bool kDefaultIgnoresThreeFingers;
+    static constexpr int kDefaultMIDIChannel = 0;
+    static constexpr int kDefaultFilterBufferLength = 30;
 
+    static constexpr float kDefaultBendRangeSemitones = 2.0;
+    static constexpr float kDefaultBendThresholdSemitones = 0.2;
+    static constexpr float kDefaultBendThresholdKeyLength = 0.1;
+    static constexpr float kDefaultSnapZoneSemitones = 0.5;
+    static constexpr int kDefaultPitchBendMode = kPitchBendModeVariableEndpoints;
+    static constexpr float kDefaultFixedModeEnableDistance = 0.1;
+    static constexpr float kDefaultFixedModeBufferDistance = 0;
+
+    static constexpr bool kDefaultIgnoresTwoFingers = false;
+    static constexpr bool kDefaultIgnoresThreeFingers = false;
 
 public:
 	// ***** Constructors *****

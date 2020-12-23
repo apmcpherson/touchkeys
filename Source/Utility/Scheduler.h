@@ -44,8 +44,8 @@ public:
 	typedef boost::function<timestamp_type ()> action;
     
 private:
-    static const timestamp_diff_type kAllowableAdvanceExecutionTime;
-	
+    static constexpr timestamp_diff_type kAllowableAdvanceExecutionTime = milliseconds_to_timestamp( 1.0 );
+
 public:	
 	// ***** Constructor *****
 	//

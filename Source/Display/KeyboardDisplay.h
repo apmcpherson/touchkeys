@@ -37,40 +37,39 @@ class KeyboardDisplay : public OpenGLDisplayBase {
 protected:
     // Display dimensions, normalized to the width of one white key
  
-    static const float kWhiteKeyFrontWidth;
-    static const float kBlackKeyWidth;
-    static const float kWhiteKeyFrontLength;
-    static const float kWhiteKeyBackLength;
-    static const float kBlackKeyLength;
-    static const float kInterKeySpacing;
-    static const float kAnalogSliderVerticalSpacing;
-    static const float kAnalogSliderLength;
-    static const float kAnalogSliderWidth;
-    static const float kAnalogSliderMinimumValue;
-    static const float kAnalogSliderMaximumValue;
-    static const float kAnalogSliderZeroLocation;
-    static const float kAnalogSliderOneLocation;
-    
+	static constexpr float kWhiteKeyFrontWidth = 1.0;
+	static constexpr float kBlackKeyWidth = 0.5;
+	static constexpr float kWhiteKeyFrontLength = 2.3;
+	static constexpr float kWhiteKeyBackLength = 4.1;
+	static constexpr float kBlackKeyLength = 4.0;
+	static constexpr float kInterKeySpacing = 0.1;
+	static constexpr float kAnalogSliderVerticalSpacing = 0.2;
+	static constexpr float kAnalogSliderLength = 3.0;
+	static constexpr float kAnalogSliderWidth = 0.4;
+	static constexpr float kAnalogSliderMinimumValue = -0.2;
+	static constexpr float kAnalogSliderMaximumValue = 1.2;
+	static constexpr float kAnalogSliderZeroLocation = kAnalogSliderLength * ( 0.0 - kAnalogSliderMinimumValue ) / ( kAnalogSliderMaximumValue - kAnalogSliderMinimumValue );
+	static constexpr float kAnalogSliderOneLocation = kAnalogSliderLength * ( 1.0 - kAnalogSliderMinimumValue ) / ( kAnalogSliderMaximumValue - kAnalogSliderMinimumValue );
     // Individual geometry for C, D, E, F, G, A, B, c'
     
     static const float kWhiteKeyBackOffsets[9];
     static const float kWhiteKeyBackWidths[9];
     
-    // Display margins
-    
-    static const float kDisplaySideMargin;
-    static const float kDisplayBottomMargin;
-    static const float kDisplayTopMargin;
+	// Display margins
+
+	static constexpr float kDisplaySideMargin = 0.4;
+	static constexpr float kDisplayBottomMargin = 0.8;
+	static constexpr float kDisplayTopMargin = 0.8;
     
     // Key shape constants
     
     static const int kShapeForNote[12];
     static const int kWhiteToChromatic[7];
-    static const float kWhiteKeyFrontBackCutoff;
+	static constexpr float kWhiteKeyFrontBackCutoff = ( 6.5 / 19.0 );
     
-    // Touch constants
-    static const float kDisplayMinTouchSize;
-    static const float kDisplayTouchSizeScaler;
+	// Touch constants
+	static constexpr float kDisplayMinTouchSize = 0.1;
+	static constexpr float kDisplayTouchSizeScaler = 0.5;
     
     
 	typedef struct {
@@ -106,37 +105,37 @@ public:
 	// Setup methods for display size and keyboard range
 	void setKeyboardRange(int lowest, int highest);
 	float keyboardAspectRatio() { return totalDisplayWidth_ / totalDisplayHeight_; }
-	virtual void setDisplaySize(float width, float height);
+	void setDisplaySize(float width, float height) override;
 	
 	// Drawing methods
-	virtual void render();
+	void render() override;
 	
 	// Interaction methods
-	virtual void mouseDown(const float x, const float y);
-	virtual void mouseDragged(const float x, const float y);
-	virtual void mouseUp(const float x, const float y);
-	virtual void rightMouseDown(const float x, const float y);
-	virtual void rightMouseDragged(const float x, const float y);
-	virtual void rightMouseUp(const float x, const float y);
+	void mouseDown(const float x, const float y) override;
+	void mouseDragged(const float x, const float y) override;
+	void mouseUp(const float x, const float y) override;
+	void rightMouseDown(const float x, const float y) override;
+	void rightMouseDragged(const float x, const float y) override;
+	void rightMouseUp(const float x, const float y) override;
 	
 	// Take action associated with clicking a key.  These are called within the mouse
 	// methods but may also be called externally.
-	virtual void keyClicked( const int key);
-	virtual void keyRightClicked( const int key);
+	virtual void keyClicked(const int key);
+	virtual void keyRightClicked(const int key);
 	
 	// State-change methods
-	void setTouchForKey( const int key, const KeyTouchFrame& touch);
-	void clearTouchForKey( const int key);
+	void setTouchForKey(const int key, const KeyTouchFrame& touch);
+	void clearTouchForKey(const int key);
 	void clearAllTouches();
-    void setAnalogCalibrationStatusForKey( const int key, const bool isCalibrated);
-	void setAnalogValueForKey( const int key, const float value);
+    void setAnalogCalibrationStatusForKey(const int key, const bool isCalibrated);
+	void setAnalogValueForKey(const int key, const float value);
     void clearAnalogData();
-    void setMidiActive( const int key, const bool active);
+    void setMidiActive(const int key, const bool active);
     void clearMidiData();
     
-    void setAnalogSensorsPresent( const bool present) { analogSensorsPresent_ = present; }
-	void setTouchSensorPresentForKey( const int key, const bool present);
-	void setTouchSensingEnabled( const bool enabled);
+    void setAnalogSensorsPresent(const bool present) { analogSensorsPresent_ = present; }
+	void setTouchSensorPresentForKey(const int key, const bool present);
+	void setTouchSensingEnabled(const bool enabled);
     
     // Key division methods
     void addKeyDivision(void *who, int noteLow, int noteHigh, int divisions);
@@ -172,16 +171,19 @@ protected:
     void recalculateKeyDivisions();
 		
 protected:
-	OpenGLJuceCanvas *canvas_;                      // Reference to object which handles rendering
+	OpenGLJuceCanvas *canvas_ { nullptr };        // Reference to object which handles rendering
     
-	int lowestMidiNote_, highestMidiNote_;			// Which keys should be displayed (use MIDI note numbers)	
-	float totalDisplayWidth_, totalDisplayHeight_;	// Size of the internal view (centered around origin)
-    float displayPixelWidth_, displayPixelHeight_;	// Pixel resolution of the surrounding window
-	int currentHighlightedKey_;						// What key is being clicked on at the moment
-	bool touchSensingEnabled_;						// Whether touch-sensitive keys are being used
+	int lowestMidiNote_ { 0 };
+	int highestMidiNote_ { 0 };			// Which keys should be displayed (use MIDI note numbers)	
+	float totalDisplayWidth_ { 1.0f };
+	float totalDisplayHeight_ { 1.0f };	// Size of the internal view (centered around origin)
+    float displayPixelWidth_ { 1.0f };
+	float displayPixelHeight_ { 1.0f };	// Pixel resolution of the surrounding window
+	int currentHighlightedKey_ { -1 };						// What key is being clicked on at the moment
+	bool touchSensingEnabled_ { false };						// Whether touch-sensitive keys are being used
 	bool touchSensingPresentOnKey_[128];			// Whether the key with this MIDI note has a touch sensor
     
-    bool analogSensorsPresent_;                     // Whether the given device has analog sensors at all
+    bool analogSensorsPresent_ { false };                     // Whether the given device has analog sensors at all
     bool analogValueIsCalibratedForKey_[128];       // Whether the analog sensor is calibrated on this key
     float analogValueForKey_[128];                  // Latest analog sensor value for each key
     bool midiActiveForKey_[128];                    // Whether the MIDI note is on for each key

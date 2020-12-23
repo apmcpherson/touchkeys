@@ -26,8 +26,7 @@
 #include "TouchkeyReleaseAngleMappingExtendedEditor.h"
 
 // Class constants
-const timestamp_diff_type TouchkeyReleaseAngleMappingFactory::kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);
-const int TouchkeyReleaseAngleMappingFactory::kNumConfigurations = 2;
+
 const std::string TouchkeyReleaseAngleMappingFactory::kConfigurationNames[] = {
     "Sample Modeling Trombone",
     "Sample Modeling Trumpet"

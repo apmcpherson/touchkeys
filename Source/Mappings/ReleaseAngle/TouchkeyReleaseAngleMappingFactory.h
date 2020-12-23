@@ -29,12 +29,10 @@
 
 class TouchkeyReleaseAngleMappingFactory : public TouchkeyBaseMappingFactory<TouchkeyReleaseAngleMapping> {
 private:
-    //constexpr static const timestamp_diff_type kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);
-    static const timestamp_diff_type kDefaultMaxLookbackTime;
-    
-    static const int kNumConfigurations;
+    static constexpr timestamp_diff_type kDefaultMaxLookbackTime = milliseconds_to_timestamp( 100 );
+    static constexpr int kNumConfigurations = 2;
+
     static const std::string kConfigurationNames[];
-    
 public:
     // ***** Constructor *****
     

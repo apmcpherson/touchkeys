@@ -31,8 +31,6 @@ const float TouchkeyKeyDivisionMappingFactory::kTuningsYarman24c[24] = {
     788.736, 853.063, 905.87, 887.656, 996.1, 1043.623, 1085.49, 1071.942,
 };
 
-const int TouchkeyKeyDivisionMappingFactory::kMaxSegmentsPerKey = 3;
-
 /* As arranged:
  *
  *   B|  Db/  Dd  Eb/  Ed  E|  Gb/  Gd  Ab/  Ad  Bb/  Bd

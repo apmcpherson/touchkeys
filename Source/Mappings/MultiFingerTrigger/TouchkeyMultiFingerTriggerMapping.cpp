@@ -25,18 +25,6 @@
 #include "TouchkeyMultiFingerTriggerMapping.h"
 #include "TouchkeyMultiFingerTriggerMappingFactory.h"
 
-// Class constants
-const int TouchkeyMultiFingerTriggerMapping::kDefaultFilterBufferLength = 30;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultNumTouchesForTrigger = 2;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultNumFramesForTrigger = 2;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultNumConsecutiveTapsForTrigger = 1;
-const timestamp_diff_type TouchkeyMultiFingerTriggerMapping::kDefaultMaxTapSpacing = milliseconds_to_timestamp(300.0);
-const int TouchkeyMultiFingerTriggerMapping::kDefaultTriggerOnAction = TouchkeyMultiFingerTriggerMapping::kActionNoteOn;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultTriggerOffAction = TouchkeyMultiFingerTriggerMapping::kActionNone;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultTriggerOnNoteNum = -1;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultTriggerOffNoteNum = -1;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultTriggerOnNoteVel =  -1;
-const int TouchkeyMultiFingerTriggerMapping::kDefaultTriggerOffNoteVel = -1;
 
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that

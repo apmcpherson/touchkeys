@@ -32,8 +32,8 @@
 class TouchkeyKeyDivisionMappingFactory : public TouchkeyBaseMappingFactory<TouchkeyKeyDivisionMapping> {
 private:
     static const float kTuningsYarman24c[];
-    static const int kMaxSegmentsPerKey;
-    
+    static constexpr int kMaxSegmentsPerKey = 3;
+
 public:
     enum {
         kTuningPreset19TET = 0,

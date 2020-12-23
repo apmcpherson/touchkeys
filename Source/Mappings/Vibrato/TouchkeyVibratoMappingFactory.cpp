@@ -25,8 +25,6 @@
 #include "TouchkeyVibratoMappingFactory.h"
 #include "TouchkeyVibratoMappingShortEditor.h"
 
-// Class constants
-const int TouchkeyVibratoMappingFactory::kDefaultVibratoControl = MidiKeyboardSegment::kControlPitchWheel;
 
 // Default constructor, containing a reference to the PianoKeyboard class.
 

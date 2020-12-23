@@ -38,29 +38,19 @@ const int kMRPMappingVelocityBufferLength = 30;
 
 class MRPMapping : public Mapping {
 private:
-    /*// Useful constants for mapping MRP messages
-    const int kMIDINoteOnMessage = 0x90;
-    const int kDefaultMIDIChannel = 15;
-    const float kDefaultAftertouchScaler = 100.0;
-    
-    // Parameters for vibrato detection and mapping
-    const key_velocity kVibratoVelocityThreshold = scale_key_velocity(2.0);
-    const timestamp_diff_type kVibratoMinimumPeakSpacing = microseconds_to_timestamp(60000);
-    const timestamp_diff_type kVibratoTimeout = microseconds_to_timestamp(500000);
-    const int kVibratoMinimumOscillations = 4;
-    const float kVibratoRateScaler = 0.005;*/
+
     // Useful constants for mapping MRP messages
-    static const int kMIDINoteOnMessage;
-    static const int kDefaultMIDIChannel;
-    static const float kDefaultAftertouchScaler;
-    
+    static constexpr int kMIDINoteOnMessage = 0x90;
+    static constexpr int kDefaultMIDIChannel = 15;
+    static constexpr float kDefaultAftertouchScaler = 100.0;
+
     // Parameters for vibrato detection and mapping
-    static const key_velocity kVibratoVelocityThreshold;
-    static const timestamp_diff_type kVibratoMinimumPeakSpacing;
-    static const timestamp_diff_type kVibratoTimeout;
-    static const int kVibratoMinimumOscillations;
-    static const float kVibratoRateScaler;
-    
+    static constexpr key_velocity kVibratoVelocityThreshold = scale_key_velocity( 2.0 );
+    static constexpr timestamp_diff_type kVibratoMinimumPeakSpacing = microseconds_to_timestamp( 60000 );
+    static constexpr timestamp_diff_type kVibratoTimeout = microseconds_to_timestamp( 500000 );
+    static constexpr int kVibratoMinimumOscillations = 4;
+    static constexpr float kVibratoRateScaler = 0.005;
+
     struct PitchBend {
         int note;                               // Note number of the bending key
         bool isControllingBend;                 // True if the note in this structure

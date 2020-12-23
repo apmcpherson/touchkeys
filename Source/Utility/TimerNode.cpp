@@ -23,9 +23,6 @@
 
 #include "TimerNode.h"
 
-using std::cout;
-using std::endl;
-
 // Start the timer, if it isn't already running.  The update rate is set elsewhere.
 void TimerNode::start(timestamp_type where) {
 	if(isRunning_)

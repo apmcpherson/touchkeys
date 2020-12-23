@@ -30,13 +30,6 @@
 
 #define DEBUG_RELEASE_ANGLE_MAPPING
 
-// Class constants
-const int TouchkeyReleaseAngleMapping::kDefaultFilterBufferLength = 30;
-const timestamp_diff_type TouchkeyReleaseAngleMapping::kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);
-
-const float TouchkeyReleaseAngleMapping::kDefaultUpMinimumAngle = 1.0;
-const float TouchkeyReleaseAngleMapping::kDefaultDownMinimumAngle = 1.0;
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

@@ -23,19 +23,6 @@
 
 #include "MRPMapping.h"
 
-// Class constants
-// Useful constants for mapping MRP messages
-const int MRPMapping::kMIDINoteOnMessage = 0x90;
-const int MRPMapping::kDefaultMIDIChannel = 15;
-const float MRPMapping::kDefaultAftertouchScaler = 100.0;
-
-// Parameters for vibrato detection and mapping
-const key_velocity MRPMapping::kVibratoVelocityThreshold = scale_key_velocity(2.0);
-const timestamp_diff_type MRPMapping::kVibratoMinimumPeakSpacing = microseconds_to_timestamp(60000);
-const timestamp_diff_type MRPMapping::kVibratoTimeout = microseconds_to_timestamp(500000);
-const int MRPMapping::kVibratoMinimumOscillations = 4;
-const float MRPMapping::kVibratoRateScaler = 0.005;
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

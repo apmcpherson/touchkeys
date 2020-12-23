@@ -24,15 +24,6 @@
 #include "MIDIKeyPositionMapping.h"
 #include "../TouchKeys/MidiOutputController.h"
 
-// Class constants
-const int MIDIKeyPositionMapping::kDefaultMIDIChannel = 0;
-const float MIDIKeyPositionMapping::kDefaultAftertouchScaler = 127.0f / 0.03f;   // Default aftertouch sensitivity: MIDI 127 = 0.03
-const float MIDIKeyPositionMapping::kMinimumAftertouchPosition = 0.99f;         // Position at which aftertouch messages start
-const float MIDIKeyPositionMapping::kDefaultPercussivenessScaler = 1.0f / 300.0f; // Default scaler from percussiveness feature to MIDI
-const key_velocity MIDIKeyPositionMapping::kPianoKeyVelocityForMaxMIDI = scale_key_velocity(40.0);           // Press velocity for MIDI 127
-const key_velocity MIDIKeyPositionMapping::kPianoKeyReleaseVelocityForMaxMIDI = scale_key_velocity(-50.0);   // Release velocity for MIDI 127
-
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

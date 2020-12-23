@@ -29,9 +29,8 @@ class TouchkeyMultiFingerTriggerMappingShortEditor  : public MappingEditorCompon
                                                       public juce::Button::Listener
 {
 private:
-    static const int kNoteSame;
-    static const int kNoteOffset;
-    
+    static constexpr int kNoteSame = 256;
+    static constexpr int kNoteOffset = 1;
 public:
     TouchkeyMultiFingerTriggerMappingShortEditor (TouchkeyMultiFingerTriggerMappingFactory& factory);
     ~TouchkeyMultiFingerTriggerMappingShortEditor();

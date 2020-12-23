@@ -33,11 +33,10 @@
 
 class TouchkeyControlMappingFactory : public TouchkeyBaseMappingFactory<TouchkeyControlMapping> {
 private:
-    static const int kDefaultController;
-    static const float kDefaultOutputRangeMin;
-    static const float kDefaultOutputRangeMax;
-    static const float kDefaultOutputDefault;
-    
+    static constexpr int kDefaultController = 1;
+    static constexpr float kDefaultOutputRangeMin = 0.0;
+    static constexpr float kDefaultOutputRangeMax = 127.0;
+    static constexpr float kDefaultOutputDefault = 0.0;
 public:
     // ***** Constructor *****
     

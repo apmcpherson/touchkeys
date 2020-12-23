@@ -42,9 +42,8 @@ class MappingFactory;
 class Mapping : public TriggerDestination {
 protected:
     // Default frequency of mapping data, in the absence of other triggers
-    //const timestamp_diff_type kDefaultUpdateInterval = microseconds_to_timestamp(5500);
-    static const timestamp_diff_type kDefaultUpdateInterval;
-    
+    static constexpr timestamp_diff_type kDefaultUpdateInterval = microseconds_to_timestamp( 5500 );
+
 public:
 	// ***** Constructors *****
 	

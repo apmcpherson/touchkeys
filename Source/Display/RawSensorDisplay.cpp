@@ -22,21 +22,7 @@
 
 #include "RawSensorDisplay.h"
 
-// Class constants
-// Display margins
-const float RawSensorDisplay::kDisplaySideMargin = 0.5;
-const float RawSensorDisplay::kDisplayBottomMargin = 0.5;
-const float RawSensorDisplay::kDisplayTopMargin = 0.5;
-
-// Size of bar graphs and spacing
-const float RawSensorDisplay::kDisplayBarWidth = 0.5;
-const float RawSensorDisplay::kDisplayBarSpacing = 0.25;
-const float RawSensorDisplay::kDisplayBarHeight = 10.0;
-
-
-RawSensorDisplay::RawSensorDisplay() : canvas_(0),
-displayPixelWidth_(1.0), displayPixelHeight_(1.0), totalDisplayWidth_(1.0), totalDisplayHeight_(1.0), 
-yMin_(-10), yMax_(256) {
+RawSensorDisplay::RawSensorDisplay() {
 	// Initialize OpenGL settings: 2D only
     
 	//glMatrixMode(GL_PROJECTION);

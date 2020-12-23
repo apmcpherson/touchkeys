@@ -35,7 +35,7 @@
 
 class TouchkeyVibratoMappingFactory : public TouchkeyBaseMappingFactory<TouchkeyVibratoMapping> {
 private:
-    static const int kDefaultVibratoControl;
+    static constexpr int kDefaultVibratoControl = MidiKeyboardSegment::kControlPitchWheel;
 
 public:
     

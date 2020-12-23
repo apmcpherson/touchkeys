@@ -24,9 +24,6 @@
 #include "Scheduler.h"
 #undef DEBUG_SCHEDULER
 
-using std::cout;
-
-const timestamp_diff_type Scheduler::kAllowableAdvanceExecutionTime = milliseconds_to_timestamp(1.0);
 
 // Start the thread handling the scheduling.  Pass it an initial timestamp.
 void Scheduler::start(timestamp_type where) {

@@ -37,15 +37,16 @@
 class KeyPositionGraphDisplay : public OpenGLDisplayBase {
 	// Internal data structures and constants
 private:
-    // Display margins
-    static const float kDisplaySideMargin;
-    static const float kDisplayBottomMargin;
-    static const float kDisplayTopMargin;
-    
+
+   // Display margins
+    static constexpr float kDisplaySideMargin = 0.5;
+    static constexpr float kDisplayBottomMargin = 0.5;
+    static constexpr float kDisplayTopMargin = 0.5;
+
     // Size of the graph area
-    static const float kDisplayGraphWidth;
-    static const float kDisplayGraphHeight;
-    
+    static constexpr float kDisplayGraphWidth = 20.0;
+    static constexpr float kDisplayGraphHeight = 10.0;
+
 	typedef struct {
 		float x;
 		float y;
@@ -108,11 +109,16 @@ private:
 	Point internalToScreen(Point& inPoint);
 	
 private:
-    OpenGLJuceCanvas *canvas_;                      // Reference to canvas that renders OpenGL
+    OpenGLJuceCanvas *canvas_ { nullptr };                      // Reference to canvas that renders OpenGL
     
-	float displayPixelWidth_, displayPixelHeight_;	// Pixel resolution of the surrounding window
-	float totalDisplayWidth_, totalDisplayHeight_;	// Size of the internal view (centered around origin)
-    float xMin_, xMax_, yMin_, yMax_;               // Coordinates for the graph axes
+	float displayPixelWidth_ { 1.0f };
+    float displayPixelHeight_ { 1.0f };	// Pixel resolution of the surrounding window
+	float totalDisplayWidth_ { 1.0f };
+    float totalDisplayHeight_ { 1.0f };	// Size of the internal view (centered around origin)
+    float xMin_ { 0.0f };
+    float xMax_ { 1.0f };
+    float yMin_ { -0.2f };
+    float yMax_ { 1.2f };               // Coordinates for the graph axes
 
 	juce::CriticalSection displayMutex_;					// Synchronize access between data and display threads
     

@@ -66,13 +66,12 @@ public:
     
 private:
     // Useful constants for mapping MRP messages
-    static const int kDefaultMIDIChannel;
-    static const int kDefaultFilterBufferLength;
-    
-    static const bool kDefaultIgnoresTwoFingers;
-    static const bool kDefaultIgnoresThreeFingers;
-    static const int kDefaultDirection;
-    
+    static constexpr int kDefaultMIDIChannel = 0;
+    static constexpr int kDefaultFilterBufferLength = 300;
+
+    static constexpr bool kDefaultIgnoresTwoFingers = false;
+    static constexpr bool kDefaultIgnoresThreeFingers = false;
+    static constexpr int kDefaultDirection = kDirectionPositive;
 public:
 	// ***** Constructors *****
 	

@@ -36,16 +36,16 @@
 class RawSensorDisplay : public OpenGLDisplayBase {
 	// Internal data structures and constants
 private:
-    // Display margins
-    static const float kDisplaySideMargin;
-    static const float kDisplayBottomMargin;
-    static const float kDisplayTopMargin;
-    
-    // Size of bar graphs and spacing
-    static const float kDisplayBarWidth;
-    static const float kDisplayBarSpacing;
-    static const float kDisplayBarHeight;
-    
+	// Display margins
+	static constexpr float kDisplaySideMargin = 0.5;
+	static constexpr float kDisplayBottomMargin = 0.5;
+	static constexpr float kDisplayTopMargin = 0.5;
+
+	// Size of bar graphs and spacing
+	static constexpr float kDisplayBarWidth = 0.5;
+	static constexpr float kDisplayBarSpacing = 0.25;
+	static constexpr float kDisplayBarHeight = 10.0;
+
 	typedef struct {
 		float x;
 		float y;
@@ -89,12 +89,24 @@ private:
 	
     
 private:
-	OpenGLJuceCanvas *canvas_;                      // Reference to object which handles rendering
+	// Reference to object which handles rendering
+	OpenGLJuceCanvas *canvas_ { nullptr };
     
-	float displayPixelWidth_, displayPixelHeight_;	// Pixel resolution of the surrounding window
-	float totalDisplayWidth_, totalDisplayHeight_;	// Size of the internal view (centered around origin)
-    float yMin_, yMax_;                             // Range of the graph axes
+	// Pixel resolution of the surrounding window
+	float displayPixelWidth_ { 1.0f };
+	float displayPixelHeight_ { 1.0f };
+
+	// Size of the internal view (centered around origin)
+	float totalDisplayWidth_ { 1.0f };
+	float totalDisplayHeight_ { 1.0f };
+	
+	// Range of the graph axes
+    float yMin_ { -10.0f };
+	float yMax_ { 256.0f };                 
     
-	juce::CriticalSection displayMutex_;					// Synchronize access between data and display threads
-    std::vector<int> displayValues_;                // Values to display as a bar graph
+	// Synchronize access between data and display threads
+	juce::CriticalSection displayMutex_;
+
+	// Values to display as a bar graph
+    std::vector<int> displayValues_;
 };

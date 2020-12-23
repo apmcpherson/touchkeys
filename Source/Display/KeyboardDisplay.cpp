@@ -25,44 +25,17 @@
 
 // Class constants
 
-const float KeyboardDisplay::kWhiteKeyFrontWidth = 1.0;
-const float KeyboardDisplay::kBlackKeyWidth = 0.5;
-const float KeyboardDisplay::kWhiteKeyFrontLength = 2.3;
-const float KeyboardDisplay::kWhiteKeyBackLength = 4.1;
-const float KeyboardDisplay::kBlackKeyLength = 4.0;
-const float KeyboardDisplay::kInterKeySpacing = 0.1;
-const float KeyboardDisplay::kAnalogSliderVerticalSpacing = 0.2;
-const float KeyboardDisplay::kAnalogSliderLength = 3.0;
-const float KeyboardDisplay::kAnalogSliderWidth = 0.4;
-const float KeyboardDisplay::kAnalogSliderMinimumValue = -0.2;
-const float KeyboardDisplay::kAnalogSliderMaximumValue = 1.2;
-const float KeyboardDisplay::kAnalogSliderZeroLocation = kAnalogSliderLength * (0.0 - kAnalogSliderMinimumValue) / (kAnalogSliderMaximumValue - kAnalogSliderMinimumValue);
-const float KeyboardDisplay::kAnalogSliderOneLocation = kAnalogSliderLength * (1.0 - kAnalogSliderMinimumValue) / (kAnalogSliderMaximumValue - kAnalogSliderMinimumValue);
-
 // Individual geometry for C, D, E, F, G, A, B, c'
 
 const float KeyboardDisplay::kWhiteKeyBackOffsets[9] = {0, 0.22, 0.42, 0, 0.14, 0.3, 0.44, 0.22, 0};
 const float KeyboardDisplay::kWhiteKeyBackWidths[9] = {0.6, 0.58, 0.58, 0.56, 0.56, 0.56, 0.56, 0.58, 1.0};
 
-// Display margins
-
-const float KeyboardDisplay::kDisplaySideMargin = 0.4;
-const float KeyboardDisplay::kDisplayBottomMargin = 0.8;
-const float KeyboardDisplay::kDisplayTopMargin = 0.8;
-
 // Key shape constants
 
 const int KeyboardDisplay::kShapeForNote[12] = {0, -1, 1, -1, 2, 3, -1, 4, -1, 5, -1, 6};
 const int KeyboardDisplay::kWhiteToChromatic[7] = {0, 2, 4, 5, 7, 9, 11};
-const float KeyboardDisplay::kWhiteKeyFrontBackCutoff = (6.5 / 19.0);
 
-// Touch constants
-const float KeyboardDisplay::kDisplayMinTouchSize = 0.1;
-const float KeyboardDisplay::kDisplayTouchSizeScaler = 0.5;
-
-KeyboardDisplay::KeyboardDisplay() : canvas_(0), lowestMidiNote_(0), highestMidiNote_(0),
-totalDisplayWidth_(1.0), totalDisplayHeight_(1.0), displayPixelWidth_(1.0), displayPixelHeight_(1.0),
-currentHighlightedKey_(-1), touchSensingEnabled_(false), analogSensorsPresent_(false) {
+KeyboardDisplay::KeyboardDisplay() {
 	// Initialize OpenGL settings: 2D only
 	  
 	//glMatrixMode(GL_PROJECTION);

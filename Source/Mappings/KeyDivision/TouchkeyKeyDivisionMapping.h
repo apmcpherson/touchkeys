@@ -41,11 +41,10 @@ public:
     
 private:
     // Default values
-    static const int kDefaultNumberOfSegments;
-    static const timestamp_diff_type kDefaultDetectionTimeout;
-    static const int kDefaultDetectionParameter;
-    static const int kDefaultRetriggerNumFrames;
-    
+    static constexpr int kDefaultNumberOfSegments = 2;
+    static constexpr timestamp_diff_type kDefaultDetectionTimeout = milliseconds_to_timestamp( 25.0 );
+    static constexpr int kDefaultDetectionParameter = kDetectionParameterYPositionAndNumberOfTouches;
+    static constexpr int kDefaultRetriggerNumFrames = 2;
 public:
 	// ***** Constructors *****
 	

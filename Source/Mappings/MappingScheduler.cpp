@@ -32,9 +32,6 @@
 
 #undef DEBUG_MAPPING_SCHEDULER
 
-using std::cout;
-
-const timestamp_diff_type MappingScheduler::kAllowableAdvanceExecutionTime = milliseconds_to_timestamp(1.0);
 
 // Constructor
 MappingScheduler::MappingScheduler(PianoKeyboard& keyboard, juce::String threadName)

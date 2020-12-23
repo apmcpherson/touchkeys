@@ -24,10 +24,6 @@
 
 #include "TouchkeyOnsetAngleMappingFactory.h"
 
-// Class constants
-const timestamp_diff_type TouchkeyOnsetAngleMappingFactory::kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);
-
-
 TouchkeyOnsetAngleMappingFactory::TouchkeyOnsetAngleMappingFactory(PianoKeyboard &keyboard, MidiKeyboardSegment& segment)
 : TouchkeyBaseMappingFactory<TouchkeyOnsetAngleMapping>(keyboard, segment) {
     //setName("/touchkeys/scoop");

@@ -27,11 +27,6 @@
 
 #undef DEBUG_KEY_DIVISION_MAPPING
 
-const int TouchkeyKeyDivisionMapping::kDefaultNumberOfSegments = 2;
-const timestamp_diff_type TouchkeyKeyDivisionMapping::kDefaultDetectionTimeout = milliseconds_to_timestamp(25.0);
-const int TouchkeyKeyDivisionMapping::kDefaultDetectionParameter = kDetectionParameterYPositionAndNumberOfTouches;
-const int TouchkeyKeyDivisionMapping::kDefaultRetriggerNumFrames = 2;
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

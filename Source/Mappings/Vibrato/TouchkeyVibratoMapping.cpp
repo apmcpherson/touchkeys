@@ -27,25 +27,6 @@
 
 #undef DEBUG_TOUCHKEY_VIBRATO_MAPPING
 
-// Class constants
-const int TouchkeyVibratoMapping::kDefaultMIDIChannel = 0;
-const int TouchkeyVibratoMapping::kDefaultFilterBufferLength = 30;
-
-const float TouchkeyVibratoMapping::kDefaultVibratoThresholdX = 0.05f;
-const float TouchkeyVibratoMapping::kDefaultVibratoRatioX = 0.3f;
-const float TouchkeyVibratoMapping::kDefaultVibratoThresholdY = 0.02f;
-const float TouchkeyVibratoMapping::kDefaultVibratoRatioY = 0.8f;
-const timestamp_diff_type TouchkeyVibratoMapping::kDefaultVibratoTimeout = microseconds_to_timestamp(400000); // 0.4s
-const float TouchkeyVibratoMapping::kDefaultVibratoPrescaler = 2.0f;
-const float TouchkeyVibratoMapping::kDefaultVibratoRangeSemitones = 1.25f;
-
-const timestamp_diff_type TouchkeyVibratoMapping::kZeroCrossingMinimumTime = microseconds_to_timestamp(50000); // 50ms
-const timestamp_diff_type TouchkeyVibratoMapping::kMinimumOnsetTime = microseconds_to_timestamp(30000); // 30ms
-const timestamp_diff_type TouchkeyVibratoMapping::kMaximumOnsetTime = microseconds_to_timestamp(300000); // 300ms
-const timestamp_diff_type TouchkeyVibratoMapping::kMinimumReleaseTime = microseconds_to_timestamp(30000); // 30ms
-const timestamp_diff_type TouchkeyVibratoMapping::kMaximumReleaseTime = microseconds_to_timestamp(300000); // 300ms
-
-const float TouchkeyVibratoMapping::kWhiteKeySingleAxisThreshold = 7.0f / 19.0f;
 
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that

@@ -26,11 +26,6 @@
 #include "TouchkeyControlMappingShortEditor.h"
 #include "TouchkeyControlMappingExtendedEditor.h"
 
-const int TouchkeyControlMappingFactory::kDefaultController = 1;
-const float TouchkeyControlMappingFactory::kDefaultOutputRangeMin = 0.0;
-const float TouchkeyControlMappingFactory::kDefaultOutputRangeMax = 127.0;
-const float TouchkeyControlMappingFactory::kDefaultOutputDefault = 0.0;
-
 TouchkeyControlMappingFactory::TouchkeyControlMappingFactory(PianoKeyboard &keyboard, MidiKeyboardSegment& segment) :
 TouchkeyBaseMappingFactory<TouchkeyControlMapping>(keyboard, segment),
 inputParameter_(TouchkeyControlMapping::kInputParameterYPosition),

@@ -27,14 +27,6 @@
 
 #undef DEBUG_CONTROL_MAPPING
 
-// Class constants
-const int TouchkeyControlMapping::kDefaultMIDIChannel = 0;
-const int TouchkeyControlMapping::kDefaultFilterBufferLength = 300;
-
-const bool TouchkeyControlMapping::kDefaultIgnoresTwoFingers = false;
-const bool TouchkeyControlMapping::kDefaultIgnoresThreeFingers = false;
-const int TouchkeyControlMapping::kDefaultDirection = TouchkeyControlMapping::kDirectionPositive;
-
 // Main constructor takes references/pointers from objects which keep track
 // of touch location, continuous key position and the state detected from that
 // position. The PianoKeyboard object is strictly required as it gives access to

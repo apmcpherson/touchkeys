@@ -108,8 +108,8 @@ private:
 
 class MappingScheduler : public juce::Thread {
 private:
-    static const timestamp_diff_type kAllowableAdvanceExecutionTime;
-	
+    static constexpr timestamp_diff_type kAllowableAdvanceExecutionTime = milliseconds_to_timestamp( 1.0 );
+
     enum {
         kActionUnknown = 0,
         kActionRegister,
