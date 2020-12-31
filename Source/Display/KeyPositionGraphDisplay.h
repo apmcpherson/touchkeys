@@ -56,14 +56,14 @@ public:
 	KeyPositionGraphDisplay();
 	
     // Set canvas for triggering rendering;
-    void setCanvas(OpenGLJuceCanvas *canvas) { canvas_ = canvas; }
+    void setCanvas(OpenGLJuceCanvas *canvas) override { canvas_ = canvas; }
     void tellCanvasToRepaint();
     
 	// Setup methods for display size and keyboard range
-	void setDisplaySize(float width, float height);
+	void setDisplaySize(float width, float height) override;
 	
 	// Drawing methods
-	void render();
+	void render() override;
 	
 	// Interaction methods
 	void mouseDown(const float x, const float y) override;

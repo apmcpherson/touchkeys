@@ -23,6 +23,7 @@
 */
 
 #include "KeyPositionGraphDisplay.h"
+#include <OpenGL/gl.h>
 
 KeyPositionGraphDisplay::KeyPositionGraphDisplay()
 {

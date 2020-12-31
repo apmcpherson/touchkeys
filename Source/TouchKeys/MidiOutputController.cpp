@@ -93,17 +93,19 @@ bool MidiOutputController::enableVirtualPort(int identifier, const char *name) {
         disablePort(identifier);
     
     // Try to create a new port
-    MidiOutput* device = MidiOutput::createNewDevice(name);
-    if(device == 0) {
+    auto device = juce::MidiOutput::createNewDevice(name);
+    if( device == nullptr ) {
         std::cout << "Failed to enable MIDI virtual output port " << name << ")\n";
         return false;
     }
     
-    MidiOutputControllerRecord record;
-    record.portNumber = kMidiVirtualOutputPortNumber;
-    record.output = device;
-    
-    activePorts_[identifier] = record;
+//    MidiOutputControllerRecord record;
+//    record.portNumber = kMidiVirtualOutputPortNumber;
+//    record.output = device;
+//
+//    activePorts_[identifier] = record;
+//
+    activePorts_[identifier] = MidiOutputControllerRecord{ kMidiVirtualOutputPortNumber, std::move( device ) };
     
 #ifdef DEBUG_MIDI_OUTPUT_CONTROLLER
     std::cout << "Enabling virtual output port " << name << '\n';

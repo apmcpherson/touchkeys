@@ -269,8 +269,8 @@ void KeyboardZoneComponent::comboBoxChanged (juce::ComboBox* comboBoxThatHasChan
         else if(selection == 2 - kMidiOutputDeviceComboBoxOffset) { // Virtual output
 #ifndef JUCE_WINDOWS
             char st[20];
-            snprintf(st, 20, "TouchKeys %d", keyboardSegment_.outputPort());
-            controller_->enableMIDIOutputVirtualPort(keyboardSegment_.outputPort(), st);
+            snprintf(st, 20, "TouchKeys %d", keyboardSegment_->outputPort());
+            controller_->enableMIDIOutputVirtualPort(keyboardSegment_->outputPort(), st);
 #endif
         }
         else if(selection >= 0 && selection < midiOutputDeviceIDs_.size()) {
@@ -408,7 +408,7 @@ void KeyboardZoneComponent::synchronize(bool forceUpdates)
             midiOutputDeviceComboBox.setSelectedId(1, juce::NotificationType::dontSendNotification);
 #ifndef JUCE_WINDOWS
         else if(selectedMidiOutputDevice == MidiOutputController::kMidiVirtualOutputPortNumber)
-            midiOutputDeviceComboBox.setSelectedId(2, dontSendNotification);
+            midiOutputDeviceComboBox.setSelectedId(2, juce::dontSendNotification);
 #endif
         else {
             // Find the output device in the vector

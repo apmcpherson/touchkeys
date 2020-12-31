@@ -21,6 +21,7 @@
 */
 
 #include "RawSensorDisplay.h"
+#include <OpenGL/gl.h>
 
 RawSensorDisplay::RawSensorDisplay() {
 	// Initialize OpenGL settings: 2D only

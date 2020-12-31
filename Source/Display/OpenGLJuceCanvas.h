@@ -52,24 +52,24 @@ public:
     }
     
     // *** OpenGL Context Methods ***
-    void newOpenGLContextCreated() {}
-    void openGLContextClosing() {}
+    void newOpenGLContextCreated() override {}
+    void openGLContextClosing() override {}
     
-    void mouseDown (const juce::MouseEvent& e) {
+    void mouseDown (const juce::MouseEvent& e) override {
         if(e.mods.isLeftButtonDown())
             display_.mouseDown(e.x, e.y);
         else if(e.mods.isRightButtonDown())
             display_.rightMouseDown(e.x, e.y);
     }
     
-    void mouseDrag (const juce::MouseEvent& e) {
+    void mouseDrag (const juce::MouseEvent& e) override {
         if(e.mods.isLeftButtonDown())
             display_.mouseDragged(e.x, e.y);
         else if(e.mods.isRightButtonDown())
             display_.rightMouseDragged(e.x, e.y);
     }
     
-    void mouseUp (const juce::MouseEvent& e) {
+    void mouseUp (const juce::MouseEvent& e) override {
         if(e.mods.isLeftButtonDown())
             display_.mouseUp(e.x, e.y);
         else if(e.mods.isRightButtonDown())
