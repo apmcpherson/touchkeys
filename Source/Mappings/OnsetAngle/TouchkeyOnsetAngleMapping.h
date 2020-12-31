@@ -36,9 +36,9 @@ private:
      constexpr static const timestamp_diff_type kDefaultMaxLookbackTime = milliseconds_to_timestamp(100);*/
 
     // Class constants
-    static constexpr int TouchkeyOnsetAngleMapping::kDefaultFilterBufferLength = 30;
-    static constexpr timestamp_diff_type TouchkeyOnsetAngleMapping::kDefaultMaxLookbackTime = milliseconds_to_timestamp( 100 );
-    static constexpr int TouchkeyOnsetAngleMapping::kDefaultMaxLookbackSamples = 3;
+    static constexpr int kDefaultFilterBufferLength = 30;
+    static constexpr timestamp_diff_type kDefaultMaxLookbackTime = milliseconds_to_timestamp( 100 );
+    static constexpr int kDefaultMaxLookbackSamples = 3;
 public:
 	// ***** Constructors *****
 	

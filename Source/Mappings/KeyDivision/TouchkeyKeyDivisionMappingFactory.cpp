@@ -23,6 +23,7 @@
 */
 
 #include "TouchkeyKeyDivisionMappingFactory.h"
+#include "TouchkeyKeyDivisionMappingShortEditor.h"
 
 /* Yarman-24c microtonal tuning */
 const float TouchkeyKeyDivisionMappingFactory::kTuningsYarman24c[24] = {

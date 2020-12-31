@@ -218,7 +218,7 @@ std::string MainApplicationController::touchkeyDevicePrefix() {
 #ifdef _MSC_VER
 	return "\\\\.\\";
 #else
-    if(SystemStats::getOperatingSystemType() == SystemStats::Linux) {
+    if(juce::SystemStats::getOperatingSystemType() == juce::SystemStats::Linux) {
         return "/dev/serial/by-id/";
     }
     else {
@@ -263,15 +263,15 @@ std::vector<std::string> MainApplicationController::availableTouchkeyDevices() {
 		}
     }
 #else
-    if(SystemStats::getOperatingSystemType() == SystemStats::Linux) {
-        DirectoryIterator devDirectory(File("/dev/serial/by-id"),false,"*");
+    if(juce::SystemStats::getOperatingSystemType() == juce::SystemStats::Linux) {
+        juce::DirectoryIterator devDirectory(juce::File("/dev/serial/by-id"),false,"*");
         
         while(devDirectory.next()) {
             devices.push_back(std::string(devDirectory.getFile().getFileName().toUTF8()));
         }
     }
     else {
-        DirectoryIterator devDirectory(File("/dev"),false,"cu.usbmodem*");
+        juce::DirectoryIterator devDirectory(juce::File("/dev"),false,"cu.usbmodem*");
         
         while(devDirectory.next()) {
             devices.push_back(std::string(devDirectory.getFile().getFileName().toUTF8()));

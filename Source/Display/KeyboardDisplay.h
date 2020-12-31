@@ -99,7 +99,7 @@ public:
     virtual ~KeyboardDisplay() {}
     
     // Set canvas for triggering rendering;
-    void setCanvas(OpenGLJuceCanvas *canvas) { canvas_ = canvas; }
+    void setCanvas(OpenGLJuceCanvas *canvas) override { canvas_ = canvas; }
     void tellCanvasToRepaint();
 	
 	// Setup methods for display size and keyboard range

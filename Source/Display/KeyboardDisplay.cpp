@@ -22,6 +22,7 @@
 */
 
 #include "KeyboardDisplay.h"
+#include <OpenGL/gl.h>
 
 // Class constants
 
