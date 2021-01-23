@@ -54,6 +54,8 @@ private:
 
     MainApplicationController *controller_; // Pointer to the main application controller
 
+    TouchKeysLookAndFeel lnf;
+
     juce::ComboBox startupPresetComboBox;
     juce::Label label4;
     juce::ToggleButton startTouchKeysButton;

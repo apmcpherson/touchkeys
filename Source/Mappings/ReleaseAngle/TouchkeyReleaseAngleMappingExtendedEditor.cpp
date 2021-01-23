@@ -54,19 +54,17 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     downEnableButton{ "down enable button" }
 
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (titleLabel);
     titleLabel.setFont (juce::Font (15.00f, juce::Font::bold));
     titleLabel.setJustificationType (juce::Justification::centredLeft);
     titleLabel.setEditable (false, false, false);
-    titleLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    titleLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (presetLabel);
     presetLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel.setJustificationType (juce::Justification::centredLeft);
     presetLabel.setEditable (false, false, false);
-    presetLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (presetComboBox);
     presetComboBox.setEditableText (false);
@@ -79,8 +77,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel2.setJustificationType (juce::Justification::centredLeft);
     presetLabel2.setEditable (false, false, false);
-    presetLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( windowLengthEditor );
     windowLengthEditor.setMultiLine (false);
@@ -95,15 +91,11 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel3.setJustificationType (juce::Justification::centredLeft);
     presetLabel3.setEditable (false, false, false);
-    presetLabel3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( presetLabel4 );
     presetLabel4.setFont (juce::Font (15.00f, juce::Font::bold));
     presetLabel4.setJustificationType (juce::Justification::centredLeft);
     presetLabel4.setEditable (false, false, false);
-    presetLabel4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( upMinSpeedEditor );
     upMinSpeedEditor.setMultiLine (false);
@@ -118,8 +110,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel5.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel5.setJustificationType (juce::Justification::centredRight);
     presetLabel5.setEditable (false, false, false);
-    presetLabel5.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel5.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( upNote1Editor );
     upNote1Editor.setMultiLine (false);
@@ -134,8 +124,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel6.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel6.setJustificationType (juce::Justification::centredRight);
     presetLabel6.setEditable (false, false, false);
-    presetLabel6.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel6.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( upNote2Editor );
     upNote2Editor.setMultiLine (false);
@@ -159,8 +147,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel7.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel7.setJustificationType (juce::Justification::centredRight);
     presetLabel7.setEditable (false, false, false);
-    presetLabel7.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel7.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( upVelocity1Editor );
     upVelocity1Editor.setMultiLine (false);
@@ -193,8 +179,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel8.setFont (juce::Font (15.00f, juce::Font::bold));
     presetLabel8.setJustificationType (juce::Justification::centredLeft);
     presetLabel8.setEditable (false, false, false);
-    presetLabel8.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel8.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( downMinSpeedEditor );
     downMinSpeedEditor.setMultiLine (false);
@@ -209,8 +193,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel9.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel9.setJustificationType (juce::Justification::centredRight);
     presetLabel9.setEditable (false, false, false);
-    presetLabel9.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel9.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( downNote1Editor );
     downNote1Editor.setMultiLine (false);
@@ -225,8 +207,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel10.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel10.setJustificationType (juce::Justification::centredRight);
     presetLabel10.setEditable (false, false, false);
-    presetLabel10.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel10.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( downNote2Editor );
     downNote2Editor.setMultiLine (false);
@@ -250,8 +230,6 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel11.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel11.setJustificationType (juce::Justification::centredRight);
     presetLabel11.setEditable (false, false, false);
-    presetLabel11.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    presetLabel11.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible( downVelocity1Editor );
     downVelocity1Editor.setMultiLine (false);
@@ -313,6 +291,7 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
 
 TouchkeyReleaseAngleMappingExtendedEditor::~TouchkeyReleaseAngleMappingExtendedEditor()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================

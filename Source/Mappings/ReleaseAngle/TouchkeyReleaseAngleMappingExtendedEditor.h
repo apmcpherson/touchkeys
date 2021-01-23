@@ -47,6 +47,8 @@ public:
 private:
     void intToString(char *st, int value);
     
+    TouchKeysLookAndFeel lnf;
+
     juce::String getDescriptionHelper(juce::String baseName);
 
     TouchkeyReleaseAngleMappingFactory& factory_;

@@ -30,6 +30,8 @@ PreferencesComponent::PreferencesComponent ()
     autodetectButton{ "Autodetect button" },
     defaultsButton{ "new button" }
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (startupPresetComboBox);
     startupPresetComboBox.setEditableText (false);
     startupPresetComboBox.setJustificationType (juce::Justification::centredLeft);
@@ -41,8 +43,6 @@ PreferencesComponent::PreferencesComponent ()
     label4.setFont (juce::Font (15.00f, juce::Font::plain));
     label4.setJustificationType (juce::Justification::centredLeft);
     label4.setEditable (false, false, false);
-    label4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (startTouchKeysButton);
     startTouchKeysButton.setButtonText ("Start TouchKeys on startup");
@@ -67,6 +67,7 @@ PreferencesComponent::PreferencesComponent ()
 
 PreferencesComponent::~PreferencesComponent()
 {
+    setLookAndFeel( nullptr );
 }
 
 void PreferencesComponent::paint (juce::Graphics& g)

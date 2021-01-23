@@ -47,6 +47,8 @@ public:
 private:
     TouchkeyMultiFingerTriggerMappingFactory& factory_;
 
+    TouchKeysLookAndFeel lnf;
+
     juce::Label controlLabel;
     juce::ComboBox touchesComboBox;
     juce::Label controlLabel2;

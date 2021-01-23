@@ -48,6 +48,8 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     pitchWheelRangeEditor{ "pitch wheel range editor" },
     keyboardControllersButton{ "keyboard controllers button" }
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (mappingListComponent);
     addAndMakeVisible (midiOutputGroupComponent);
 
@@ -62,15 +64,11 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label4.setFont (juce::Font (15.00f, juce::Font::plain));
     label4.setJustificationType (juce::Justification::centredLeft);
     label4.setEditable (false, false, false);
-    label4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (label5);
     label5.setFont (juce::Font (15.00f, juce::Font::plain));
     label5.setJustificationType (juce::Justification::centredLeft);
     label5.setEditable (false, false, false);
-    label5.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label5.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (midiOutputModeComboBox);
     midiOutputModeComboBox.setEditableText (false);
@@ -87,8 +85,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label2.setFont (juce::Font (15.00f, juce::Font::plain));
     label2.setJustificationType (juce::Justification::centredLeft);
     label2.setEditable (false, false, false);
-    label2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (midiOutputChannelLowEditor);
     midiOutputChannelLowEditor.setMultiLine (false);
@@ -112,8 +108,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label3.setFont (juce::Font (15.00f, juce::Font::plain));
     label3.setJustificationType (juce::Justification::centredLeft);
     label3.setEditable (false, false, false);
-    label3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (midiOutputGroupComponent2);
 
@@ -121,8 +115,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label7.setFont (juce::Font (15.00f, juce::Font::plain));
     label7.setJustificationType (juce::Justification::centredLeft);
     label7.setEditable (false, false, false);
-    label7.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label7.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (rangeLowComboBox);
     rangeLowComboBox.setEditableText (true);
@@ -142,8 +134,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label6.setFont (juce::Font (15.00f, juce::Font::plain));
     label6.setJustificationType (juce::Justification::centredLeft);
     label6.setEditable (false, false, false);
-    label6.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label6.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (midiOutputTransposeEditor);
     midiOutputTransposeEditor.setMultiLine (false);
@@ -158,8 +148,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label8.setFont (juce::Font (15.00f, juce::Font::plain));
     label8.setJustificationType (juce::Justification::centredLeft);
     label8.setEditable (false, false, false);
-    label8.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label8.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (addMappingButton);
     addMappingButton.setButtonText ("Add Mapping...");
@@ -169,8 +157,6 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     label9.setFont (juce::Font (15.00f, juce::Font::plain));
     label9.setJustificationType (juce::Justification::centredLeft);
     label9.setEditable (false, false, false);
-    label9.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label9.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black );
 
     addAndMakeVisible (pitchWheelRangeEditor);
     pitchWheelRangeEditor.setMultiLine (false);
@@ -213,6 +199,7 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
 
 KeyboardZoneComponent::~KeyboardZoneComponent()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================
@@ -654,113 +641,4 @@ void KeyboardZoneComponent::keyboardControllerChosenCallback(int result)
     }
 }
 
-
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="KeyboardZoneComponent" componentName=""
-                 parentClasses="public juce::Component, public juce::TextEditor::Listener"
-                 constructorParams="" variableInitialisers="controller_(0), keyboardSegment_(0)"
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="552" initialHeight="400">
-  <BACKGROUND backgroundColour="ffd2d2d2"/>
-  <JUCERCOMP name="mapping list" id="4d5d007374cdad00" memberName="mappingListComponent"
-             virtualName="MappingListComponent" explicitFocusOrder="0" pos="0 168 552 260"
-             sourceFile="" constructorParams=""/>
-  <GROUPCOMPONENT name="MIDI input group" id="49eee95279c0cc95" memberName="midiOutputGroupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="200 8 344 128" title="MIDI Output"/>
-  <COMBOBOX name="MIDI input combo box" id="244410f02f6c1c72" memberName="midiOutputDeviceComboBox"
-            virtualName="" explicitFocusOrder="0" pos="264 32 264 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="new label" id="e9b3daa69a8ac5c" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="208 32 55 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Device:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="c578e3610ba16aaf" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="208 64 55 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Mode:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="MIDI input combo box" id="b129ec2d38f47a91" memberName="midiOutputModeComboBox"
-            virtualName="" explicitFocusOrder="0" pos="264 64 152 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <TOGGLEBUTTON name="Voice stealing button" id="62c82600413ca060" memberName="midiOutputVoiceStealingButton"
-                virtualName="" explicitFocusOrder="0" pos="424 64 112 24" buttonText="Voice stealing"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <LABEL name="new label" id="afb5095c42b66671" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="208 96 56 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Channels:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="new text editor" id="8fba4a69492a2f4f" memberName="midiOutputChannelLowEditor"
-              virtualName="" explicitFocusOrder="0" pos="264 96 32 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="new text editor" id="21b3096394683581" memberName="midiOutputChannelHighEditor"
-              virtualName="" explicitFocusOrder="0" pos="320 96 32 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="new label" id="f6b023e6043849e7" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="296 96 32 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="to" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <GROUPCOMPONENT name="MIDI input group" id="388fb821de641818" memberName="midiOutputGroupComponent2"
-                  virtualName="" explicitFocusOrder="0" pos="8 8 184 128" title="Range"/>
-  <LABEL name="new label" id="bff0e81cc2020a66" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="88 32 32 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="to" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="range low combo box" id="86999fb7f9fe9c2" memberName="rangeLowComboBox"
-            virtualName="" explicitFocusOrder="0" pos="24 32 64 24" editable="1"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <COMBOBOX name="range high combo combo box" id="7cba07ed947e85b2" memberName="rangeHighComboBox"
-            virtualName="" explicitFocusOrder="0" pos="112 32 64 24" editable="1"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="new label" id="fd730bc972dffbdb" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="392 96 80 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Transpose:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="transposition text editor" id="6f96be1359a01685" memberName="midiOutputTransposeEditor"
-              virtualName="" explicitFocusOrder="0" pos="472 96 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="new label" id="759d38e4603010a8" memberName="label8" virtualName=""
-         explicitFocusOrder="0" pos="8 144 88 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Mappings:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <TEXTBUTTON name="add mapping button" id="a5fd2f0afd2d74b2" memberName="addMappingButton"
-              virtualName="" explicitFocusOrder="0" pos="440 144 104 20" buttonText="Add Mapping..."
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <LABEL name="new label" id="dbad09f5c5953d5f" memberName="label9" virtualName=""
-         explicitFocusOrder="0" pos="24 68 104 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Pitchwheel range:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="pitch wheel range editor" id="593d42c6501420c1" memberName="pitchWheelRangeEditor"
-              virtualName="" explicitFocusOrder="0" pos="128 68 48 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTBUTTON name="keyboard controllers button" id="a1ebab19a3375b93" memberName="keyboardControllersButton"
-              virtualName="" explicitFocusOrder="0" pos="24 100 152 20" buttonText=" Controllers..."
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
-
-
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]

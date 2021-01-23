@@ -69,6 +69,8 @@ private:
     void updateOscHostPort();
     void updateKeyboardSegments();
 
+    TouchKeysLookAndFeel lnf;
+
     MainApplicationController *controller_; // Pointer to the main application controller
     std::vector<int> midiInputDeviceIDs_;
     int lastSelectedMidiInputID_;

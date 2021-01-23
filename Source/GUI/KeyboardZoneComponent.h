@@ -122,6 +122,8 @@ private:
     std::vector<int> midiOutputDeviceIDs_;
     int lastSelectedMidiOutputID_;
 
+    TouchKeysLookAndFeel lnf;
+
     MappingListComponent mappingListComponent;
     juce::GroupComponent midiOutputGroupComponent;
     juce::ComboBox midiOutputDeviceComboBox;

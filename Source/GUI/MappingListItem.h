@@ -46,6 +46,8 @@ private:
     MappingFactory *factory_;
     MappingListComponent& listComponent_;
 
+    TouchKeysLookAndFeel lnf;
+
     juce::ToggleButton bypassToggleButton;
     juce::TextButton showDetailsButton;
     juce::Label mappingTypeLabel;

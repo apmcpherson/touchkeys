@@ -53,7 +53,7 @@ TouchkeyKeyDivisionMappingFactory::TouchkeyKeyDivisionMappingFactory(PianoKeyboa
     setTuningPreset(kTuningPreset24TET);
     
     KeyboardDisplay *display = keyboard_.gui();
-    if(display != 0) { 
+    if(display != nullptr ) {
         display->addKeyDivision(this, segment.noteRange().first, segment.noteRange().second, numSegmentsPerKey_);
     }
 }
@@ -61,11 +61,11 @@ TouchkeyKeyDivisionMappingFactory::TouchkeyKeyDivisionMappingFactory(PianoKeyboa
 TouchkeyKeyDivisionMappingFactory::~TouchkeyKeyDivisionMappingFactory() {
     // Remove the divisions from the keys, if this mapping has added them
     KeyboardDisplay *display = keyboard_.gui();
-    if(display != 0)
+    if(display != nullptr )
         display->removeKeyDivision(this);
-    if(tunings_ != 0) {
+    if(tunings_ != nullptr) {
         delete tunings_;
-        tunings_ = 0;
+        tunings_ = nullptr;
     }
 }
 
@@ -81,9 +81,9 @@ void TouchkeyKeyDivisionMappingFactory::setTuningPreset(int preset) {
     juce::ScopedLock sl(tuningMutex_);
     
     tuningPreset_ = preset;
-    if(tunings_ != 0) {
+    if(tunings_ != nullptr) {
         delete tunings_;
-        tunings_ = 0;
+        tunings_ = nullptr;
     }
     
     if(tuningPreset_ == kTuningPreset19TET) {
@@ -132,7 +132,7 @@ void TouchkeyKeyDivisionMappingFactory::setTuningPreset(int preset) {
     }
     
     KeyboardDisplay *display = keyboard_.gui();
-    if(display != 0) {
+    if(display != nullptr) {
         display->removeKeyDivision(this);
         display->addKeyDivision(this, keyboardSegment_.noteRange().first, keyboardSegment_.noteRange().second, numSegmentsPerKey_);
     }
@@ -200,7 +200,7 @@ void TouchkeyKeyDivisionMappingFactory::setBendParameters() {
     // Range of 0 indicates special case of using global pitch wheel range
     setMidiParameters(MidiKeyboardSegment::kControlPitchWheel, 0.0, 0.0, 0.0);
     
-    if(midiConverter_ != 0) {
+    if(midiConverter_ != nullptr) {
         midiConverter_->listenToIncomingControl(MidiKeyboardSegment::kControlPitchWheel);
     }
 }

@@ -29,6 +29,8 @@ TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (To
     retriggerButton { "retrigger button" }
 
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (tuningComboBox);
     tuningComboBox.setEditableText (false);
     tuningComboBox.setJustificationType (juce::Justification::centredLeft);
@@ -40,15 +42,11 @@ TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (To
     tuningLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     tuningLabel.setJustificationType (juce::Justification::centredLeft);
     tuningLabel.setEditable (false, false, false);
-    tuningLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    tuningLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlLabel);
     controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredLeft);
     controlLabel.setEditable (false, false, false);
-    controlLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlComboBox);
     controlComboBox.setEditableText (false);
@@ -77,14 +75,13 @@ TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (To
 
 TouchkeyKeyDivisionMappingShortEditor::~TouchkeyKeyDivisionMappingShortEditor()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================
 void TouchkeyKeyDivisionMappingShortEditor::paint (juce::Graphics& g)
 {
-    // NOTE white colour obscures the text of the label components
-    //g.fillAll(juce::Colours::white);
-    g.fillAll( juce::Colours::grey );
+    g.fillAll(juce::Colours::white);
 }
 
 void TouchkeyKeyDivisionMappingShortEditor::resized()

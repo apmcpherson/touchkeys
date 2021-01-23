@@ -34,6 +34,8 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     inputRangeHighEditor{ "range hi text editor" },
     rangeLabel2{ "range label", "-" }
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (inputRangeLowEditor);
     inputRangeLowEditor.setMultiLine (false);
     inputRangeLowEditor.setReturnKeyStartsNewLine (false);
@@ -47,15 +49,11 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     rangeLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel.setJustificationType (juce::Justification::centredLeft);
     rangeLabel.setEditable (false, false, false);
-    rangeLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlLabel);
     controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredLeft);
     controlLabel.setEditable (false, false, false);
-    controlLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlComboBox);
     controlComboBox.setEditableText (false);
@@ -68,8 +66,6 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     controlLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel2.setJustificationType (juce::Justification::centredLeft);
     controlLabel2.setEditable (false, false, false);
-    controlLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (parameterComboBox);
     parameterComboBox.setEditableText (false);
@@ -82,8 +78,6 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     controlLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel3.setJustificationType (juce::Justification::centredLeft);
     controlLabel3.setEditable (false, false, false);
-    controlLabel3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (typeComboBox);
     typeComboBox.setEditableText (false);
@@ -105,8 +99,6 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
     rangeLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel2.setJustificationType (juce::Justification::centredLeft);
     rangeLabel2.setEditable (false, false, false);
-    rangeLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     parameterComboBox.addItem("X Position", TouchkeyControlMapping::kInputParameterXPosition);
     parameterComboBox.addItem("Y Position", TouchkeyControlMapping::kInputParameterYPosition);
@@ -134,14 +126,13 @@ TouchkeyControlMappingShortEditor::TouchkeyControlMappingShortEditor (TouchkeyCo
 
 TouchkeyControlMappingShortEditor::~TouchkeyControlMappingShortEditor()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================
 void TouchkeyControlMappingShortEditor::paint (juce::Graphics& g)
 {
-    // NOTE white colour obscures the text of the label components
-    //g.fillAll(juce::Colours::white);
-    g.fillAll( juce::Colours::grey );
+    g.fillAll(juce::Colours::white);
 }
 
 void TouchkeyControlMappingShortEditor::resized()
@@ -234,72 +225,4 @@ void TouchkeyControlMappingShortEditor::synchronize()
     controlComboBox.setSelectedId(factory_.getController(), juce::NotificationType::dontSendNotification);
 }
 
-
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="TouchkeyControlMappingShortEditor"
-                 componentName="" parentClasses="public MappingEditorComponent, public juce::TextEditor::Listener"
-                 constructorParams="TouchkeyControlMappingFactory&amp; factory"
-                 variableInitialisers="factory_(factory)" snapPixels="8" snapActive="1"
-                 snapShown="1" overlayOpacity="0.330000013" fixedSize="1" initialWidth="328"
-                 initialHeight="71">
-  <BACKGROUND backgroundColour="ffffffff"/>
-  <TEXTEDITOR name="range low text editor" id="db0f62c03a58af03" memberName="inputRangeLowEditor"
-              virtualName="" explicitFocusOrder="0" pos="80 40 40 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="range label" id="1ca2d422f4c37b7f" memberName="rangeLabel"
-         virtualName="" explicitFocusOrder="0" pos="0 40 80 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Input Range:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <LABEL name="control label" id="f953b12999632418" memberName="controlLabel"
-         virtualName="" explicitFocusOrder="0" pos="176 8 56 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Control:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="control combo box" id="f1c84bb5fd2730fb" memberName="controlComboBox"
-            virtualName="" explicitFocusOrder="0" pos="232 8 88 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="control label" id="5ef7c1b78fdcf616" memberName="controlLabel2"
-         virtualName="" explicitFocusOrder="0" pos="0 8 72 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Parameter:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="parameter combo box" id="f12f6f6e31042be1" memberName="parameterComboBox"
-            virtualName="" explicitFocusOrder="0" pos="72 8 104 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="control label" id="9ded92e82db31777" memberName="controlLabel3"
-         virtualName="" explicitFocusOrder="0" pos="184 40 56 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Type:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="type combo box" id="82d38054016f6c4f" memberName="typeComboBox"
-            virtualName="" explicitFocusOrder="0" pos="232 40 88 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <TEXTEDITOR name="range hi text editor" id="c34ac3e87db289d1" memberName="inputRangeHighEditor"
-              virtualName="" explicitFocusOrder="0" pos="136 40 40 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="range label" id="19e0ad80306cc4c0" memberName="rangeLabel2"
-         virtualName="" explicitFocusOrder="0" pos="120 40 16 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="-" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
-
-
-//[EndFile] You can add extra defines here...
 #endif  // TOUCHKEYS_NO_GUI
-//[/EndFile]

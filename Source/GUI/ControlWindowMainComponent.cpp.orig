@@ -75,8 +75,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label.setFont (juce::Font (15.00f, juce::Font::plain));
     label.setJustificationType (juce::Justification::centredLeft);
     label.setEditable (false, false, false);
-    label.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label.setColour (juce::Label::textColourId, juce::Colours::black);
+    label.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (groupComponent);
 
@@ -84,8 +84,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label2.setFont (juce::Font (15.00f, juce::Font::plain));
     label2.setJustificationType (juce::Justification::centredLeft);
     label2.setEditable (false, false, false);
-    label2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label2.setColour (juce::Label::textColourId, juce::Colours::black);
+    label2.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchkeyDeviceComboBox);
     touchkeyDeviceComboBox.setEditableText (false);
@@ -98,8 +98,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label3.setFont (juce::Font (15.00f, juce::Font::plain));
     label3.setJustificationType (juce::Justification::centredLeft);
     label3.setEditable (false, false, false);
-    label3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label3.setColour (juce::Label::textColourId, juce::Colours::black);
+    label3.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchkeyStartButton);
     touchkeyStartButton.setButtonText ("Start");
@@ -109,8 +109,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     touchkeyStatusLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     touchkeyStatusLabel.setJustificationType (juce::Justification::centredLeft);
     touchkeyStatusLabel.setEditable (false, false, false);
-    touchkeyStatusLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    touchkeyStatusLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    touchkeyStatusLabel.setColour (juce::Label::textColourId, juce::Colours::black);
+    touchkeyStatusLabel.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscGroupComponent);
 
@@ -118,8 +118,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label7.setFont (juce::Font (15.00f, juce::Font::plain));
     label7.setJustificationType (juce::Justification::centredLeft);
     label7.setEditable (false, false, false);
-    label7.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label7.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label7.setColour (juce::Label::textColourId, juce::Colours::black);
+    label7.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscHostTextEditor);
     oscHostTextEditor.setMultiLine (false);
@@ -134,8 +134,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label8.setFont (juce::Font (15.00f, juce::Font::plain));
     label8.setJustificationType (juce::Justification::centredLeft);
     label8.setEditable (false, false, false);
-    label8.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label8.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label8.setColour (juce::Label::textColourId, juce::Colours::black);
+    label8.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscPortTextEditor);
     oscPortTextEditor.setMultiLine (false);
@@ -158,8 +158,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label4.setFont (juce::Font (15.00f, juce::Font::plain));
     label4.setJustificationType (juce::Justification::centredLeft);
     label4.setEditable (false, false, false);
-    label4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label4.setColour (juce::Label::textColourId, juce::Colours::black);
+    label4.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchkeyOctaveComboBox);
     touchkeyOctaveComboBox.setEditableText (false);
@@ -178,8 +178,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label6.setFont (juce::Font (15.00f, juce::Font::plain));
     label6.setJustificationType (juce::Justification::centredLeft);
     label6.setEditable (false, false, false);
-    label6.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label6.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label6.setColour (juce::Label::textColourId, juce::Colours::black);
+    label6.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscInputPortTextEditor);
     oscInputPortTextEditor.setMultiLine (false);
@@ -217,8 +217,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label5.setFont (juce::Font (15.00f, juce::Font::plain));
     label5.setJustificationType (juce::Justification::centredRight);
     label5.setEditable (false, false, false);
-    label5.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label5.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+    label5.setColour (juce::Label::textColourId, juce::Colours::black);
+    label5.setColour (juce::Label::backgroundColourId, juce::Colours::black);
 
 
     //[UserPreSize]

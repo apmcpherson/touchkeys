@@ -32,12 +32,12 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     noteComboBox{ "control combo box" },
     sendOnReleaseButton{ "new toggle button" }
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (controlLabel);
     controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredRight);
     controlLabel.setEditable (false, false, false);
-    controlLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchesComboBox);
     touchesComboBox.setEditableText (false);
@@ -50,8 +50,6 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     controlLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel2.setJustificationType (juce::Justification::centredLeft);
     controlLabel2.setEditable (false, false, false);
-    controlLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (tapsComboBox);
     tapsComboBox.setEditableText (false);
@@ -64,8 +62,6 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     controlLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel3.setJustificationType (juce::Justification::centredRight);
     controlLabel3.setEditable (false, false, false);
-    controlLabel3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (noteComboBox);
     noteComboBox.setEditableText (false);
@@ -94,14 +90,13 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
 
 TouchkeyMultiFingerTriggerMappingShortEditor::~TouchkeyMultiFingerTriggerMappingShortEditor()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================
 void TouchkeyMultiFingerTriggerMappingShortEditor::paint (juce::Graphics& g)
 {
-    // NOTE white colour obscures the text of the label components
-    //g.fillAll(juce::Colours::white);
-    g.fillAll( juce::Colours::grey );
+    g.fillAll(juce::Colours::white);
 }
 
 void TouchkeyMultiFingerTriggerMappingShortEditor::resized()

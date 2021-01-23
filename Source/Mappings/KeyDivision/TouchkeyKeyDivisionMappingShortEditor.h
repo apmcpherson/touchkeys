@@ -44,6 +44,8 @@ public:
 private:
     TouchkeyKeyDivisionMappingFactory& factory_;
 
+    TouchKeysLookAndFeel lnf;
+
     juce::ComboBox tuningComboBox;
     juce::Label tuningLabel;
     juce::Label controlLabel;

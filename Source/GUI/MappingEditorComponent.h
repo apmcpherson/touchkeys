@@ -28,6 +28,25 @@
 #include <JuceHeader.h>
 
 //==============================================================================
+/* class TouchKeysLookAndFeel - Look & Feel class for JUCE UI components
+*/
+class TouchKeysLookAndFeel : public juce::LookAndFeel_V4
+{
+public:
+    TouchKeysLookAndFeel()
+    {
+        setColour( juce::Label::ColourIds::textColourId, juce::Colours::black );
+        //setColour (juce::Label::ColourIds::backgroundColourId, juce::Colours::black);
+
+        setColour( juce::GroupComponent::ColourIds::textColourId, juce::Colours::black );
+
+        setColour( juce::ToggleButton::ColourIds::textColourId, juce::Colours::black );
+        setColour( juce::ToggleButton::ColourIds::tickColourId, juce::Colours::black );
+    }
+};
+
+
+//==============================================================================
 /*
 */
 class MappingEditorComponent : public juce::Component
@@ -62,7 +81,7 @@ public:
            drawing code..
         */
 
-        g.fillAll(juce::Colours::white);   // clear the background
+        g.fillAll(juce::Colours::black);   // clear the background
 
         g.setColour(juce::Colours::grey);
         g.drawRect (getLocalBounds(), 1);   // draw an outline around the component

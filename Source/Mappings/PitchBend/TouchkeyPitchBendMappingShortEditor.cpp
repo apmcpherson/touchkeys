@@ -28,6 +28,8 @@ TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (Touchk
     thresholdLabel{ "threshold label", "Threshold:" },
     controlLabel{ "control label", "Endpoints:" }
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (rangeEditor);
     rangeEditor.setMultiLine (false);
     rangeEditor.setReturnKeyStartsNewLine (false);
@@ -41,8 +43,6 @@ TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (Touchk
     rangeLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel.setJustificationType (juce::Justification::centredLeft);
     rangeLabel.setEditable (false, false, false);
-    rangeLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (thresholdEditor);
     thresholdEditor.setMultiLine (false);
@@ -57,15 +57,11 @@ TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (Touchk
     thresholdLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     thresholdLabel.setJustificationType (juce::Justification::centredLeft);
     thresholdLabel.setEditable (false, false, false);
-    thresholdLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    thresholdLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlLabel);
     controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredLeft);
     controlLabel.setEditable (false, false, false);
-    controlLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (endpointsComboBox);
     endpointsComboBox.setEditableText (false);
@@ -85,14 +81,13 @@ TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (Touchk
 
 TouchkeyPitchBendMappingShortEditor::~TouchkeyPitchBendMappingShortEditor()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================
 void TouchkeyPitchBendMappingShortEditor::paint (juce::Graphics& g)
 {
-    // NOTE white colour obscures the text of the label components
-    //g.fillAll(juce::Colours::white);
-    g.fillAll(juce::Colours::grey);
+    g.fillAll(juce::Colours::white);
 }
 
 void TouchkeyPitchBendMappingShortEditor::resized()

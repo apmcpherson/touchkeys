@@ -53,6 +53,8 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     outputDefaultEditor{ "output default text editor" }
 
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (inputRangeLowEditor);
     inputRangeLowEditor.setMultiLine (false);
     inputRangeLowEditor.setReturnKeyStartsNewLine (false);
@@ -66,15 +68,12 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     rangeLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel.setJustificationType (juce::Justification::centredLeft);
     rangeLabel.setEditable (false, false, false);
-    rangeLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
+
 
     addAndMakeVisible (controlLabel);
     controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredRight);
     controlLabel.setEditable (false, false, false);
-    controlLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlComboBox);
     controlComboBox.setEditableText (false);
@@ -87,8 +86,6 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     controlLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel2.setJustificationType (juce::Justification::centredLeft);
     controlLabel2.setEditable (false, false, false);
-    controlLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (parameterComboBox);
     parameterComboBox.setEditableText (false);
@@ -101,8 +98,6 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     controlLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel3.setJustificationType (juce::Justification::centredRight);
     controlLabel3.setEditable (false, false, false);
-    controlLabel3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (typeComboBox);
     typeComboBox.setEditableText (false);
@@ -124,15 +119,11 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     rangeLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel2.setJustificationType (juce::Justification::centredLeft);
     rangeLabel2.setEditable (false, false, false);
-    rangeLabel2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (rangeLabel3);
     rangeLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel3.setJustificationType (juce::Justification::centredLeft);
     rangeLabel3.setEditable (false, false, false);
-    rangeLabel3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (outputRangeLowEditor);
     outputRangeLowEditor.setMultiLine (false);
@@ -156,15 +147,11 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     rangeLabel4.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel4.setJustificationType (juce::Justification::centredLeft);
     rangeLabel4.setEditable (false, false, false);
-    rangeLabel4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlLabel4);
     controlLabel4.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel4.setJustificationType (juce::Justification::centredRight);
     controlLabel4.setEditable (false, false, false);
-    controlLabel4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (directionComboBox);
     directionComboBox.setEditableText (false);
@@ -177,15 +164,11 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     titleLabel.setFont (juce::Font (15.00f, juce::Font::bold));
     titleLabel.setJustificationType (juce::Justification::centredLeft);
     titleLabel.setEditable (false, false, false);
-    titleLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    titleLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (rangeLabel5);
     rangeLabel5.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel5.setJustificationType (juce::Justification::centredLeft);
     rangeLabel5.setEditable (false, false, false);
-    rangeLabel5.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel5.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (thresholdEditor);
     thresholdEditor.setMultiLine (false);
@@ -212,8 +195,6 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     controlLabel6.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel6.setJustificationType (juce::Justification::centredRight);
     controlLabel6.setEditable (false, false, false);
-    controlLabel6.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel6.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (outOfRangeComboBox);
     outOfRangeComboBox.setEditableText (false);
@@ -226,8 +207,6 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
     rangeLabel6.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel6.setJustificationType (juce::Justification::centredLeft);
     rangeLabel6.setEditable (false, false, false);
-    rangeLabel6.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel6.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (outputDefaultEditor);
     outputDefaultEditor.setMultiLine (false);
@@ -277,7 +256,7 @@ TouchkeyControlMappingExtendedEditor::TouchkeyControlMappingExtendedEditor (Touc
 
 TouchkeyControlMappingExtendedEditor::~TouchkeyControlMappingExtendedEditor()
 {
-
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================

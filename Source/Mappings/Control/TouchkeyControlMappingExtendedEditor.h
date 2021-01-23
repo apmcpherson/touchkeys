@@ -33,24 +33,26 @@ public:
     TouchkeyControlMappingExtendedEditor (TouchkeyControlMappingFactory& factory);
     ~TouchkeyControlMappingExtendedEditor();
 
-    void textEditorTextChanged(juce::TextEditor &editor) {}
-    void textEditorReturnKeyPressed(juce::TextEditor &editor);
-    void textEditorEscapeKeyPressed(juce::TextEditor &editor);
-    void textEditorFocusLost(juce::TextEditor &editor);
+    void textEditorTextChanged(juce::TextEditor &editor) override {}
+    void textEditorReturnKeyPressed(juce::TextEditor &editor) override;
+    void textEditorEscapeKeyPressed(juce::TextEditor &editor) override;
+    void textEditorFocusLost(juce::TextEditor &editor) override;
 
     void synchronize();
     juce::String getDescription();
 
-    void paint (juce::Graphics& g);
-    void resized();
-    void comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged);
-    void buttonClicked (juce::Button* buttonThatWasClicked);
+    void paint (juce::Graphics& g) override;
+    void resized() override;
+    void comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged) override;
+    void buttonClicked (juce::Button* buttonThatWasClicked) override;
 
 private:
     juce::String getDescriptionHelper(juce::String baseName);
 
     TouchkeyControlMappingFactory& factory_;
     bool typeWasAbsolute_;
+
+    TouchKeysLookAndFeel lnf;
 
     juce::TextEditor inputRangeLowEditor;
     juce::Label rangeLabel;

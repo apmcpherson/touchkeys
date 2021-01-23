@@ -45,6 +45,8 @@ public:
 private:
     TouchkeyControlMappingFactory& factory_;
 
+    TouchKeysLookAndFeel lnf;
+
     juce::TextEditor inputRangeLowEditor;
     juce::Label rangeLabel;
     juce::Label controlLabel;

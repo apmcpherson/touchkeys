@@ -46,6 +46,8 @@ public:
 private:
     TouchkeyVibratoMappingFactory& factory_;
 
+    TouchKeysLookAndFeel lnf;
+
     juce::TextEditor rangeEditor;
     juce::Label rangeLabel;
     juce::TextEditor thresholdEditor;

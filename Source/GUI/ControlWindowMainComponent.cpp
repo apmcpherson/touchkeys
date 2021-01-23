@@ -53,6 +53,8 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label5{ "new label", "Aux:" }
 
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (midiInputGroupComponent);
 
     addAndMakeVisible (midiInputDeviceComboBox);
@@ -66,8 +68,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label.setFont (juce::Font (15.00f, juce::Font::plain));
     label.setJustificationType (juce::Justification::centredLeft);
     label.setEditable (false, false, false);
-    label.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (groupComponent);
 
@@ -75,8 +75,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label2.setFont (juce::Font (15.00f, juce::Font::plain));
     label2.setJustificationType (juce::Justification::centredLeft);
     label2.setEditable (false, false, false);
-    label2.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label2.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchkeyDeviceComboBox);
     touchkeyDeviceComboBox.setEditableText (false);
@@ -89,8 +87,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label3.setFont (juce::Font (15.00f, juce::Font::plain));
     label3.setJustificationType (juce::Justification::centredLeft);
     label3.setEditable (false, false, false);
-    label3.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label3.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchkeyStartButton);
     touchkeyStartButton.setButtonText ("Start");
@@ -100,8 +96,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     touchkeyStatusLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     touchkeyStatusLabel.setJustificationType (juce::Justification::centredLeft);
     touchkeyStatusLabel.setEditable (false, false, false);
-    touchkeyStatusLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    touchkeyStatusLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscGroupComponent);
 
@@ -109,8 +103,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label7.setFont (juce::Font (15.00f, juce::Font::plain));
     label7.setJustificationType (juce::Justification::centredLeft);
     label7.setEditable (false, false, false);
-    label7.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label7.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscHostTextEditor);
     oscHostTextEditor.setMultiLine (false);
@@ -125,8 +117,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label8.setFont (juce::Font (15.00f, juce::Font::plain));
     label8.setJustificationType (juce::Justification::centredLeft);
     label8.setEditable (false, false, false);
-    label8.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label8.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscPortTextEditor);
     oscPortTextEditor.setMultiLine (false);
@@ -149,8 +139,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label4.setFont (juce::Font (15.00f, juce::Font::plain));
     label4.setJustificationType (juce::Justification::centredLeft);
     label4.setEditable (false, false, false);
-    label4.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label4.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (touchkeyOctaveComboBox);
     touchkeyOctaveComboBox.setEditableText (false);
@@ -169,8 +157,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label6.setFont (juce::Font (15.00f, juce::Font::plain));
     label6.setJustificationType (juce::Justification::centredLeft);
     label6.setEditable (false, false, false);
-    label6.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label6.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (oscInputPortTextEditor);
     oscInputPortTextEditor.setMultiLine (false);
@@ -208,8 +194,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     label5.setFont (juce::Font (15.00f, juce::Font::plain));
     label5.setJustificationType (juce::Justification::centredRight);
     label5.setEditable (false, false, false);
-    label5.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label5.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     lastSelectedMidiInputID_ = -1;
     lastSelectedMidiAuxInputID_ = -1;
@@ -229,6 +213,7 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
 
 ControlWindowMainComponent::~ControlWindowMainComponent()
 {
+    setLookAndFeel( nullptr );
 }
 
 //==============================================================================
@@ -756,126 +741,5 @@ void ControlWindowMainComponent::updateKeyboardSegments()
 }
 
 
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="ControlWindowMainComponent"
-                 componentName="" parentClasses="public juce::Component, public juce::TextEditor::Listener"
-                 constructorParams="" variableInitialisers="controller_(0)" snapPixels="8"
-                 snapActive="1" snapShown="1" overlayOpacity="0.330" fixedSize="0"
-                 initialWidth="872" initialHeight="444">
-  <BACKGROUND backgroundColour="ffd2d2d2"/>
-  <GROUPCOMPONENT name="MIDI input group" id="ce80a86ee6475cd9" memberName="midiInputGroupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="8 144 304 96" title="MIDI Input"/>
-  <COMBOBOX name="MIDI input combo box" id="def32c74505cfa50" memberName="midiInputDeviceComboBox"
-            virtualName="" explicitFocusOrder="0" pos="80 168 216 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="new label" id="ad7bc4640d8023b7" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="16 168 64 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Keyboard:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <GROUPCOMPONENT name="new group" id="9106305fd2211185" memberName="groupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="8 8 304 128" title="TouchKeys"/>
-  <LABEL name="new label" id="944877a84dcfc602" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="16 32 60 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Device:&#10;" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="TouchKeys combo box" id="871223bdcad0e693" memberName="touchkeyDeviceComboBox"
-            virtualName="" explicitFocusOrder="0" pos="72 32 224 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="new label" id="1cdf89082d95c72c" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="16 96 60 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Status:&#10;" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <TEXTBUTTON name="TouchKeys start button" id="1bb1c69c957fc984" memberName="touchkeyStartButton"
-              virtualName="" explicitFocusOrder="0" pos="216 96 79 24" buttonText="Start"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <LABEL name="TouchKeys status label" id="c91b132696e6ba1d" memberName="touchkeyStatusLabel"
-         virtualName="" explicitFocusOrder="0" pos="72 96 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="not running" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <GROUPCOMPONENT name="OSC group" id="8268119e22809825" memberName="oscGroupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="8 320 304 96" title="OSC Output"/>
-  <LABEL name="new label" id="896c0c48a1cf50a" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="16 376 55 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Host:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="new text editor" id="84778d0bbebedd36" memberName="oscHostTextEditor"
-              virtualName="" explicitFocusOrder="0" pos="64 376 128 24" initialText="127.0.0.1"
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="new label" id="157c85bf83a7f936" memberName="label8" virtualName=""
-         explicitFocusOrder="0" pos="200 376 40 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Port:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="new text editor" id="7c21f0c238812d11" memberName="oscPortTextEditor"
-              virtualName="" explicitFocusOrder="0" pos="240 376 56 24" initialText="8000"
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TOGGLEBUTTON name="OSC enable button" id="ccd52591cfd0b632" memberName="oscEnableButton"
-                virtualName="" explicitFocusOrder="0" pos="24 344 144 24" buttonText="Enable OSC output"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <TOGGLEBUTTON name="OSC enable raw button" id="4aaf8f80edaff24" memberName="oscEnableRawButton"
-                virtualName="" explicitFocusOrder="0" pos="176 344 144 24" buttonText="Send raw frames"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <LABEL name="new label" id="c5873c6498f8156d" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="16 64 104 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Lowest Octave:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="TouchKeys octave box" id="36ace32027c81d30" memberName="touchkeyOctaveComboBox"
-            virtualName="" explicitFocusOrder="0" pos="120 64 88 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <GROUPCOMPONENT name="MIDI input group" id="bb54712f78382055" memberName="oscInputGroupComponent"
-                  virtualName="" explicitFocusOrder="0" pos="8 248 304 64" title="OSC Input"/>
-  <TOGGLEBUTTON name="OSC input enable button" id="22a196770a440560" memberName="oscInputEnableButton"
-                virtualName="" explicitFocusOrder="0" pos="24 272 152 24" buttonText="Enable OSC input"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <LABEL name="new label" id="c680c2da87cdcbf2" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="200 272 40 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Port:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="new text editor" id="d4a91e8bff5b6bc9" memberName="oscInputPortTextEditor"
-              virtualName="" explicitFocusOrder="0" pos="240 272 56 24" initialText="8001"
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TABBEDCOMPONENT name="keyboard zone tabbed component" id="33da3d6583cdacbf" memberName="keyboardZoneTabbedComponent"
-                   virtualName="" explicitFocusOrder="0" pos="320 0 552 464" orientation="top"
-                   tabBarDepth="30" initialTab="-1"/>
-  <TEXTBUTTON name="add zone button" id="1d2fa7fd74f31315" memberName="addZoneButton"
-              virtualName="" explicitFocusOrder="0" pos="776 4 38 20" buttonText="Add"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="remove zone button" id="7865f7787a191e0e" memberName="removeZoneButton"
-              virtualName="" explicitFocusOrder="0" pos="824 4 38 20" buttonText="Del"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="TouchKeys autodetect button" id="6e19894bc11d0276" memberName="touchkeyAutodetectButton"
-              virtualName="" explicitFocusOrder="0" pos="216 64 79 24" buttonText="Detect"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <COMBOBOX name="MIDI input aux combo box" id="1b77c934a4790942" memberName="midiInputAuxDeviceComboBox"
-            virtualName="" explicitFocusOrder="0" pos="80 200 216 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="new label" id="7409cb92cfa3b9f2" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="24 200 55 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Aux:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="34"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
 
 #endif  // TOUCHKEYS_NO_GUI

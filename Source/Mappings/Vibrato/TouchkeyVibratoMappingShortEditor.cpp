@@ -31,6 +31,8 @@ TouchkeyVibratoMappingShortEditor::TouchkeyVibratoMappingShortEditor (TouchkeyVi
     controlComboBox{ "control combo box" }
 
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (rangeEditor);
     rangeEditor.setMultiLine (false);
     rangeEditor.setReturnKeyStartsNewLine (false);
@@ -44,8 +46,6 @@ TouchkeyVibratoMappingShortEditor::TouchkeyVibratoMappingShortEditor (TouchkeyVi
     rangeLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     rangeLabel.setJustificationType (juce::Justification::centredLeft);
     rangeLabel.setEditable (false, false, false);
-    rangeLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rangeLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (thresholdEditor);
     thresholdEditor.setMultiLine (false);
@@ -60,15 +60,11 @@ TouchkeyVibratoMappingShortEditor::TouchkeyVibratoMappingShortEditor (TouchkeyVi
     thresholdLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     thresholdLabel.setJustificationType (juce::Justification::centredLeft);
     thresholdLabel.setEditable (false, false, false);
-    thresholdLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    thresholdLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlLabel);
     controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredLeft);
     controlLabel.setEditable (false, false, false);
-    controlLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    controlLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (controlComboBox);
     controlComboBox.setEditableText (false);
@@ -91,13 +87,12 @@ TouchkeyVibratoMappingShortEditor::TouchkeyVibratoMappingShortEditor (TouchkeyVi
 
 TouchkeyVibratoMappingShortEditor::~TouchkeyVibratoMappingShortEditor()
 {
+    setLookAndFeel( nullptr );
 }
 
 void TouchkeyVibratoMappingShortEditor::paint (juce::Graphics& g)
 {
-    // NOTE white colour obscures the text of the label components
-    //g.fillAll(juce::Colours::white);
-    g.fillAll( juce::Colours::grey );
+    g.fillAll(juce::Colours::white);
 }
 
 void TouchkeyVibratoMappingShortEditor::resized()

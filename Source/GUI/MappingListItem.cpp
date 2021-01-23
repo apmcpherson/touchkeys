@@ -34,6 +34,8 @@ MappingListItem::MappingListItem (MappingListComponent& listComponent)
     deleteButton{ "delete button" }
 
 {
+    setLookAndFeel( &lnf );
+
     addAndMakeVisible (bypassToggleButton);
     bypassToggleButton.setButtonText ("Bypass");
     bypassToggleButton.addListener (this);
@@ -46,8 +48,6 @@ MappingListItem::MappingListItem (MappingListComponent& listComponent)
     mappingTypeLabel.setFont (juce::Font (18.00f, juce::Font::plain));
     mappingTypeLabel.setJustificationType (juce::Justification::centred);
     mappingTypeLabel.setEditable (false, false, false);
-    mappingTypeLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    mappingTypeLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible ( mappingShortEditorComponent.get() );
     mappingShortEditorComponent->setName ("mapping short editor component");
@@ -56,8 +56,6 @@ MappingListItem::MappingListItem (MappingListComponent& listComponent)
     noSettingsLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     noSettingsLabel.setJustificationType (juce::Justification::centred);
     noSettingsLabel.setEditable (false, false, false);
-    noSettingsLabel.setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    noSettingsLabel.setColour (juce::TextEditor::backgroundColourId, juce::Colours::black);
 
     addAndMakeVisible (deleteButton);
     deleteButton.setButtonText ("Delete...");
@@ -68,13 +66,12 @@ MappingListItem::MappingListItem (MappingListComponent& listComponent)
 
 MappingListItem::~MappingListItem()
 {
+    setLookAndFeel( nullptr );
 }
 
 void MappingListItem::paint (juce::Graphics& g)
 {
-    // NOTE white colour obscures the text of the label components
-    //g.fillAll(juce::Colours::white);
-    g.fillAll( juce::Colours::grey );
+    g.fillAll(juce::Colours::white);
 
     g.setColour (juce::Colour (0xffa52a60));
     g.fillPath (internalPath1);
