@@ -483,9 +483,9 @@ void MidiInputController::handleIncomingMidiMessage( juce::MidiInput* source, co
     
     juce::ScopedLock ksl(keyboard_.performanceDataMutex_);
     juce::ScopedLock sl(segmentsMutex_);
-    for(int i = 0; i < segments_.size(); i++) {
-        if(segments_[i]->respondsToMessage(message))
-            segments_[i]->midiHandlerMethod(source, message);
+    for( const auto segment : segments_ ) {
+        if(segment->respondsToMessage(message))
+            segment->midiHandlerMethod(source, message);
     }
 }
 

@@ -363,8 +363,12 @@ void MidiKeyboardSegment::setPolyphony(const int polyphony) {
 
 		// MPE-DONE
 		// Send RPN 6 to change the zone configuration
-		// -- maybe in modePolyphonicSetupHelper()
-		modePolyphonicSetupHelper();
+		retransmitChannelsAvailable_.clear();
+		for( int i = outputChannelLowest_; i != (outputChannelLowest_ + retransmitMaxPolyphony_); ++i )
+			retransmitChannelsAvailable_.insert( i );
+		retransmitChannelForNote_.clear();
+		retransmitNotesHeldInPedal_.clear();
+
 		modeMPEsendConfigurationMessage( MPEZone::Lower, retransmitMaxPolyphony_ );
 
 	}else{
@@ -399,7 +403,7 @@ void MidiKeyboardSegment::setOutputChannelLowest(const int ch) {
 	if( mode_ == Mode::MPE )
 	{
 		// MPE-DONE: send new RPN 6 for disabling old zone and creating new one
-		modeMPEsendConfigurationMessage( MPEZone::Lower );
+		modeMPEsendConfigurationMessage( MPEZone::Lower, retransmitMaxPolyphony_ );
 		mpeZone_ = MPEZone::Lower;
 		outputChannelLowest_ = 0x01;
 	}else{
@@ -656,9 +660,7 @@ OscMessage* MidiKeyboardSegment::oscControlMethod(const char *path, const char *
 					return OscTransmitter::createFailureMessage();
 				if(rangeLow > rangeHigh) {
 					// Swap values so lowest one is always first
-					int temp = rangeLow;
-					rangeLow = rangeHigh;
-					rangeHigh = temp;
+					std::swap( rangeLow, rangeHigh );
 				}
 				
 				setNoteRange(rangeLow, rangeHigh);
@@ -770,9 +772,7 @@ OscMessage* MidiKeyboardSegment::oscControlMethod(const char *path, const char *
 					return OscTransmitter::createFailureMessage();
 				if(channelLow > channelHigh) {
 					// Swap values so lowest one is always first
-					int temp = channelLow;
-					channelLow = channelHigh;
-					channelHigh = temp;
+					std::swap( channelLow, channelHigh );
 				}
 				
 				setOutputChannelLowest(channelLow - 1); // 1-16 --> 0-15 indexing
@@ -892,7 +892,7 @@ MappingFactory* MidiKeyboardSegment::createMappingFactoryForIndex(int index) {
 	}
 }
 
-// Return whethera  given mapping is experimental or not
+// Return whether a given mapping is experimental or not
 bool MidiKeyboardSegment::mappingIsExperimental(int index) {
 	if(index == 5)
 		return true;
@@ -1163,7 +1163,7 @@ void MidiKeyboardSegment::modePassThroughHandler( juce::MidiInput* source, const
 		
 		// Retransmit, possibly with transposition
 		if(midiOutputController_ != nullptr) {
-			auto newMessage = juce::MidiMessage::noteOn(message.getChannel(), message.getNoteNumber() + outputTransposition_, message.getVelocity());
+			const auto newMessage = juce::MidiMessage::noteOn(message.getChannel(), note + outputTransposition_, message.getVelocity());
 			midiOutputController_->sendMessage(outputPortNumber_, newMessage);
 		}
 	}
@@ -1174,13 +1174,13 @@ void MidiKeyboardSegment::modePassThroughHandler( juce::MidiInput* source, const
 		
 		// Retransmit, possibly with transposition
 		if(midiOutputController_ != nullptr) {
-			auto newMessage = juce::MidiMessage::noteOff(message.getChannel(), message.getNoteNumber() + outputTransposition_);
+			const auto newMessage = juce::MidiMessage::noteOff(message.getChannel(), note + outputTransposition_);
 			midiOutputController_->sendMessage(outputPortNumber_, newMessage);
 		}
 	}
 	else if(message.isAftertouch()) { // Polyphonic aftertouch: adjust to transposition
 		if(midiOutputController_ != nullptr) {
-			auto newMessage = juce::MidiMessage::aftertouchChange(message.getChannel(), message.getNoteNumber() + outputTransposition_, message.getAfterTouchValue());
+			const auto newMessage = juce::MidiMessage::aftertouchChange(message.getChannel(), message.getNoteNumber() + outputTransposition_, message.getAfterTouchValue());
 			midiOutputController_->sendMessage(outputPortNumber_, newMessage);
 		}
 	}
@@ -1231,7 +1231,7 @@ void MidiKeyboardSegment::modeMonophonicHandler(juce::MidiInput* source, const j
 		
 		// And turn off note on MIDI controller
 		if(midiOutputController_ != nullptr) {
-			juce::MidiMessage newMessage = juce::MidiMessage::noteOff(outputChannelLowest_ + 1, message.getNoteNumber() + outputTransposition_, message.getVelocity());
+			const auto newMessage = juce::MidiMessage::noteOff(outputChannelLowest_ + 1, note + outputTransposition_, message.getVelocity());
 			midiOutputController_->sendMessage(outputPortNumber_, newMessage);
 		}
 	}
@@ -1507,8 +1507,8 @@ void MidiKeyboardSegment::modeMPEsendConfigurationMessage( const MPEZone& z, con
 // - dualZoneRange between [1..14]
 // NOTE "It is necessary to send only one MCM if a device intends to use only one Zone."
 {
-	static const uint8_t lowerZoneChannel { 0x00 };
-	static const uint8_t upperZoneChannel { 0x0F };
+	static const uint8_t lowerZoneMasterChannel { 0x00 };
+	static const uint8_t upperZoneMasterChannel { 0x0F };
 
 	if( midiOutputController_ != nullptr ) {
 		// throw std::runtime_error{ "No MIDI output port present" }
@@ -1529,16 +1529,15 @@ void MidiKeyboardSegment::modeMPEsendConfigurationMessage( const MPEZone& z, con
 		// "The Lower Zone is controlled by Master Channel 1, with Member Channels assigned sequentially from
 		// Channel 2 upwards."
 		// - Master Channel 1 (0x00)
-		// - up to 15 Member Channels [2..16] (i.e., [0x01..0x0F]
-		// e.g., 0x0F implies a range of 15 channels)
-		sendRPN6( lowerZoneChannel, singleZoneRange );
+		// - up to 15 Member Channels [2..16] (i.e., [0x01..0x0F] e.g., 0x0F implies a range of 15 channels)
+		sendRPN6( lowerZoneMasterChannel, singleZoneRange );
 		break;
 	case MPEZone::Upper:
 		// "The Upper Zone is controlled by Master Channel 16, with Member Channels assigned
 		// sequentially from Channel 15 downwards."
 		// - Master channel 16 ( 0x0F ); 
 		// - up to 15 Member channels [1..15] (i.e., [0x00..0x0E])
-		sendRPN6( upperZoneChannel, singleZoneRange );
+		sendRPN6( upperZoneMasterChannel, singleZoneRange );
 		break;
 	case MPEZone::LowerAndUpper: // Two MPE Zones
 		
@@ -1546,15 +1545,14 @@ void MidiKeyboardSegment::modeMPEsendConfigurationMessage( const MPEZone& z, con
 		// - Upper zone: Master Channel 16, Member Channels [2..15]
 		// NOTE Implemented so as to assign x channels in lower zone, and 14 - x channels
 		// in upper zone.
-		sendRPN6( lowerZoneChannel, dualZoneRange );
-		sendRPN6( upperZoneChannel, 14 - dualZoneRange );
+		sendRPN6( lowerZoneMasterChannel, dualZoneRange );
+		sendRPN6( upperZoneMasterChannel, 14 - dualZoneRange );
 		break;
 	case MPEZone::Off:
 	default:
 		// "Sending an MCM with the number of Member Channels set to zero deactivates that Zone."
-		// MPE switched off by setting both lower and upper zones member channel range to 0
-		sendRPN6( lowerZoneChannel, 0x00 );
-		sendRPN6( upperZoneChannel, 0x00 );
+		sendRPN6( lowerZoneMasterChannel, 0x00 );
+		sendRPN6( upperZoneMasterChannel, 0x00 );
 		break;
 	}
 }
@@ -1563,7 +1561,7 @@ void MidiKeyboardSegment::modeMPEsendConfigurationMessage( const MPEZone& z, con
 // Like polyphonic mode but implementing the details of the MPE specification which differ subtly
 // from a straightforward polyphonic allocation
 void MidiKeyboardSegment::modeMPEHandler(juce::MidiInput* source, const juce::MidiMessage& message) {
-	// MPE-TODO
+	// MPE-DONE?
 	if( message.getRawDataSize() <= 0 )
 		return;
 

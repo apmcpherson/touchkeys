@@ -245,7 +245,9 @@ public:
     int outputPort() const { return outputPortNumber_; }
     void setOutputPort(const int port) { outputPortNumber_ = port; }
     
-    // Set the minimum MIDI channel that should be used for output (0-15)
+    // Get/Set the minimum MIDI channel that should be used for output
+    // MPE Mode, Lower Zone: 1-15
+    // Everything else: 0-15
     int outputChannelLowest() const { return outputChannelLowest_; }
     void setOutputChannelLowest(const int ch);
     
@@ -347,7 +349,7 @@ private:
     mm = 0 : MPE is Off( No Channels )
     mm = 1 to F : Assigns that number of MIDI Channels to the Zone ( see below )
     */
-    void modeMPEsendConfigurationMessage( const MPEZone& z, const int singleZoneRange = 0x0F, const int dualZoneRange = 0x07 );
+    void modeMPEsendConfigurationMessage( const MPEZone& z = MPEZone::Lower, const int singleZoneRange = 0x0F, const int dualZoneRange = 0x07 );
     void modeMPEHandler(juce::MidiInput* source, const juce::MidiMessage& message);
     void modeMPENoteOn(const uint8_t note, const uint8_t velocity);
     void modeMPENoteOff(const uint8_t note, const bool forceOff = false);

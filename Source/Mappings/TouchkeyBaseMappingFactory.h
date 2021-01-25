@@ -76,7 +76,7 @@ public:
     virtual MappingType* mapping(int noteNumber) {
         juce::ScopedLock sl(mappingsMutex_);
         if(mappings_.count(noteNumber) == 0)
-            return 0;
+            return nullptr;
         return mappings_[noteNumber];
     }
     
@@ -377,7 +377,7 @@ public:
             }
         }
         
-        return 0;
+        return nullptr;
     }
 
     

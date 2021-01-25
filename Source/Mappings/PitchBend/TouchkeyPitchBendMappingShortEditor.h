@@ -31,10 +31,10 @@ public:
     ~TouchkeyPitchBendMappingShortEditor();
 
     // juce::TextEditor listener methods
-    void textEditorTextChanged(juce::TextEditor &editor) {}
-    void textEditorReturnKeyPressed(juce::TextEditor &editor);
-    void textEditorEscapeKeyPressed(juce::TextEditor &editor);
-    void textEditorFocusLost(juce::TextEditor &editor);
+    void textEditorTextChanged(juce::TextEditor& ) override {}
+    void textEditorReturnKeyPressed(juce::TextEditor &editor) override;
+    void textEditorEscapeKeyPressed(juce::TextEditor &editor) override;
+    void textEditorFocusLost(juce::TextEditor &editor) override;
 
     void synchronize();
 

@@ -120,8 +120,8 @@ private:
     };
     
     struct MappingAction {
-    public:
-        MappingAction() : who(0), counter(0), action(kActionUnknown) {}
+
+        MappingAction() : who(nullptr), counter(0), action(kActionUnknown) {}
         MappingAction(Mapping *x, unsigned long y, int z) :
           who(x), counter(y), action(z) {}
         
@@ -199,4 +199,5 @@ private:
     // Debugging method to indicate what is in the queue
     void printDebugStatistics();
 #endif
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( MappingScheduler )
 };
