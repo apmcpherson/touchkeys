@@ -53,7 +53,7 @@ MappingScheduler::~MappingScheduler() {
     MappingAction nextAction;
     
     while(actionsNow_.Consume(nextAction)) {
-        if(nextAction.who != 0 && nextAction.action == kActionUnregisterAndDelete) {
+        if(nextAction.who != nullptr && nextAction.action == kActionUnregisterAndDelete) {
 #ifdef DEBUG_MAPPING_SCHEDULER
             std::cout << "~MappingScheduler(): Deleting mapping " << who << " (actionsNow)\n";
 #endif
@@ -64,7 +64,7 @@ MappingScheduler::~MappingScheduler() {
     while(!actionsLater_.empty()) {
         nextAction = actionsLater_.begin()->second;
         
-        if(nextAction.who != 0 && nextAction.action == kActionUnregisterAndDelete) {
+        if(nextAction.who != nullptr && nextAction.action == kActionUnregisterAndDelete) {
 #ifdef DEBUG_MAPPING_SCHEDULER
             std::cout << "~MappingScheduler(): Deleting mapping " << who << " (actionsLater)\n";
 #endif

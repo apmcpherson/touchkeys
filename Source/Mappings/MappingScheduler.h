@@ -121,13 +121,13 @@ private:
     
     struct MappingAction {
 
-        MappingAction() : who(nullptr), counter(0), action(kActionUnknown) {}
+        MappingAction() = default;
         MappingAction(Mapping *x, unsigned long y, int z) :
           who(x), counter(y), action(z) {}
         
-        Mapping *who;
-        unsigned long counter;
-        int action;
+        Mapping* who { nullptr };
+        unsigned long counter { 0 };
+        int action { kActionUnknown };
     };
     
 public:
