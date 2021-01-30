@@ -35,66 +35,8 @@
 #include <JuceHeader.h>
 #include <iostream>
 #include <list>
+#include <boost/lockfree/queue.hpp>
 
-/*
- * LockFreeQueue
- *
- * Placeholder implementation for a ring buffer. Will have issues with
- * instruction reordering, but should serve the purpose for testing for now.
- */
-
-template <typename T>
-struct LockFreeQueue
-{
-    LockFreeQueue()
-    {
-        list.push_back(T());
-        iHead = list.begin();
-        iTail = list.end();
-    }
-    
-    void Produce(const T& t)
-    {
-        list.push_back(t);
-        iTail = list.end();
-        list.erase(list.begin(), iHead);
-    }
-    
-    bool Consume(T& t)
-    {
-        typename TList::iterator iNext = iHead;
-        ++iNext;
-        if (iNext != iTail)
-        {
-            iHead = iNext;
-            t = *iHead;
-            return true;
-        }
-        return false;
-    }
-    
-    T Consume()
-    {
-        T tmp;
-        while (!Consume(tmp))
-        {
-            ;
-        }
-        return tmp;
-    }
-    
-#ifdef DEBUG_MAPPING_SCHEDULER_STATISTICS
-    unsigned long size()
-    {
-        return list.size();
-    }
-#endif
-    
-private:
-    typedef std::list<T> TList;
-    TList list;
-    typename std::list<T>::iterator iHead, iTail;
-};
 
 /*
  * MappingScheduler
@@ -108,28 +50,28 @@ private:
 
 class MappingScheduler : public juce::Thread {
 private:
-    static constexpr timestamp_diff_type kAllowableAdvanceExecutionTime = milliseconds_to_timestamp( 1.0 );
+	static constexpr timestamp_diff_type kAllowableAdvanceExecutionTime = milliseconds_to_timestamp( 1.0 );
 
-    enum {
-        kActionUnknown = 0,
-        kActionRegister,
-        kActionPerformMapping,
-        kActionUnschedule,
-        kActionUnregister,
-        kActionUnregisterAndDelete
-    };
-    
-    struct MappingAction {
+	enum {
+		kActionUnknown = 0,
+		kActionRegister,
+		kActionPerformMapping,
+		kActionUnschedule,
+		kActionUnregister,
+		kActionUnregisterAndDelete
+	};
+	
+	struct MappingAction {
 
-        MappingAction() = default;
-        MappingAction(Mapping *x, unsigned long y, int z) :
-          who(x), counter(y), action(z) {}
-        
-        Mapping* who { nullptr };
-        unsigned long counter { 0 };
-        int action { kActionUnknown };
-    };
-    
+		MappingAction() = default;
+		MappingAction(Mapping *x, unsigned long y, int z) :
+		  who(x), counter(y), action(z) {}
+		
+		Mapping* who { nullptr };
+		unsigned long counter { 0 };
+		int action { kActionUnknown };
+	};
+	
 public:
 	// ***** Constructor *****
 	//
@@ -149,55 +91,55 @@ public:
 	
 	bool isRunning() { return isRunning_; }
 	
-    // The main Juce::Thread run loop
+	// The main Juce::Thread run loop
 	void run();
-    
+	
 	// ***** Event Management Methods *****
 	//
 	// This interface provides the ability to schedule and unschedule events for
 	// current or future times.
-    
-    void registerMapping(Mapping *who);
-    
-    void scheduleNow(Mapping *who);
-    void scheduleLater(Mapping *who, timestamp_type timestamp);
-    
-    void unschedule(Mapping *who);
-    
-    void unregisterMapping(Mapping *who);
-    void unregisterAndDelete(Mapping *who);
-    
+	
+	void registerMapping(Mapping *who);
+	
+	void scheduleNow(Mapping *who);
+	void scheduleLater(Mapping *who, timestamp_type timestamp);
+	
+	void unschedule(Mapping *who);
+	
+	void unregisterMapping(Mapping *who);
+	void unregisterAndDelete(Mapping *who);
+	
 private:
-    // ***** Private Methods *****
-    void performAction(MappingAction const& mappingAction);
-    
-    // Reference to the main PianoKeyboard object which holds the master timestamp
-    PianoKeyboard& keyboard_;
-    
+	// ***** Private Methods *****
+	void performAction(MappingAction const& mappingAction);
+	
+	// Reference to the main PianoKeyboard object which holds the master timestamp
+	PianoKeyboard& keyboard_;
+	
 	// These variables keep track of the status of the separate thread running the events
-    juce::CriticalSection actionsInsertionMutex_;
-    juce::CriticalSection actionsLaterMutex_;
-    
-    juce::WaitableEvent waitableEvent_;
+	juce::CriticalSection actionsInsertionMutex_;
+	juce::CriticalSection actionsLaterMutex_;
+	
+	juce::WaitableEvent waitableEvent_;
 	bool isRunning_;
-    
-    // This counter keeps track of the sequence of insertions and executions
-    // of mappings. It is incremented whenever the scheduler finishes the "now"
-    // set of actions, and can be used to figure out whether an event has been
-    // duplicated or preempted.
-    unsigned long counter_;
-    std::map<Mapping*, unsigned long> countersForMappings_;
-    
-    // These variables hold a ring buffer of actions to happen as soon as possible and a
-    // lock-synchronized collection of events that happen at later timestamps
-    LockFreeQueue<MappingAction> actionsNow_;
-    std::multimap<timestamp_type, MappingAction> actionsLater_;
-    
+	
+	// This counter keeps track of the sequence of insertions and executions
+	// of mappings. It is incremented whenever the scheduler finishes the "now"
+	// set of actions, and can be used to figure out whether an event has been
+	// duplicated or preempted.
+	unsigned long counter_;
+	std::map<Mapping*, unsigned long> countersForMappings_;
+	
+	// These variables hold a ring buffer of actions to happen as soon as possible and a
+	// lock-synchronized collection of events that happen at later timestamps
+	boost::lockfree::queue<MappingAction> actionsNow_ { 1024 };
+	std::multimap<timestamp_type, MappingAction> actionsLater_;
+	
 #ifdef DEBUG_MAPPING_SCHEDULER_STATISTICS
-    timestamp_type lastDebugStatisticsTimestamp_;
-    
-    // Debugging method to indicate what is in the queue
-    void printDebugStatistics();
+	timestamp_type lastDebugStatisticsTimestamp_;
+	
+	// Debugging method to indicate what is in the queue
+	void printDebugStatistics();
 #endif
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( MappingScheduler )
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( MappingScheduler )
 };

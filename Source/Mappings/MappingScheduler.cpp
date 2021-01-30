@@ -28,7 +28,6 @@
 */
 
 #include "MappingScheduler.h"
-#include "Mapping.h"
 
 #undef DEBUG_MAPPING_SCHEDULER
 
@@ -52,7 +51,8 @@ MappingScheduler::~MappingScheduler() {
     // so these objects don't leak
     MappingAction nextAction;
     
-    while(actionsNow_.Consume(nextAction)) {
+    //while(actionsNow_.Consume(nextAction)) {
+    while(actionsNow_.pop(nextAction)) {
         if(nextAction.who != nullptr && nextAction.action == kActionUnregisterAndDelete) {
 #ifdef DEBUG_MAPPING_SCHEDULER
             std::cout << "~MappingScheduler(): Deleting mapping " << who << " (actionsNow)\n";
@@ -100,7 +100,7 @@ void MappingScheduler::registerMapping(Mapping *who) {
     // thread can act as producer at any given time.
     juce::ScopedLock sl(actionsInsertionMutex_);
     
-    actionsNow_.Produce(MappingAction(who, counter_, kActionRegister));
+    actionsNow_.push(MappingAction(who, counter_, kActionRegister));
     
     // Increment the counter so each insertion gets a unique label
     counter_++;
@@ -115,7 +115,7 @@ void MappingScheduler::scheduleNow(Mapping *who) {
     // thread can act as producer at any given time.
     juce::ScopedLock sl(actionsInsertionMutex_);
     
-    actionsNow_.Produce(MappingAction(who, counter_, kActionPerformMapping));
+    actionsNow_.push(MappingAction(who, counter_, kActionPerformMapping));
     
     // Increment the counter so each insertion gets a unique label
     counter_++;
@@ -156,7 +156,7 @@ void MappingScheduler::unschedule(Mapping *who) {
     // which preempts any further actions by this object.
     juce::ScopedLock sl(actionsInsertionMutex_);
     
-    actionsNow_.Produce(MappingAction(who, counter_, kActionUnschedule));
+    actionsNow_.push(MappingAction(who, counter_, kActionUnschedule));
     
     // Increment the counter to indicate we're at another cycle
     counter_++;
@@ -171,7 +171,7 @@ void MappingScheduler::unregisterMapping(Mapping *who) {
     // thread can act as producer at any given time.
     juce::ScopedLock sl(actionsInsertionMutex_);
     
-    actionsNow_.Produce(MappingAction(who, counter_, kActionUnregister));
+    actionsNow_.push(MappingAction(who, counter_, kActionUnregister));
     
     // Increment the counter so each insertion gets a unique label
     counter_++;
@@ -189,7 +189,7 @@ void MappingScheduler::unregisterAndDelete(Mapping *who) {
     // will be handled by the consumer thread.
     juce::ScopedLock sl(actionsInsertionMutex_);
     
-    actionsNow_.Produce(MappingAction(who, counter_, kActionUnregisterAndDelete));
+    actionsNow_.push(MappingAction(who, counter_, kActionUnregisterAndDelete));
     
     // Increment the counter to indicate we're at another cycle
     counter_++;
@@ -210,8 +210,8 @@ void MappingScheduler::run() {
         MappingAction nextAction;
         
         // Go through the accumulated actions in the "now" queue
-        while(actionsNow_.Consume(nextAction)) {
-            if(nextAction.who != 0) {
+        while(actionsNow_.pop(nextAction)) {
+            if(nextAction.who != nullptr) {
 #ifdef DEBUG_MAPPING_SCHEDULER
                 std::cout << "Performing immediate mapping\n";
 #endif
@@ -302,7 +302,7 @@ void MappingScheduler::run() {
 // Perform a mapping action: either execute the mapping or unschedule it,
 // depending on the contents of the MappingAction object.
 void MappingScheduler::performAction(MappingAction const& mappingAction) {
-    Mapping *who = mappingAction.who;
+    Mapping* who = mappingAction.who;
     bool skip = true;
     
     
