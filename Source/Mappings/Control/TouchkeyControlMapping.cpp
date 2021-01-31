@@ -193,7 +193,7 @@ void TouchkeyControlMapping::setDirection(int direction) {
 // behavior of future mapping calls, but the actual OSC messages should be transmitted in a different
 // thread.
 void TouchkeyControlMapping::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
-    if(who == 0)
+    if(who == nullptr)
         return;
     
     if(who == touchBuffer_) {

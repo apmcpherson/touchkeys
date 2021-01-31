@@ -426,7 +426,7 @@ OscMessage* MidiInputController::oscControlMessageForSegment(int segment, const 
                                                       int numValues, lo_arg **values, void *data) {
     juce::ScopedLock sl(segmentsMutex_);
     if(segment < 0 || segment >= segments_.size())
-        return 0;
+        return nullptr;
 
     return segments_[segment]->oscControlMethod(path, types, numValues, values, data);
 }
@@ -472,7 +472,7 @@ void MidiInputController::handleIncomingMidiMessage( juce::MidiInput* source, co
     }
         
 #ifdef MIDI_INPUT_CONTROLLER_DEBUG_RAW
-    if(source == 0)
+    if(source == nullptr)
         std::cout << "MIDI Input [internal]: ";
     else
         std::cout << "MIDI Input [" << source->getName() << "]: ";

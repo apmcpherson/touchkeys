@@ -140,7 +140,7 @@ public:
     virtual OscMessage* oscControlMethod(const char *path, const char *types,
                                          int numValues, lo_arg **values, void *data) {
         // Nothing to do here in this virtual base class
-        return 0;
+        return nullptr;
     }
     
     // ****** Preset Save/Load ******

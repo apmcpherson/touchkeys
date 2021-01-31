@@ -574,7 +574,7 @@ OscMessage* MidiKeyboardSegment::oscControlMethod(const char *path, const char *
 		int separatorLoc = subpath.find_first_of('/');
 		if(separatorLoc == std::string::npos || separatorLoc == subpath.length() - 1) {
 			// Malformed input (no slash or it's the last character): ignore
-			return 0;
+			return nullptr;
 		}
 		
 		// Find the name of the mapping in the nextsegment
@@ -594,8 +594,8 @@ OscMessage* MidiKeyboardSegment::oscControlMethod(const char *path, const char *
 					OscMessage *response = (*it)->oscControlMethod(mappingAction.c_str(), types, numValues, values, data);
 					
 					// Prepend the mapping name to the response except in case of simple status response
-					if(response == 0)
-						return 0;
+					if(response == nullptr)
+						return nullptr;
 					else if(!strcmp(response->path(), "/result"))
 						return response;
 					response->prependPath(mappingName.c_str());
@@ -628,7 +628,7 @@ OscMessage* MidiKeyboardSegment::oscControlMethod(const char *path, const char *
  
 				// Create mapping factory of the requested type
 				MappingFactory *newFactory = createMappingFactoryForIndex(type);
-				if(newFactory == 0)
+				if(newFactory == nullptr)
 					return OscTransmitter::createFailureMessage();
  
 				// Add the mapping factory to this segment, autogenerating the
@@ -796,7 +796,7 @@ OscMessage* MidiKeyboardSegment::oscControlMethod(const char *path, const char *
 	}
 
 	// No match
-	return 0;
+	return nullptr;
 }
 
 // Acquire an OSC-MIDI converter. If a converter for this control already exists,
@@ -888,7 +888,7 @@ MappingFactory* MidiKeyboardSegment::createMappingFactoryForIndex(int index) {
 		case 6:
 			return new TouchkeyReleaseAngleMappingFactory(keyboard_, *this);
 		default:
-			return 0;
+			return nullptr;
 	}
 }
 
@@ -1042,7 +1042,7 @@ bool MidiKeyboardSegment::loadPreset( juce::XmlElement const* preset) {
 	removeAllMappingFactories();
 	
 	juce::XmlElement *propertiesElement = preset->getChildByName("Properties");
-	if(propertiesElement == 0)
+	if(propertiesElement == nullptr)
 		return false;
 	
 	// Load segment settings

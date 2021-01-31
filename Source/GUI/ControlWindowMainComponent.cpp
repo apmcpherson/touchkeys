@@ -610,7 +610,7 @@ void ControlWindowMainComponent::updateKeyboardSegments()
     for(int i = 0; i < maxNumSegments; i++) {
         MidiKeyboardSegment* segment = controller_->midiSegment(i);
         bool matched = false;
-        if(segment == 0)
+        if(segment == nullptr)
             continue;
         // Look for this segment among the tabs we already have
         for(int tab = 0; tab < keyboardZoneTabbedComponent.getNumTabs(); tab++) {
@@ -657,7 +657,7 @@ void ControlWindowMainComponent::updateKeyboardSegments()
                 break;
             }
         }
-        if(segment == 0 || !matched) {
+        if(segment == nullptr || !matched) {
             // This tab holds a nonexistent segment and should be removed
             keyboardZoneTabbedComponent.removeTab(tab);
             

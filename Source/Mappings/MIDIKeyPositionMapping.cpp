@@ -85,7 +85,7 @@ void MIDIKeyPositionMapping::setAftertouchSensitivity(float sensitivity) {
 // behavior of future mapping calls, but the actual OSC messages should be transmitted in a different
 // thread.
 void MIDIKeyPositionMapping::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
-    if(who == 0)
+    if(who == nullptr )
         return;
     if(who == positionTracker_) {
         if(!positionTracker_->empty()) {
@@ -122,7 +122,7 @@ timestamp_type MIDIKeyPositionMapping::performMapping() {
     timestamp_type currentTimestamp = keyboard_.schedulerCurrentTimestamp();
 
     // Calculate the output features as a function of input sensor data
-    if(positionBuffer_ == 0) {
+    if(positionBuffer_ == nullptr) {
         // No buffer -> all 0
     }
     else if(positionBuffer_->empty()) {
@@ -161,7 +161,7 @@ timestamp_type MIDIKeyPositionMapping::performMapping() {
 
 // Generate a MIDI Note On from continuous key data
 void MIDIKeyPositionMapping::generateMidiNoteOn() {
-    if(positionTracker_ == 0)
+    if(positionTracker_ == nullptr)
         return;
     
     std::pair<timestamp_type, key_velocity> velocityInfo = positionTracker_->pressVelocity();
@@ -181,7 +181,7 @@ void MIDIKeyPositionMapping::generateMidiNoteOn() {
 
 // Generate a MIDI Note Off from continuous key data
 void MIDIKeyPositionMapping::generateMidiNoteOff() {
-    if(positionTracker_ == 0)
+    if(positionTracker_ == nullptr)
         return;
     
     std::pair<timestamp_type, key_velocity> velocityInfo = positionTracker_->releaseVelocity();
@@ -206,7 +206,7 @@ void MIDIKeyPositionMapping::generateMidiNoteOff() {
 }
 
 void MIDIKeyPositionMapping::generateMidiPercussivenessNoteOn() {
-    if(positionTracker_ == 0 || midiPercussivenessChannel_ < 0)
+    if(positionTracker_ == nullptr || midiPercussivenessChannel_ < 0)
         return;
     
     KeyPositionTracker::PercussivenessFeatures features = positionTracker_->pressPercussiveness();

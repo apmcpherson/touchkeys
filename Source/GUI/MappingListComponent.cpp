@@ -50,7 +50,7 @@ void MappingListComponent::resized() {
 
 // Delete the given factory from the mapping list
 void MappingListComponent::deleteMapping(MappingFactory* factory) {
-    if(keyboardSegment_ == 0 || factory == 0)
+    if(keyboardSegment_ == nullptr || factory == nullptr)
         return;
     keyboardSegment_->removeMappingFactory(factory);
 }
@@ -72,12 +72,12 @@ juce::Component* MappingListComponent::refreshComponentForRow(int rowNumber, boo
     if(rowNumber < 0 || rowNumber >= getNumRows()) {
         if(existingComponentToUpdate != 0)
             delete existingComponentToUpdate;
-        return 0;
+        return nullptr;
     }
     
     // Get the current component for the row, creating it if it doesn't exist
     MappingListItem *listItem = static_cast<MappingListItem*>(existingComponentToUpdate);
-    if(listItem == 0) {
+    if(listItem == nullptr) {
         listItem = new MappingListItem(*this);
         listItem->setMappingFactory(keyboardSegment_->mappingFactories()[rowNumber]);
         //std::cout << "item " << listItem << " was updated to factory " << keyboardSegment_->mappingFactories()[rowNumber] << std::endl;
@@ -87,7 +87,7 @@ juce::Component* MappingListComponent::refreshComponentForRow(int rowNumber, boo
         if(rowNumber >= keyboardSegment_->mappingFactories().size()) {
             //std::cout << "Deleting component " << listItem << std::endl;
             delete listItem;
-            return 0;
+            return nullptr;
         }
         else if(keyboardSegment_->mappingFactories()[rowNumber] != listItem->mappingFactory()) {
             //std::cout << "Changing item " << listItem << " to point to factory " << keyboardSegment_->mappingFactories()[rowNumber] << std::endl;
@@ -128,7 +128,7 @@ void MappingListComponent::synchronize() {
 // Open an extended editor window for the given component
 // Store the new window in the list; it is deleted when it is closed
 void MappingListComponent::openExtendedEditorWindow(MappingFactory *factory) {
-    if(factory == 0)
+    if(factory == nullptr)
         return;
     
     juce::ScopedLock sl(extendedEditorWindowsMutex_);
@@ -153,7 +153,7 @@ MappingExtendedEditorWindow* MappingListComponent::extendedEditorWindowForFactor
             return *it;
     }
     
-    return 0;
+    return nullptr;
 }
 
 // Update extended editor windows

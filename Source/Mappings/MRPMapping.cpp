@@ -125,7 +125,7 @@ void MRPMapping::enablePitchBend(int toNote, Node<key_position>* toPositionBuffe
 // behavior of future mapping calls, but the actual OSC messages should be transmitted in a different
 // thread.
 void MRPMapping::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
-    if(who == 0)
+    if(who == nullptr)
         return;
     if(who == positionTracker_) {
         // The state of the key (based on continuous position) just changed.
@@ -149,7 +149,7 @@ timestamp_type MRPMapping::performMapping() {
     float harmonic = 0;
 
     // Calculate the output features as a function of input sensor data
-    if(positionBuffer_ == 0) {
+    if(positionBuffer_ == nullptr) {
         // No buffer -> all 0
     }
     else if(positionBuffer_->empty()) {
@@ -178,7 +178,7 @@ timestamp_type MRPMapping::performMapping() {
                 for(int neighborNote = noteNumber_ - 2; neighborNote < noteNumber_; neighborNote++) {
                     // If one of the lower keys is in the Down state, then this note should bend it up
                     MRPMapping *neighborMapper = dynamic_cast<MRPMapping*>(keyboard_.mapping(neighborNote));
-                    if(neighborMapper == 0)
+                    if(neighborMapper == nullptr)
                         continue;
                     if(neighborMapper->positionTracker_ != 0) {
                         int neighborState = neighborMapper->positionTracker_->currentState();
@@ -210,7 +210,7 @@ timestamp_type MRPMapping::performMapping() {
                 for(int neighborNote = noteNumber_ + 1; neighborNote < noteNumber_ + 3; neighborNote++) {
                     // If one of the upper keys is in the Down state, then this note should bend it down
                     MRPMapping *neighborMapper = dynamic_cast<MRPMapping*>(keyboard_.mapping(neighborNote));
-                    if(neighborMapper == 0)
+                    if(neighborMapper == nullptr)
                         continue;
                     if(neighborMapper->positionTracker_ != 0) {
                         int neighborState = neighborMapper->positionTracker_->currentState();
@@ -531,7 +531,7 @@ key_velocity MRPMapping::updateVelocityMeasurements() {
 // PartialPress (i.e. first non-idle) state. Returns missing value if the
 // state can't be located.
 timestamp_type MRPMapping::findTimestampOfPartialPress() {
-    if(positionTracker_ == 0)
+    if(positionTracker_ == nullptr)
         return missing_value<timestamp_type>::missing();
     if(positionTracker_->empty())
         return missing_value<timestamp_type>::missing();

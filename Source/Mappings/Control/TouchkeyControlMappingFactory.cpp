@@ -119,7 +119,7 @@ void TouchkeyControlMappingFactory::setRangeInputMin(float inputMin) {
         inputRangeMin_ = inputMin;
     
     // Update control
-    //if(midiConverter_ == 0)
+    //if(midiConverter_ == nullptr)
     //    return;
     //midiConverter_->setControlMinValue(controlName_.c_str(), inputRangeMin_);
     setMidiParameters(midiControllerNumber_, inputRangeMin_, inputRangeMax_, inputRangeCenter_,
@@ -136,7 +136,7 @@ void TouchkeyControlMappingFactory::setRangeInputMax(float inputMax) {
         inputRangeMax_ = inputMax;
     
     // Update control
-    //if(midiConverter_ == 0)
+    //if(midiConverter_ == nullptr)
     //    return;
     //midiConverter_->setControlMaxValue(controlName_.c_str(), inputRangeMax_);
     setMidiParameters(midiControllerNumber_, inputRangeMin_, inputRangeMax_, inputRangeCenter_,
@@ -153,7 +153,7 @@ void TouchkeyControlMappingFactory::setRangeInputCenter(float inputCenter) {
         inputRangeCenter_ = inputCenter;
     
     // Update control
-    //if(midiConverter_ == 0)
+    //if(midiConverter_ == nullptr)
     //    return;
     //midiConverter_->setControlCenterValue(controlName_.c_str(), inputRangeCenter_);
     setMidiParameters(midiControllerNumber_, inputRangeMin_, inputRangeMax_, inputRangeCenter_,
@@ -400,7 +400,7 @@ std::unique_ptr< juce::XmlElement > TouchkeyControlMappingFactory::getPreset() {
 }
 
 bool TouchkeyControlMappingFactory::loadPreset(juce::XmlElement const* preset) {
-    if(preset == 0)
+    if(preset == nullptr )
         return false;
     
     juce::PropertySet properties;

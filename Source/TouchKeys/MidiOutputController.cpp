@@ -94,7 +94,7 @@ bool MidiOutputController::enableVirtualPort(int identifier, const char *name) {
     
     // Try to create a new port
     MidiOutput* device = MidiOutput::createNewDevice(name);
-    if(device == 0) {
+    if(device == nullptr) {
         std::cout << "Failed to enable MIDI virtual output port " << name << ")\n";
         return false;
     }

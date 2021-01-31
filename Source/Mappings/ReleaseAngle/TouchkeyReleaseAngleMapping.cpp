@@ -229,7 +229,7 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
     if(force || !suspended_) {
         keyboard_.sendMessage("/touchkeys/releaseangle", "if", noteNumber_, releaseAngle, LO_ARGS_END);
         
-        if(keyboard_.midiOutputController() == 0)
+        if(keyboard_.midiOutputController() == nullptr)
             return;
         
         int port = static_cast<TouchkeyReleaseAngleMappingFactory*>(factory_)->segment().outputPort();

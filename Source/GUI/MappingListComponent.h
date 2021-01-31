@@ -64,7 +64,7 @@ public:
     
     // Return which segment this component refers to
     int segmentNumber() {
-        if(keyboardSegment_ == 0)
+        if(keyboardSegment_ == nullptr)
             return -1;
         return keyboardSegment_->outputPort();
     }

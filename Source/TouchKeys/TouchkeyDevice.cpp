@@ -1005,7 +1005,7 @@ int TouchkeyDevice::internalRGBLEDMIDIToLEDNumber(const int midiNote) {
 
 // Start calibrating selected keys and pedals. If argument is NULL, assume it applies to all keys.
 void TouchkeyDevice::calibrationStart(std::vector<int>* keysToCalibrate) {
-	if(keysToCalibrate == 0) {
+	if(keysToCalibrate == nullptr) {
 		for(int i = 0; i < keyCalibratorsLength_; i++)
 			keyCalibrators_[i]->calibrationStart();
 	}
@@ -1076,7 +1076,7 @@ bool TouchkeyDevice::calibrationSaveToFile(std::string const& filename) {
 		
 		for(i = 0; i < keyCalibratorsLength_; i++) {
             juce::XmlElement *calibrationElement = baseElement.createNewChildElement("Key");
-            if(calibrationElement == 0)
+            if(calibrationElement == nullptr)
                 continue;
             
 			calibrationElement->setAttribute("id", i);
@@ -1128,7 +1128,7 @@ bool TouchkeyDevice::calibrationLoadFromFile(std::string const& filename) {
 		
 		// All calibration data is encapsulated within the root element <PianoBarCalibration>
 		deviceCalibrationElement = baseElement->getChildByName("TouchkeyDeviceCalibration");
-		if(deviceCalibrationElement == 0) {
+		if(deviceCalibrationElement == nullptr) {
 			std::cerr << "TouchkeyDevice: malformed calibration file, aborting.\n";
             //delete baseElement;
 			throw 1;
@@ -1136,7 +1136,7 @@ bool TouchkeyDevice::calibrationLoadFromFile(std::string const& filename) {
 		
 		// Go through and find each key's calibration information
 		calibratorElement = deviceCalibrationElement->getChildByName("Key");
-		if(calibratorElement == 0) {
+		if(calibratorElement == nullptr) {
 			std::cerr << "TouchkeyDevice: warning: no keys found\n";
 		}
 		else {
@@ -1193,7 +1193,7 @@ void TouchkeyDevice::calibrationInit(int numberOfCalibrators) {
 
 // Free the initialized calibrators
 void TouchkeyDevice::calibrationDeinit() {
-    if(keyCalibrators_ == 0)
+    if(keyCalibrators_ == nullptr)
         return;
     
 	for(int i = 0; i < keyCalibratorsLength_; i++) {

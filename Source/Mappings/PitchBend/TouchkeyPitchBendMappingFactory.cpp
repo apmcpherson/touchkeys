@@ -205,7 +205,7 @@ std::unique_ptr< juce::XmlElement > TouchkeyPitchBendMappingFactory::getPreset()
 }
 
 bool TouchkeyPitchBendMappingFactory::loadPreset(juce::XmlElement const* preset) {
-    if(preset == 0)
+    if(preset == nullptr)
         return false;
     
     juce::PropertySet properties;

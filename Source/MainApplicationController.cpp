@@ -471,7 +471,7 @@ void MainApplicationController::playLogWithDialog() {
                                "*.bin");
         if(midiChooser.browseForFileToOpen()) {
             logPlayback_ = new LogPlayback(keyboardController_, midiInputController_);
-            if(logPlayback_ == 0)
+            if(logPlayback_ == nullptr)
                 return;
             
             if(logPlayback_->openLogFiles(tkChooser.getResult().getFullPathName().toRawUTF8(), midiChooser.getResult().getFullPathName().toRawUTF8())) {
@@ -543,7 +543,7 @@ MidiKeyboardSegment* MainApplicationController::midiSegmentAdd() {
 
 // Remove a MIDI keyboard segment.
 void MainApplicationController::midiSegmentRemove(MidiKeyboardSegment *segment) {
-    if(segment == 0)
+    if(segment == nullptr)
         return;
     // Check if this segment uses a virtual output port. Right now, we have a unique
     // output per segment. If it does, then disable the virtual output port.
@@ -901,12 +901,12 @@ bool MainApplicationController::loadPresetHelper( juce::File const& inputFile) {
     juce::XmlDocument document(inputFile);
     auto mainElement { document.getDocumentElement() };
     
-    if(mainElement == 0)
+    if(mainElement == nullptr)
         return false;
     if(mainElement->getTagName() != "TouchKeysPreset")
         return false;
     juce::XmlElement *segmentsElement = mainElement->getChildByName("KeyboardSegments");
-    if(segmentsElement == 0)
+    if(segmentsElement == nullptr)
         return false;
         
     // Load the preset from this element
@@ -1030,7 +1030,7 @@ void MainApplicationController::resetPreferences() {
 void MainApplicationController::loadApplicationPreferences(){
     juce::PropertiesFile *props = applicationProperties_.getUserSettings();
     
-    if(props == 0)
+    if(props == nullptr )
         return;
     
     // A few first-time defaults if the properties file is missing
@@ -1419,7 +1419,7 @@ bool MainApplicationOSCController::oscHandlerMethod(const char *path, const char
                 if(numValues >= 1) {
                     if(types[0] == 'i') {
                         MidiKeyboardSegment* segment = controller_.midiInputController_.segment(segmentNumber);
-                        if(segment == 0)
+                        if(segment == nullptr)
                             oscControlTransmitResult(1); // Failure response
                         else {
                             if(values[0]->i < 0) {
@@ -1435,7 +1435,7 @@ bool MainApplicationOSCController::oscHandlerMethod(const char *path, const char
 #ifndef JUCE_WINDOWS
                     else if(types[0] == 's') {
                         MidiKeyboardSegment* segment = controller_.midiInputController_.segment(segmentNumber);
-                        if(segment == 0)
+                        if(segment == nullptr )
                             oscControlTransmitResult(1); // Failure response
                         else {
                             if(!strcmp(&values[0]->s, "virtual")) {

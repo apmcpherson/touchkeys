@@ -125,7 +125,7 @@ void TouchkeyVibratoMapping::setTimeout(timestamp_diff_type timeout) {
 // behavior of future mapping calls, but the actual OSC messages should be transmitted in a different
 // thread.
 void TouchkeyVibratoMapping::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
-    if(who == 0)
+    if(who == nullptr)
         return;
     
     if(who == touchBuffer_) {

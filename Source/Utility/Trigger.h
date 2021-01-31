@@ -106,7 +106,7 @@ public:
 	void registerForTrigger(TriggerSource* src) {
 		//std::cout<<"registerForTrigger: this = " << this << " src = " << src << std::endl;
 		
-		if(src == 0 || (void*)src == (void*)this)
+		if(src == nullptr || (void*)src == (void*)this)
 			return;
 		juce::ScopedLock sl(triggerDestMutex_);
 		src->addTriggerDestination(this);
@@ -114,7 +114,7 @@ public:
 	}
 	
 	void unregisterForTrigger(TriggerSource* src) {
-		if(src == 0 || (void*)src == (void*)this)
+		if(src == nullptr || (void*)src == (void*)this)
 			return;
         juce::ScopedLock sl(triggerDestMutex_);
 		src->removeTriggerDestination(this);

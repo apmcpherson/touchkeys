@@ -27,7 +27,7 @@
 Mapping* MappingFactorySplitter::mapping(int noteNumber) {
     // TODO: find a mapping in any of the factories
     if(factories_.empty())
-        return 0;
+        return nullptr;
     return (*factories_.begin())->mapping(noteNumber);
 }
 

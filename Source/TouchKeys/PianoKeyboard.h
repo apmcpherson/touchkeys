@@ -138,15 +138,15 @@ public:
 	// Access to individual keys and pedals
 	PianoKey* key(int note) {
 		//if(note < lowestMidiNote_ || note > highestMidiNote_)
-		//	return 0;
+		//	return nullptr;
 		//return keys_[note - lowestMidiNote_];
         if(note < 0 || note > 127)
-            return 0;
+            return nullptr;
         return keys_[note];
 	}
 	PianoPedal* pedal(int pedal) {
 		if(pedal < 0 || pedal >= numberOfPedals_)
-			return 0;
+			return nullptr;
 		return pedals_[pedal];
 	}
 	
@@ -182,7 +182,7 @@ public:
     MappingFactory *mappingFactory(MidiKeyboardSegment* segment) {
         juce::ScopedReadLock sl(mappingFactoriesMutex_);
         if(mappingFactories_.count(segment) == 0)
-            return 0;
+            return nullptr;
         return mappingFactories_[segment];
     }
     void setMappingFactory(MidiKeyboardSegment* segment, MappingFactory *factory) {

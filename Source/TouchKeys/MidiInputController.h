@@ -89,7 +89,7 @@ public:
     MidiKeyboardSegment* segment(int num) {
         juce::ScopedLock sl(segmentsMutex_);
         if(num < 0 || num >= segments_.size())
-            return 0;
+            return nullptr;
         return segments_[num];
     }
     // Return a unique signature which tells us when the MIDI segments have changed,

@@ -150,7 +150,7 @@ void OscMidiConverter::resend(int channel) {
 
 // Send the default value on the specified channel.
 void OscMidiConverter::sendDefaultValue(int channel) {    
-    if(midiOutputController_ == 0 || controller_ == MidiKeyboardSegment::kControlDisabled)
+    if(midiOutputController_ == nullptr || controller_ == MidiKeyboardSegment::kControlDisabled)
         return;
     
     // Modulate the default value by the value of the incoming controller,
@@ -366,7 +366,7 @@ bool OscMidiConverter::oscHandlerMethod(const char *path, const char *types, int
 #ifdef DEBUG_OSC_MIDI_CONVERTER
     std::cout << "OscMidiConverter: received path " << path << std::endl;
 #endif
-	if(midiOutputController_ == 0 || controller_ == MidiKeyboardSegment::kControlDisabled)
+	if(midiOutputController_ == nullptr || controller_ == MidiKeyboardSegment::kControlDisabled)
 		return false;
     
     //double before = Time::getMillisecondCounterHiRes();  // DEBUG
@@ -470,7 +470,7 @@ bool OscMidiConverter::oscHandlerMethod(const char *path, const char *types, int
 
 // Send the current sum value of all OSC inputs as a MIDI message
 void OscMidiConverter::sendCurrentValue(int port, int channel, int note, bool force) {
-    if(midiOutputController_ == 0 || channel < 0 || channel > 15)
+    if(midiOutputController_ == nullptr || channel < 0 || channel > 15)
         return;
     
     // TODO: what about values that are centered by default e.g. pitch?

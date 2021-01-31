@@ -191,7 +191,7 @@ public:
             keyboardSegment_.releaseOscMidiConverter(midiControllerNumber_);
             midiConverter_ = keyboardSegment_.acquireOscMidiConverter(controller);
         }
-        else if(midiControllerNumber_ < 0 || midiConverter_ == 0) {
+        else if(midiControllerNumber_ < 0 || midiConverter_ == nullptr) {
             midiConverter_ = keyboardSegment_.acquireOscMidiConverter(controller);
         }        
         midiControllerNumber_ = controller;
@@ -244,7 +244,7 @@ public:
     }
     
     virtual bool loadPreset(juce::XmlElement const* preset) {
-        if(preset == 0)
+        if(preset == nullptr)
             return false;
         
         juce::PropertySet properties;
@@ -342,7 +342,7 @@ public:
     
     // But we do use this one to send out default values:
     virtual void noteWillBegin(int noteNumber, int midiChannel, int midiVelocity) {
-        if(midiConverter_ == 0)
+        if(midiConverter_ == nullptr)
             return;
         midiConverter_->clearLastValues(midiChannel, true);
         //midiConverter_->sendDefaultValue(midiChannel);

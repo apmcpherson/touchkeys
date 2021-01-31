@@ -53,7 +53,7 @@ void TriggerSource::addTriggerDestination(TriggerDestination* dest) {
 #ifdef DEBUG_TRIGGERS
     std::cerr << "addTriggerDestination (" << this << "): " << dest << "\n";
 #endif
-	if(dest == 0 || (void*)dest == (void*)this)
+	if(dest == nullptr || (void*)dest == (void*)this)
 		return;
     juce::ScopedLock sl(triggerSourceMutex_);
     // Make sure this trigger isn't already present

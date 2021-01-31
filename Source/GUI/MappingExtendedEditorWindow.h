@@ -53,7 +53,7 @@ public:
     // Method used by Juce timer which we will use for periodic UI updates
     // from the underlying system state
     void synchronize() {
-        if(editor_ == 0)
+        if(editor_ == nullptr)
             return;
         editor_->synchronize();
         setName(editor_->getDescription());

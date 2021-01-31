@@ -219,7 +219,7 @@ void PianoKeyboard::removeMapping(int noteNumber) {
 // Return a specific mapping by owner and note number
 Mapping* PianoKeyboard::mapping(int noteNumber) {
     if(mappings_.count(noteNumber) == 0)
-        return 0;
+        return nullptr;
     return mappings_[noteNumber];
 }
 

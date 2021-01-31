@@ -113,7 +113,7 @@ public:
         aCoefficients_ = aCoeffs;
         bCoefficients_ = bCoeffs;
         
-        if(inputHistory_ == 0) {
+        if(inputHistory_ == nullptr) {
             inputHistory_ = new boost::circular_buffer<DataType>(bCoeffs.size());
             shouldClear = true;
         }
@@ -122,7 +122,7 @@ public:
             shouldClear = true;
         }
         
-        if(outputHistory_ == 0) {
+        if(outputHistory_ == nullptr) {
             outputHistory_ = new boost::circular_buffer<DataType>(aCoeffs.size());
             shouldClear = true;
         }

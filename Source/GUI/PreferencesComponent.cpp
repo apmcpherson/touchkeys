@@ -136,7 +136,7 @@ void PreferencesComponent::buttonClicked (juce::Button* buttonThatWasClicked)
 
 // Synchronize the UI state with the underlying state of the controller
 void PreferencesComponent::synchronize(bool forceUpdates) {
-    if(controller_ == 0)
+    if(controller_ == nullptr)
         return;
 
     startTouchKeysButton.setToggleState(controller_->getPrefsAutoStartTouchKeys(), juce::NotificationType::dontSendNotification);

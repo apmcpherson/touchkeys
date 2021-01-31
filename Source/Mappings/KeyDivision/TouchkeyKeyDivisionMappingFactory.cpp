@@ -160,7 +160,7 @@ std::unique_ptr< juce::XmlElement > TouchkeyKeyDivisionMappingFactory::getPreset
 }
 
 bool TouchkeyKeyDivisionMappingFactory::loadPreset(juce::XmlElement const* preset) {
-    if(preset == 0)
+    if(preset == nullptr )
         return false;
     
     juce::PropertySet properties;

@@ -212,7 +212,7 @@ bool PianoKeyCalibrator::saveToXml(juce::XmlElement& baseElement) {
 
     juce::XmlElement *newElement = baseElement.createNewChildElement("Calibration");
     
-    if(newElement == 0)
+    if(newElement == nullptr)
         return false;
     
     newElement->setAttribute("quiescent", quiescent_);
@@ -236,7 +236,7 @@ void PianoKeyCalibrator::cleanup() {
 // and calibrationFinish(). Returns true if successful.
 bool PianoKeyCalibrator::internalUpdateQuiescent() {
     juce::ScopedLock sl(historyMutex_);
-    if(history_ == 0) {
+    if(history_ == nullptr) {
         return false;
     }
     if(history_->size() < kPianoKeyCalibrationPressLength) {
