@@ -50,9 +50,9 @@ private:
 
     juce::ToggleButton bypassToggleButton;
     juce::TextButton showDetailsButton;
-    juce::Label mappingTypeLabel;
+    TKLabel mappingTypeLabel;
     std::unique_ptr< MappingEditorComponent > mappingShortEditorComponent;
-    juce::Label noSettingsLabel;
+    TKLabel noSettingsLabel;
     juce::TextButton deleteButton;
     juce::Path internalPath1;
     juce::Path internalPath2;

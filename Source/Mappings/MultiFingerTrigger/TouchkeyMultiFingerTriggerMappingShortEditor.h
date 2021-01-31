@@ -49,11 +49,11 @@ private:
 
     TouchKeysLookAndFeel lnf;
 
-    juce::Label controlLabel;
+    TKLabel controlLabel;
     juce::ComboBox touchesComboBox;
-    juce::Label controlLabel2;
+    TKLabel controlLabel2;
     juce::ComboBox tapsComboBox;
-    juce::Label controlLabel3;
+    TKLabel controlLabel3;
     juce::ComboBox noteComboBox;
     juce::ToggleButton sendOnReleaseButton;
 

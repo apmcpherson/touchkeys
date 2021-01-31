@@ -24,7 +24,7 @@
 
 //==============================================================================
 MappingListItem::MappingListItem (MappingListComponent& listComponent)
-    : factory_(0), 
+    : factory_(nullptr), 
     listComponent_(listComponent),
     bypassToggleButton{ "Bypass toggle button" },
     showDetailsButton{ "Show details button" },
@@ -47,15 +47,12 @@ MappingListItem::MappingListItem (MappingListComponent& listComponent)
     addAndMakeVisible (mappingTypeLabel);
     mappingTypeLabel.setFont (juce::Font (18.00f, juce::Font::plain));
     mappingTypeLabel.setJustificationType (juce::Justification::centred);
-    mappingTypeLabel.setEditable (false, false, false);
 
     addAndMakeVisible ( mappingShortEditorComponent.get() );
     mappingShortEditorComponent->setName ("mapping short editor component");
 
     addAndMakeVisible (noSettingsLabel);
-    noSettingsLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     noSettingsLabel.setJustificationType (juce::Justification::centred);
-    noSettingsLabel.setEditable (false, false, false);
 
     addAndMakeVisible (deleteButton);
     deleteButton.setButtonText ("Delete...");

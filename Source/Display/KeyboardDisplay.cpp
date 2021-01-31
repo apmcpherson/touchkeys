@@ -50,7 +50,7 @@ KeyboardDisplay::KeyboardDisplay() {
 
 // Tell the underlying canvas to repaint itself
 void KeyboardDisplay::tellCanvasToRepaint() {
-    if(canvas_ != 0)
+    if(canvas_ != nullptr)
         canvas_->triggerRepaint();
 }
 

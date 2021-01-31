@@ -47,8 +47,8 @@ private:
     TouchKeysLookAndFeel lnf;
 
     juce::ComboBox tuningComboBox;
-    juce::Label tuningLabel;
-    juce::Label controlLabel;
+    TKLabel tuningLabel;
+    TKLabel controlLabel;
     juce::ComboBox controlComboBox;
     juce::ToggleButton retriggerButton;
 

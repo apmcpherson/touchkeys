@@ -48,11 +48,11 @@ private:
 
     TouchKeysLookAndFeel lnf;
 
-    juce::TextEditor rangeEditor;
-    juce::Label rangeLabel;
-    juce::TextEditor thresholdEditor;
-    juce::Label thresholdLabel;
-    juce::Label controlLabel;
+    TKTextEditor rangeEditor;
+    TKLabel rangeLabel;
+    TKTextEditor thresholdEditor;
+    TKLabel thresholdLabel;
+    TKLabel controlLabel;
     juce::ComboBox controlComboBox;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TouchkeyVibratoMappingShortEditor)

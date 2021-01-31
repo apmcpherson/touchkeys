@@ -81,32 +81,32 @@ private:
 
     juce::GroupComponent midiInputGroupComponent;
     juce::ComboBox midiInputDeviceComboBox;
-    juce::Label label;
+    TKLabel label;
     juce::GroupComponent groupComponent;
-    juce::Label label2;
+    TKLabel label2;
     juce::ComboBox touchkeyDeviceComboBox;
-    juce::Label label3;
+    TKLabel label3;
     juce::TextButton touchkeyStartButton;
-    juce::Label touchkeyStatusLabel;
+    TKLabel touchkeyStatusLabel;
     juce::GroupComponent oscGroupComponent;
-    juce::Label label7;
-    juce::TextEditor oscHostTextEditor;
-    juce::Label label8;
-    juce::TextEditor oscPortTextEditor;
+    TKLabel label7;
+    TKTextEditor oscHostTextEditor;
+    TKLabel label8;
+    TKTextEditor oscPortTextEditor;
     juce::ToggleButton oscEnableButton;
     juce::ToggleButton oscEnableRawButton;
-    juce::Label label4;
+    TKLabel label4;
     juce::ComboBox touchkeyOctaveComboBox;
     juce::GroupComponent oscInputGroupComponent;
     juce::ToggleButton oscInputEnableButton;
-    juce::Label label6;
-    juce::TextEditor oscInputPortTextEditor;
+    TKLabel label6;
+    TKTextEditor oscInputPortTextEditor;
     juce::TabbedComponent keyboardZoneTabbedComponent;
     juce::TextButton addZoneButton;
     juce::TextButton removeZoneButton;
     juce::TextButton touchkeyAutodetectButton;
     juce::ComboBox midiInputAuxDeviceComboBox;
-    juce::Label label5;
+    TKLabel label5;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ControlWindowMainComponent)

@@ -22,29 +22,29 @@
 
 //==============================================================================
 ControlWindowMainComponent::ControlWindowMainComponent ()
-    : controller_(0),
+    : controller_(nullptr),
     midiInputGroupComponent{ "MIDI input group", "MIDI Input" },
     midiInputDeviceComboBox{ "MIDI input combo box" },
-    label{ "new label", "Keyboard:" },
+    label{ "Keyboard:" },
     groupComponent{ "new group", "TouchKeys" },
-    label2{ "new label", "Device:\n" },
+    label2{ "Device:\n" },
     touchkeyDeviceComboBox{ "TouchKeys combo box" },
-    label3{ "new label", "Status:\n" },
+    label3{ "Status:\n" },
     touchkeyStartButton{ "TouchKeys start button" },
     touchkeyStatusLabel{ "TouchKeys status label", "not running" },
     oscGroupComponent{ "OSC group", "OSC Output" },
-    label7{ "new label", "Host:" },
-    oscHostTextEditor{ "new text editor" },
-    label8{ "new label", "Port:" },
-    oscPortTextEditor{ "new text editor" },
+    label7{ "Host:" },
+    oscHostTextEditor{ "OSC Host Text Editor", "127.0.0.1" },
+    label8{ "Port:" },
+    oscPortTextEditor{ "OSC Port Text Editor", "8000" },
     oscEnableButton{ "OSC enable button" },
     oscEnableRawButton{ "OSC enable raw button" },
-    label4{ "new label", "Lowest Octave:" },
+    label4{ "Lowest Octave:" },
     touchkeyOctaveComboBox{ "TouchKeys octave box" },
     oscInputGroupComponent{ "MIDI input group", "OSC Input" },
     oscInputEnableButton{ "OSC input enable button" },
-    label6{ "new label", "Port:" },
-    oscInputPortTextEditor{ "new text editor" },
+    label6{ "Port:" },
+    oscInputPortTextEditor{ "OSC Input Port Text Editor", "8001" },
     keyboardZoneTabbedComponent{ juce::TabbedButtonBar::TabsAtTop },
     addZoneButton{ "add zone button" },
     removeZoneButton{ "remove zone button" },
@@ -65,17 +65,9 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     midiInputDeviceComboBox.addListener (this);
 
     addAndMakeVisible (label);
-    label.setFont (juce::Font (15.00f, juce::Font::plain));
-    label.setJustificationType (juce::Justification::centredLeft);
-    label.setEditable (false, false, false);
-
     addAndMakeVisible (groupComponent);
 
     addAndMakeVisible (label2);
-    label2.setFont (juce::Font (15.00f, juce::Font::plain));
-    label2.setJustificationType (juce::Justification::centredLeft);
-    label2.setEditable (false, false, false);
-
     addAndMakeVisible (touchkeyDeviceComboBox);
     touchkeyDeviceComboBox.setEditableText (false);
     touchkeyDeviceComboBox.setJustificationType (juce::Justification::centredLeft);
@@ -84,48 +76,19 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     touchkeyDeviceComboBox.addListener (this);
 
     addAndMakeVisible (label3);
-    label3.setFont (juce::Font (15.00f, juce::Font::plain));
-    label3.setJustificationType (juce::Justification::centredLeft);
-    label3.setEditable (false, false, false);
-
     addAndMakeVisible (touchkeyStartButton);
     touchkeyStartButton.setButtonText ("Start");
     touchkeyStartButton.addListener (this);
 
     addAndMakeVisible (touchkeyStatusLabel);
-    touchkeyStatusLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    touchkeyStatusLabel.setJustificationType (juce::Justification::centredLeft);
-    touchkeyStatusLabel.setEditable (false, false, false);
 
     addAndMakeVisible (oscGroupComponent);
 
     addAndMakeVisible (label7);
-    label7.setFont (juce::Font (15.00f, juce::Font::plain));
-    label7.setJustificationType (juce::Justification::centredLeft);
-    label7.setEditable (false, false, false);
-
     addAndMakeVisible (oscHostTextEditor);
-    oscHostTextEditor.setMultiLine (false);
-    oscHostTextEditor.setReturnKeyStartsNewLine (false);
-    oscHostTextEditor.setReadOnly (false);
-    oscHostTextEditor.setScrollbarsShown (true);
-    oscHostTextEditor.setCaretVisible (true);
-    oscHostTextEditor.setPopupMenuEnabled (true);
-    oscHostTextEditor.setText ("127.0.0.1");
 
     addAndMakeVisible (label8);
-    label8.setFont (juce::Font (15.00f, juce::Font::plain));
-    label8.setJustificationType (juce::Justification::centredLeft);
-    label8.setEditable (false, false, false);
-
     addAndMakeVisible (oscPortTextEditor);
-    oscPortTextEditor.setMultiLine (false);
-    oscPortTextEditor.setReturnKeyStartsNewLine (false);
-    oscPortTextEditor.setReadOnly (false);
-    oscPortTextEditor.setScrollbarsShown (true);
-    oscPortTextEditor.setCaretVisible (true);
-    oscPortTextEditor.setPopupMenuEnabled (true);
-    oscPortTextEditor.setText ("8000");
 
     addAndMakeVisible (oscEnableButton);
     oscEnableButton.setButtonText ("Enable OSC output");
@@ -136,10 +99,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     oscEnableRawButton.addListener (this);
 
     addAndMakeVisible (label4);
-    label4.setFont (juce::Font (15.00f, juce::Font::plain));
-    label4.setJustificationType (juce::Justification::centredLeft);
-    label4.setEditable (false, false, false);
-
     addAndMakeVisible (touchkeyOctaveComboBox);
     touchkeyOctaveComboBox.setEditableText (false);
     touchkeyOctaveComboBox.setJustificationType (juce::Justification::centredLeft);
@@ -154,18 +113,7 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     oscInputEnableButton.addListener (this);
 
     addAndMakeVisible (label6);
-    label6.setFont (juce::Font (15.00f, juce::Font::plain));
-    label6.setJustificationType (juce::Justification::centredLeft);
-    label6.setEditable (false, false, false);
-
     addAndMakeVisible (oscInputPortTextEditor);
-    oscInputPortTextEditor.setMultiLine (false);
-    oscInputPortTextEditor.setReturnKeyStartsNewLine (false);
-    oscInputPortTextEditor.setReadOnly (false);
-    oscInputPortTextEditor.setScrollbarsShown (true);
-    oscInputPortTextEditor.setCaretVisible (true);
-    oscInputPortTextEditor.setPopupMenuEnabled (true);
-    oscInputPortTextEditor.setText ("8001");
 
     addAndMakeVisible (keyboardZoneTabbedComponent);
     keyboardZoneTabbedComponent.setTabBarDepth (30);
@@ -191,10 +139,6 @@ ControlWindowMainComponent::ControlWindowMainComponent ()
     midiInputAuxDeviceComboBox.addListener (this);
 
     addAndMakeVisible (label5);
-    label5.setFont (juce::Font (15.00f, juce::Font::plain));
-    label5.setJustificationType (juce::Justification::centredRight);
-    label5.setEditable (false, false, false);
-
     lastSelectedMidiInputID_ = -1;
     lastSelectedMidiAuxInputID_ = -1;
     lastSegmentUniqueIdentifier_ = -1;

@@ -31,37 +31,14 @@ TouchkeyPitchBendMappingShortEditor::TouchkeyPitchBendMappingShortEditor (Touchk
     setLookAndFeel( &lnf );
 
     addAndMakeVisible (rangeEditor);
-    rangeEditor.setMultiLine (false);
-    rangeEditor.setReturnKeyStartsNewLine (false);
-    rangeEditor.setReadOnly (false);
-    rangeEditor.setScrollbarsShown (true);
-    rangeEditor.setCaretVisible (true);
-    rangeEditor.setPopupMenuEnabled (true);
-    rangeEditor.setText ( juce::String{} );
 
     addAndMakeVisible (rangeLabel);
-    rangeLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    rangeLabel.setJustificationType (juce::Justification::centredLeft);
-    rangeLabel.setEditable (false, false, false);
 
     addAndMakeVisible (thresholdEditor);
-    thresholdEditor.setMultiLine (false);
-    thresholdEditor.setReturnKeyStartsNewLine (false);
-    thresholdEditor.setReadOnly (false);
-    thresholdEditor.setScrollbarsShown (true);
-    thresholdEditor.setCaretVisible (true);
-    thresholdEditor.setPopupMenuEnabled (true);
-    thresholdEditor.setText ( juce::String{} );
 
     addAndMakeVisible (thresholdLabel);
-    thresholdLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    thresholdLabel.setJustificationType (juce::Justification::centredLeft);
-    thresholdLabel.setEditable (false, false, false);
 
     addAndMakeVisible (controlLabel);
-    controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    controlLabel.setJustificationType (juce::Justification::centredLeft);
-    controlLabel.setEditable (false, false, false);
 
     addAndMakeVisible (endpointsComboBox);
     endpointsComboBox.setEditableText (false);

@@ -35,7 +35,7 @@ class MappingExtendedEditorWindow;
 //==============================================================================
 /*
 */
-class MappingListComponent    : public juce::Component, public juce::ListBoxModel
+class MappingListComponent : public juce::Component, public juce::ListBoxModel
 {
 public:
     MappingListComponent();

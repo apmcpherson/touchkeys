@@ -127,24 +127,24 @@ private:
     MappingListComponent mappingListComponent;
     juce::GroupComponent midiOutputGroupComponent;
     juce::ComboBox midiOutputDeviceComboBox;
-    juce::Label label4;
-    juce::Label label5;
+    TKLabel label4;
+    TKLabel label5;
     juce::ComboBox midiOutputModeComboBox;
     juce::ToggleButton midiOutputVoiceStealingButton;
-    juce::Label label2;
-    juce::TextEditor midiOutputChannelLowEditor;
-    juce::TextEditor midiOutputChannelHighEditor;
-    juce::Label label3;
+    TKLabel label2;
+    TKTextEditor midiOutputChannelLowEditor;
+    TKTextEditor midiOutputChannelHighEditor;
+    TKLabel label3;
     juce::GroupComponent midiOutputGroupComponent2;
-    juce::Label label7;
+    TKLabel label7;
     juce::ComboBox rangeLowComboBox;
     juce::ComboBox rangeHighComboBox;
-    juce::Label label6;
-    juce::TextEditor midiOutputTransposeEditor;
-    juce::Label label8;
+    TKLabel label6;
+    TKTextEditor midiOutputTransposeEditor;
+    TKLabel label8;
     juce::TextButton addMappingButton;
-    juce::Label label9;
-    juce::TextEditor pitchWheelRangeEditor;
+    TKLabel label9;
+    TKTextEditor pitchWheelRangeEditor;
     juce::TextButton keyboardControllersButton;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardZoneComponent)

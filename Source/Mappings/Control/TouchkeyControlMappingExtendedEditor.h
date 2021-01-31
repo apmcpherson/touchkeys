@@ -54,32 +54,32 @@ private:
 
     TouchKeysLookAndFeel lnf;
 
-    juce::TextEditor inputRangeLowEditor;
-    juce::Label rangeLabel;
-    juce::Label controlLabel;
+    TKTextEditor inputRangeLowEditor;
+    TKLabel rangeLabel;
+    TKLabel controlLabel;
     juce::ComboBox controlComboBox;
-    juce::Label controlLabel2;
+    TKLabel controlLabel2;
     juce::ComboBox parameterComboBox;
-    juce::Label controlLabel3;
+    TKLabel controlLabel3;
     juce::ComboBox typeComboBox;
-    juce::TextEditor inputRangeHighEditor;
-    juce::Label rangeLabel2;
-    juce::Label rangeLabel3;
-    juce::TextEditor outputRangeLowEditor;
-    juce::TextEditor outputRangeHighEditor;
-    juce::Label rangeLabel4;
-    juce::Label controlLabel4;
+    TKTextEditor inputRangeHighEditor;
+    TKLabel rangeLabel2;
+    TKLabel rangeLabel3;
+    TKTextEditor outputRangeLowEditor;
+    TKTextEditor outputRangeHighEditor;
+    TKLabel rangeLabel4;
+    TKLabel controlLabel4;
     juce::ComboBox directionComboBox;
-    juce::Label titleLabel;
-    juce::Label rangeLabel5;
-    juce::TextEditor thresholdEditor;
+    TKLabel titleLabel;
+    TKLabel rangeLabel5;
+    TKTextEditor thresholdEditor;
     juce::ToggleButton cc14BitButton;
     juce::ToggleButton ignore2FingersButton;
     juce::ToggleButton ignore3FingersButton;
-    juce::Label controlLabel6;
+    TKLabel controlLabel6;
     juce::ComboBox outOfRangeComboBox;
-    juce::Label rangeLabel6;
-    juce::TextEditor outputDefaultEditor;
+    TKLabel rangeLabel6;
+    TKTextEditor outputDefaultEditor;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TouchkeyControlMappingExtendedEditor)

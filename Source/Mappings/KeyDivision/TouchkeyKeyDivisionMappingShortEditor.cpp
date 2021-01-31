@@ -39,14 +39,8 @@ TouchkeyKeyDivisionMappingShortEditor::TouchkeyKeyDivisionMappingShortEditor (To
     tuningComboBox.addListener (this);
 
     addAndMakeVisible (tuningLabel);
-    tuningLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    tuningLabel.setJustificationType (juce::Justification::centredLeft);
-    tuningLabel.setEditable (false, false, false);
 
     addAndMakeVisible (controlLabel);
-    controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    controlLabel.setJustificationType (juce::Justification::centredLeft);
-    controlLabel.setEditable (false, false, false);
 
     addAndMakeVisible (controlComboBox);
     controlComboBox.setEditableText (false);
@@ -122,49 +116,4 @@ void TouchkeyKeyDivisionMappingShortEditor::synchronize()
     tuningComboBox.setSelectedId(factory_.getTuningPreset() + 1);
 }
 
-
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="TouchkeyKeyDivisionMappingShortEditor"
-                 componentName="" parentClasses="public MappingEditorComponent, public juce::TextEditor::Listener"
-                 constructorParams="TouchkeyKeyDivisionMappingFactory&amp; factory"
-                 variableInitialisers="factory_(factory)" snapPixels="8" snapActive="1"
-                 snapShown="1" overlayOpacity="0.330" fixedSize="1" initialWidth="328"
-                 initialHeight="71">
-  <BACKGROUND backgroundColour="ffffffff"/>
-  <COMBOBOX name="tuning combo box" id="11460b0e135fe122" memberName="tuningComboBox"
-            virtualName="" explicitFocusOrder="0" pos="72 8 248 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="tuning label" id="864de4f55b5481ee" memberName="tuningLabel"
-         virtualName="" explicitFocusOrder="0" pos="8 8 72 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Tuning:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <LABEL name="control label" id="163b8236fad72f38" memberName="controlLabel"
-         virtualName="" explicitFocusOrder="0" pos="8 40 72 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Control:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="control combo box" id="597816425fbf42ce" memberName="controlComboBox"
-            virtualName="" explicitFocusOrder="0" pos="72 40 88 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <TOGGLEBUTTON name="retrigger button" id="1b86153e19e7aa57" memberName="retriggerButton"
-                virtualName="" explicitFocusOrder="0" pos="176 40 136 24" buttonText="Retriggerable"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
-
-
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]

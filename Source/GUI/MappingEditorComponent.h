@@ -28,6 +28,55 @@
 #include <JuceHeader.h>
 
 //==============================================================================
+
+class TKLabel : public juce::Label
+{
+public:
+    explicit TKLabel( const juce::String& lbl ) :
+        TKLabel { "new label", lbl }
+    {
+    }
+
+    TKLabel( const juce::String& componentName, const juce::String& lbl ) :
+        juce::Label { componentName, lbl }
+    {
+        setFont( juce::Font( 15.00f, juce::Font::plain ) );
+        setJustificationType( juce::Justification::centredLeft );
+        setEditable( false, false, false );
+    }
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( TKLabel )
+};
+
+
+class TKTextEditor : public juce::TextEditor
+{
+public:
+    explicit TKTextEditor( const juce::String& s ) :
+        TKTextEditor { s, juce::String{ } }
+    {
+    }
+
+    TKTextEditor( const juce::String& componentString, const juce::String& displayText ) :
+        TextEditor { componentString }
+    {
+        setMultiLine( false );
+        setReturnKeyStartsNewLine( false );
+        setReadOnly( false );
+        setScrollbarsShown( true );
+        setCaretVisible( true );
+        setPopupMenuEnabled( true );
+        setText( displayText );
+    }
+
+
+private:
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( TKTextEditor )
+};
+
+
+//==============================================================================
 /* class TouchKeysLookAndFeel - Look & Feel class for JUCE UI components
 */
 class TouchKeysLookAndFeel : public juce::LookAndFeel_V4

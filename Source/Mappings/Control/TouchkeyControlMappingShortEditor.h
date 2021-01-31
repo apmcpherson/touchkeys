@@ -47,16 +47,16 @@ private:
 
     TouchKeysLookAndFeel lnf;
 
-    juce::TextEditor inputRangeLowEditor;
-    juce::Label rangeLabel;
-    juce::Label controlLabel;
+    TKTextEditor inputRangeLowEditor;
+    TKLabel rangeLabel;
+    TKLabel controlLabel;
     juce::ComboBox controlComboBox;
-    juce::Label controlLabel2;
+    TKLabel controlLabel2;
     juce::ComboBox parameterComboBox;
-    juce::Label controlLabel3;
+    TKLabel controlLabel3;
     juce::ComboBox typeComboBox;
-    juce::TextEditor inputRangeHighEditor;
-    juce::Label rangeLabel2;
+    TKTextEditor inputRangeHighEditor;
+    TKLabel rangeLabel2;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TouchkeyControlMappingShortEditor)
 };

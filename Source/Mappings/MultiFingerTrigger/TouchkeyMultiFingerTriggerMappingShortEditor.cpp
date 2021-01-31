@@ -35,9 +35,7 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     setLookAndFeel( &lnf );
 
     addAndMakeVisible (controlLabel);
-    controlLabel.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel.setJustificationType (juce::Justification::centredRight);
-    controlLabel.setEditable (false, false, false);
 
     addAndMakeVisible (touchesComboBox);
     touchesComboBox.setEditableText (false);
@@ -47,9 +45,6 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     touchesComboBox.addListener (this);
 
     addAndMakeVisible (controlLabel2);
-    controlLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
-    controlLabel2.setJustificationType (juce::Justification::centredLeft);
-    controlLabel2.setEditable (false, false, false);
 
     addAndMakeVisible (tapsComboBox);
     tapsComboBox.setEditableText (false);
@@ -59,9 +54,7 @@ TouchkeyMultiFingerTriggerMappingShortEditor::TouchkeyMultiFingerTriggerMappingS
     tapsComboBox.addListener (this);
 
     addAndMakeVisible (controlLabel3);
-    controlLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
     controlLabel3.setJustificationType (juce::Justification::centredRight);
-    controlLabel3.setEditable (false, false, false);
 
     addAndMakeVisible (noteComboBox);
     noteComboBox.setEditableText (false);
@@ -164,57 +157,4 @@ void TouchkeyMultiFingerTriggerMappingShortEditor::synchronize() {
         sendOnReleaseButton.setToggleState(false, jNT::dontSendNotification);
 }
 
-
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="TouchkeyMultiFingerTriggerMappingShortEditor"
-                 componentName="" parentClasses="public MappingEditorComponent, public juce::TextEditor::Listener"
-                 constructorParams="TouchkeyMultiFingerTriggerMappingFactory&amp; factory"
-                 variableInitialisers="factory_(factory)" snapPixels="8" snapActive="1"
-                 snapShown="1" overlayOpacity="0.330" fixedSize="1" initialWidth="328"
-                 initialHeight="71">
-  <BACKGROUND backgroundColour="ffffffff"/>
-  <LABEL name="control label" id="f953b12999632418" memberName="controlLabel"
-         virtualName="" explicitFocusOrder="0" pos="8 8 64 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Touches:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="34"/>
-  <COMBOBOX name="control combo box" id="f1c84bb5fd2730fb" memberName="touchesComboBox"
-            virtualName="" explicitFocusOrder="0" pos="72 8 80 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="control label" id="e3b829a3e4774248" memberName="controlLabel2"
-         virtualName="" explicitFocusOrder="0" pos="160 8 80 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Repeat Taps:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="control combo box" id="26848818ea1ea5ea" memberName="tapsComboBox"
-            virtualName="" explicitFocusOrder="0" pos="240 8 80 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="control label" id="858bbbef4bfb2c55" memberName="controlLabel3"
-         virtualName="" explicitFocusOrder="0" pos="8 40 64 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Note:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="34"/>
-  <COMBOBOX name="control combo box" id="cb809b358724b54b" memberName="noteComboBox"
-            virtualName="" explicitFocusOrder="0" pos="72 40 80 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <TOGGLEBUTTON name="new toggle button" id="f75c92be72563883" memberName="sendOnReleaseButton"
-                virtualName="" explicitFocusOrder="0" pos="168 40 152 24" buttonText="Also send on release"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
-
-
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]

@@ -58,13 +58,8 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
 
     addAndMakeVisible (titleLabel);
     titleLabel.setFont (juce::Font (15.00f, juce::Font::bold));
-    titleLabel.setJustificationType (juce::Justification::centredLeft);
-    titleLabel.setEditable (false, false, false);
 
     addAndMakeVisible (presetLabel);
-    presetLabel.setFont (juce::Font (15.00f, juce::Font::plain));
-    presetLabel.setJustificationType (juce::Justification::centredLeft);
-    presetLabel.setEditable (false, false, false);
 
     addAndMakeVisible (presetComboBox);
     presetComboBox.setEditableText (false);
@@ -74,120 +69,38 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetComboBox.addListener (this);
 
     addAndMakeVisible (presetLabel2);
-    presetLabel2.setFont (juce::Font (15.00f, juce::Font::plain));
-    presetLabel2.setJustificationType (juce::Justification::centredLeft);
-    presetLabel2.setEditable (false, false, false);
 
     addAndMakeVisible( windowLengthEditor );
-    windowLengthEditor.setMultiLine (false);
-    windowLengthEditor.setReturnKeyStartsNewLine (false);
-    windowLengthEditor.setReadOnly (false);
-    windowLengthEditor.setScrollbarsShown (true);
-    windowLengthEditor.setCaretVisible (true);
-    windowLengthEditor.setPopupMenuEnabled (true);
-    windowLengthEditor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel3 );
-    presetLabel3.setFont (juce::Font (15.00f, juce::Font::plain));
-    presetLabel3.setJustificationType (juce::Justification::centredLeft);
-    presetLabel3.setEditable (false, false, false);
 
     addAndMakeVisible( presetLabel4 );
     presetLabel4.setFont (juce::Font (15.00f, juce::Font::bold));
-    presetLabel4.setJustificationType (juce::Justification::centredLeft);
-    presetLabel4.setEditable (false, false, false);
 
     addAndMakeVisible( upMinSpeedEditor );
-    upMinSpeedEditor.setMultiLine (false);
-    upMinSpeedEditor.setReturnKeyStartsNewLine (false);
-    upMinSpeedEditor.setReadOnly (false);
-    upMinSpeedEditor.setScrollbarsShown (true);
-    upMinSpeedEditor.setCaretVisible (true);
-    upMinSpeedEditor.setPopupMenuEnabled (true);
-    upMinSpeedEditor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel5 );
-    presetLabel5.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel5.setJustificationType (juce::Justification::centredRight);
-    presetLabel5.setEditable (false, false, false);
 
     addAndMakeVisible( upNote1Editor );
-    upNote1Editor.setMultiLine (false);
-    upNote1Editor.setReturnKeyStartsNewLine (false);
-    upNote1Editor.setReadOnly (false);
-    upNote1Editor.setScrollbarsShown (true);
-    upNote1Editor.setCaretVisible (true);
-    upNote1Editor.setPopupMenuEnabled (true);
-    upNote1Editor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel6 );
-    presetLabel6.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel6.setJustificationType (juce::Justification::centredRight);
-    presetLabel6.setEditable (false, false, false);
 
     addAndMakeVisible( upNote2Editor );
-    upNote2Editor.setMultiLine (false);
-    upNote2Editor.setReturnKeyStartsNewLine (false);
-    upNote2Editor.setReadOnly (false);
-    upNote2Editor.setScrollbarsShown (true);
-    upNote2Editor.setCaretVisible (true);
-    upNote2Editor.setPopupMenuEnabled (true);
-    upNote2Editor.setText ( juce::String{} );
-
     addAndMakeVisible( upNote3Editor );
-    upNote3Editor.setMultiLine (false);
-    upNote3Editor.setReturnKeyStartsNewLine (false);
-    upNote3Editor.setReadOnly (false);
-    upNote3Editor.setScrollbarsShown (true);
-    upNote3Editor.setCaretVisible (true);
-    upNote3Editor.setPopupMenuEnabled (true);
-    upNote3Editor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel7 );
-    presetLabel7.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel7.setJustificationType (juce::Justification::centredRight);
-    presetLabel7.setEditable (false, false, false);
 
     addAndMakeVisible( upVelocity1Editor );
-    upVelocity1Editor.setMultiLine (false);
-    upVelocity1Editor.setReturnKeyStartsNewLine (false);
-    upVelocity1Editor.setReadOnly (false);
-    upVelocity1Editor.setScrollbarsShown (true);
-    upVelocity1Editor.setCaretVisible (true);
-    upVelocity1Editor.setPopupMenuEnabled (true);
-    upVelocity1Editor.setText ( juce::String{} );
-
     addAndMakeVisible( upVelocity2Editor );
-    upVelocity2Editor.setMultiLine (false);
-    upVelocity2Editor.setReturnKeyStartsNewLine (false);
-    upVelocity2Editor.setReadOnly (false);
-    upVelocity2Editor.setScrollbarsShown (true);
-    upVelocity2Editor.setCaretVisible (true);
-    upVelocity2Editor.setPopupMenuEnabled (true);
-    upVelocity2Editor.setText ( juce::String{} );
-
     addAndMakeVisible( upVelocity3Editor );
-    upVelocity3Editor.setMultiLine (false);
-    upVelocity3Editor.setReturnKeyStartsNewLine (false);
-    upVelocity3Editor.setReadOnly (false);
-    upVelocity3Editor.setScrollbarsShown (true);
-    upVelocity3Editor.setCaretVisible (true);
-    upVelocity3Editor.setPopupMenuEnabled (true);
-    upVelocity3Editor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel8 );
     presetLabel8.setFont (juce::Font (15.00f, juce::Font::bold));
-    presetLabel8.setJustificationType (juce::Justification::centredLeft);
-    presetLabel8.setEditable (false, false, false);
 
     addAndMakeVisible( downMinSpeedEditor );
-    downMinSpeedEditor.setMultiLine (false);
-    downMinSpeedEditor.setReturnKeyStartsNewLine (false);
-    downMinSpeedEditor.setReadOnly (false);
-    downMinSpeedEditor.setScrollbarsShown (true);
-    downMinSpeedEditor.setCaretVisible (true);
-    downMinSpeedEditor.setPopupMenuEnabled (true);
-    downMinSpeedEditor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel9 );
     presetLabel9.setFont (juce::Font (15.00f, juce::Font::plain));
@@ -195,68 +108,22 @@ TouchkeyReleaseAngleMappingExtendedEditor::TouchkeyReleaseAngleMappingExtendedEd
     presetLabel9.setEditable (false, false, false);
 
     addAndMakeVisible( downNote1Editor );
-    downNote1Editor.setMultiLine (false);
-    downNote1Editor.setReturnKeyStartsNewLine (false);
-    downNote1Editor.setReadOnly (false);
-    downNote1Editor.setScrollbarsShown (true);
-    downNote1Editor.setCaretVisible (true);
-    downNote1Editor.setPopupMenuEnabled (true);
-    downNote1Editor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel10 );
-    presetLabel10.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel10.setJustificationType (juce::Justification::centredRight);
-    presetLabel10.setEditable (false, false, false);
 
     addAndMakeVisible( downNote2Editor );
-    downNote2Editor.setMultiLine (false);
-    downNote2Editor.setReturnKeyStartsNewLine (false);
-    downNote2Editor.setReadOnly (false);
-    downNote2Editor.setScrollbarsShown (true);
-    downNote2Editor.setCaretVisible (true);
-    downNote2Editor.setPopupMenuEnabled (true);
-    downNote2Editor.setText ( juce::String{} );
 
     addAndMakeVisible( downNote3Editor );
-    downNote3Editor.setMultiLine (false);
-    downNote3Editor.setReturnKeyStartsNewLine (false);
-    downNote3Editor.setReadOnly (false);
-    downNote3Editor.setScrollbarsShown (true);
-    downNote3Editor.setCaretVisible (true);
-    downNote3Editor.setPopupMenuEnabled (true);
-    downNote3Editor.setText ( juce::String{} );
 
     addAndMakeVisible( presetLabel11 );
-    presetLabel11.setFont (juce::Font (15.00f, juce::Font::plain));
     presetLabel11.setJustificationType (juce::Justification::centredRight);
-    presetLabel11.setEditable (false, false, false);
 
     addAndMakeVisible( downVelocity1Editor );
-    downVelocity1Editor.setMultiLine (false);
-    downVelocity1Editor.setReturnKeyStartsNewLine (false);
-    downVelocity1Editor.setReadOnly (false);
-    downVelocity1Editor.setScrollbarsShown (true);
-    downVelocity1Editor.setCaretVisible (true);
-    downVelocity1Editor.setPopupMenuEnabled (true);
-    downVelocity1Editor.setText ( juce::String{} );
 
     addAndMakeVisible( downVelocity2Editor );
-    downVelocity2Editor.setMultiLine (false);
-    downVelocity2Editor.setReturnKeyStartsNewLine (false);
-    downVelocity2Editor.setReadOnly (false);
-    downVelocity2Editor.setScrollbarsShown (true);
-    downVelocity2Editor.setCaretVisible (true);
-    downVelocity2Editor.setPopupMenuEnabled (true);
-    downVelocity2Editor.setText ( juce::String{} );
 
     addAndMakeVisible( downVelocity3Editor );
-    downVelocity3Editor.setMultiLine (false);
-    downVelocity3Editor.setReturnKeyStartsNewLine (false);
-    downVelocity3Editor.setReadOnly (false);
-    downVelocity3Editor.setScrollbarsShown (true);
-    downVelocity3Editor.setCaretVisible (true);
-    downVelocity3Editor.setPopupMenuEnabled (true);
-    downVelocity3Editor.setText ( juce::String{} );
 
     addAndMakeVisible( upEnableButton );
     upEnableButton.setButtonText (TRANS("Enable"));
@@ -545,158 +412,4 @@ void TouchkeyReleaseAngleMappingExtendedEditor::intToString(char *st, int value)
 }
 
 
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="TouchkeyReleaseAngleMappingExtendedEditor"
-                 componentName="" parentClasses="public MappingEditorComponent, public juce::TextEditor::Listener"
-                 constructorParams="TouchkeyReleaseAngleMappingFactory&amp; factory"
-                 variableInitialisers="factory_(factory)" snapPixels="8" snapActive="1"
-                 snapShown="1" overlayOpacity="0.330" fixedSize="1" initialWidth="342"
-                 initialHeight="328">
-  <BACKGROUND backgroundColour="ffd2d2d2"/>
-  <LABEL name="title label" id="2346b62ce034bea2" memberName="titleLabel"
-         virtualName="" explicitFocusOrder="0" pos="8 8 424 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Release Angle Mapping (Zone N, #M)" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="1" italic="0" justification="33"/>
-  <LABEL name="preset label" id="5ef7c1b78fdcf616" memberName="presetLabel"
-         virtualName="" explicitFocusOrder="0" pos="8 40 56 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Preset:" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15"
-         bold="0" italic="0" justification="33"/>
-  <COMBOBOX name="parameter combo box" id="f12f6f6e31042be1" memberName="presetComboBox"
-            virtualName="" explicitFocusOrder="0" pos="64 40 264 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="preset label" id="6c7fb9cdad1ef615" memberName="presetLabel2"
-         virtualName="" explicitFocusOrder="0" pos="8 80 112 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Window Length:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <TEXTEDITOR name="range low text editor" id="db0f62c03a58af03" memberName="windowLengthEditor"
-              virtualName="" explicitFocusOrder="0" pos="120 80 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="bf72fc0576275cec" memberName="presetLabel3"
-         virtualName="" explicitFocusOrder="0" pos="176 80 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="ms. before release" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <LABEL name="preset label" id="737ac0c84cd35f2a" memberName="presetLabel4"
-         virtualName="" explicitFocusOrder="0" pos="8 112 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Release Moving Up" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="1" italic="0" justification="33"/>
-  <TEXTEDITOR name="up release speed editor" id="6d12507cf2b05308" memberName="upMinSpeedEditor"
-              virtualName="" explicitFocusOrder="0" pos="144 136 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="4bf2ba2e74c7f918" memberName="presetLabel5"
-         virtualName="" explicitFocusOrder="0" pos="8 136 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Min. release speed:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="34"/>
-  <TEXTEDITOR name="up note 1 editor" id="48bc9cb4bc2b66d7" memberName="upNote1Editor"
-              virtualName="" explicitFocusOrder="0" pos="144 160 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="e98f51307ccd3213" memberName="presetLabel6"
-         virtualName="" explicitFocusOrder="0" pos="8 160 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Send notes:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="34"/>
-  <TEXTEDITOR name="up note 2 editor" id="a1078ce66401fa26" memberName="upNote2Editor"
-              virtualName="" explicitFocusOrder="0" pos="208 160 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="up note 3 editor" id="3b6be211e2c57644" memberName="upNote3Editor"
-              virtualName="" explicitFocusOrder="0" pos="272 160 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="cd890cf41d7607bd" memberName="presetLabel7"
-         virtualName="" explicitFocusOrder="0" pos="8 184 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="With velocities:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="34"/>
-  <TEXTEDITOR name="up velocity 1 editor" id="47d3d530ed72615a" memberName="upVelocity1Editor"
-              virtualName="" explicitFocusOrder="0" pos="144 184 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="up velocity 2 editor" id="ff6d7b8e5b4a5bd6" memberName="upVelocity2Editor"
-              virtualName="" explicitFocusOrder="0" pos="208 184 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="up velocity 3 editor" id="65dabffb4ac41d8d" memberName="upVelocity3Editor"
-              virtualName="" explicitFocusOrder="0" pos="272 184 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="f8444692065e742a" memberName="presetLabel8"
-         virtualName="" explicitFocusOrder="0" pos="8 216 160 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Release Moving Down" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="1" italic="0" justification="33"/>
-  <TEXTEDITOR name="down release speed editor" id="4d87b35c1bd38cfd" memberName="downMinSpeedEditor"
-              virtualName="" explicitFocusOrder="0" pos="144 240 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="cfa916d2ffe4090d" memberName="presetLabel9"
-         virtualName="" explicitFocusOrder="0" pos="8 240 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Min. release speed:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="34"/>
-  <TEXTEDITOR name="down note 1 editor" id="fe8e24594d26ec2d" memberName="downNote1Editor"
-              virtualName="" explicitFocusOrder="0" pos="144 264 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="56bc59cd5ceb0e2" memberName="presetLabel10"
-         virtualName="" explicitFocusOrder="0" pos="8 264 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Send notes:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="34"/>
-  <TEXTEDITOR name="down note 2 editor" id="e0088e60d93fd53" memberName="downNote2Editor"
-              virtualName="" explicitFocusOrder="0" pos="208 264 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="down note 3 editor" id="23571b41edd72631" memberName="downNote3Editor"
-              virtualName="" explicitFocusOrder="0" pos="272 264 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <LABEL name="preset label" id="a62bc5524128106c" memberName="presetLabel11"
-         virtualName="" explicitFocusOrder="0" pos="8 288 136 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="With velocities:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="34"/>
-  <TEXTEDITOR name="down velocity 1 editor" id="f4a94019655ea3ab" memberName="downVelocity1Editor"
-              virtualName="" explicitFocusOrder="0" pos="144 288 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="down velocity 2 editor" id="b2c75ef9c586a2e2" memberName="downVelocity2Editor"
-              virtualName="" explicitFocusOrder="0" pos="208 288 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TEXTEDITOR name="down velocity 3 editor" id="96bf0ea9075d357f" memberName="downVelocity3Editor"
-              virtualName="" explicitFocusOrder="0" pos="272 288 56 24" initialText=""
-              multiline="0" retKeyStartsLine="0" readonly="0" scrollbars="1"
-              caret="1" popupmenu="1"/>
-  <TOGGLEBUTTON name="up enable button" id="d3cb9267f9296315" memberName="upEnableButton"
-                virtualName="" explicitFocusOrder="0" pos="208 112 72 24" buttonText="Enable"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <TOGGLEBUTTON name="down enable button" id="59af46c3b5431919" memberName="downEnableButton"
-                virtualName="" explicitFocusOrder="0" pos="208 216 72 24" buttonText="Enable"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
-
-
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]

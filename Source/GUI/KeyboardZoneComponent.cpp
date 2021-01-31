@@ -28,23 +28,23 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     mappingListComponent{},
     midiOutputGroupComponent{ "MIDI input group", "MIDI Output" },
     midiOutputDeviceComboBox{ "MIDI input combo box" },
-    label4{ "new label", "Device:" },
-    label5{ "new label", "Mode:" },
+    label4{ "Device:" },
+    label5{ "Mode:" },
     midiOutputModeComboBox{ "MIDI input combo box" },
     midiOutputVoiceStealingButton{ "Voice stealing button" },
-    label2{ "new label", "Channels:" },
+    label2{ "Channels:" },
     midiOutputChannelLowEditor{ "new text editor" },
     midiOutputChannelHighEditor{ "new text editor" },
-    label3{ "new label", "to" },
+    label3{ "to" },
     midiOutputGroupComponent2{ "MIDI input group", "Range" },
-    label7{ "new label", "to" },
+    label7{ "to" },
     rangeLowComboBox{ "range low combo box" },
-    rangeHighComboBox{ "range high combo combo box" },
-    label6{ "new label", "Transpose:" },
+    rangeHighComboBox{ "range high combo box" },
+    label6{ "Transpose:" },
     midiOutputTransposeEditor{ "transposition text editor" },
-    label8{ "new label", "Mappings:" },
+    label8{ "Mappings:" },
     addMappingButton{ "add mapping button" },
-    label9{ "new label", "Pitchwheel range:" },
+    label9{ "Pitchwheel range:" },
     pitchWheelRangeEditor{ "pitch wheel range editor" },
     keyboardControllersButton{ "keyboard controllers button" }
 {
@@ -61,14 +61,7 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     midiOutputDeviceComboBox.addListener (this);
 
     addAndMakeVisible (label4);
-    label4.setFont (juce::Font (15.00f, juce::Font::plain));
-    label4.setJustificationType (juce::Justification::centredLeft);
-    label4.setEditable (false, false, false);
-
     addAndMakeVisible (label5);
-    label5.setFont (juce::Font (15.00f, juce::Font::plain));
-    label5.setJustificationType (juce::Justification::centredLeft);
-    label5.setEditable (false, false, false);
 
     addAndMakeVisible (midiOutputModeComboBox);
     midiOutputModeComboBox.setEditableText (false);
@@ -82,40 +75,13 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     midiOutputVoiceStealingButton.addListener (this);
 
     addAndMakeVisible (label2);
-    label2.setFont (juce::Font (15.00f, juce::Font::plain));
-    label2.setJustificationType (juce::Justification::centredLeft);
-    label2.setEditable (false, false, false);
-
     addAndMakeVisible (midiOutputChannelLowEditor);
-    midiOutputChannelLowEditor.setMultiLine (false);
-    midiOutputChannelLowEditor.setReturnKeyStartsNewLine (false);
-    midiOutputChannelLowEditor.setReadOnly (false);
-    midiOutputChannelLowEditor.setScrollbarsShown (true);
-    midiOutputChannelLowEditor.setCaretVisible (true);
-    midiOutputChannelLowEditor.setPopupMenuEnabled (true);
-    midiOutputChannelLowEditor.setText (juce::String{});
-
     addAndMakeVisible (midiOutputChannelHighEditor);
-    midiOutputChannelHighEditor.setMultiLine (false);
-    midiOutputChannelHighEditor.setReturnKeyStartsNewLine (false);
-    midiOutputChannelHighEditor.setReadOnly (false);
-    midiOutputChannelHighEditor.setScrollbarsShown (true);
-    midiOutputChannelHighEditor.setCaretVisible (true);
-    midiOutputChannelHighEditor.setPopupMenuEnabled (true);
-    midiOutputChannelHighEditor.setText (juce::String{});
 
     addAndMakeVisible (label3);
-    label3.setFont (juce::Font (15.00f, juce::Font::plain));
-    label3.setJustificationType (juce::Justification::centredLeft);
-    label3.setEditable (false, false, false);
-
     addAndMakeVisible (midiOutputGroupComponent2);
 
     addAndMakeVisible (label7);
-    label7.setFont (juce::Font (15.00f, juce::Font::plain));
-    label7.setJustificationType (juce::Justification::centredLeft);
-    label7.setEditable (false, false, false);
-
     addAndMakeVisible (rangeLowComboBox);
     rangeLowComboBox.setEditableText (true);
     rangeLowComboBox.setJustificationType (juce::Justification::centredLeft);
@@ -131,50 +97,22 @@ KeyboardZoneComponent::KeyboardZoneComponent ()
     rangeHighComboBox.addListener (this);
 
     addAndMakeVisible (label6);
-    label6.setFont (juce::Font (15.00f, juce::Font::plain));
-    label6.setJustificationType (juce::Justification::centredLeft);
-    label6.setEditable (false, false, false);
-
     addAndMakeVisible (midiOutputTransposeEditor);
-    midiOutputTransposeEditor.setMultiLine (false);
-    midiOutputTransposeEditor.setReturnKeyStartsNewLine (false);
-    midiOutputTransposeEditor.setReadOnly (false);
-    midiOutputTransposeEditor.setScrollbarsShown (true);
-    midiOutputTransposeEditor.setCaretVisible (true);
-    midiOutputTransposeEditor.setPopupMenuEnabled (true);
-    midiOutputTransposeEditor.setText (juce::String{});
 
     addAndMakeVisible (label8);
-    label8.setFont (juce::Font (15.00f, juce::Font::plain));
-    label8.setJustificationType (juce::Justification::centredLeft);
-    label8.setEditable (false, false, false);
 
     addAndMakeVisible (addMappingButton);
     addMappingButton.setButtonText ("Add Mapping...");
     addMappingButton.addListener (this);
 
     addAndMakeVisible (label9);
-    label9.setFont (juce::Font (15.00f, juce::Font::plain));
-    label9.setJustificationType (juce::Justification::centredLeft);
-    label9.setEditable (false, false, false);
-
     addAndMakeVisible (pitchWheelRangeEditor);
-    pitchWheelRangeEditor.setMultiLine (false);
-    pitchWheelRangeEditor.setReturnKeyStartsNewLine (false);
-    pitchWheelRangeEditor.setReadOnly (false);
-    pitchWheelRangeEditor.setScrollbarsShown (true);
-    pitchWheelRangeEditor.setCaretVisible (true);
-    pitchWheelRangeEditor.setPopupMenuEnabled (true);
-    pitchWheelRangeEditor.setText (juce::String{});
 
     addAndMakeVisible (keyboardControllersButton);
     keyboardControllersButton.setButtonText (" Controllers...");
     keyboardControllersButton.addListener (this);
 
     // Add modes to MIDI mode toggle box
-    //midiOutputModeComboBox.addItem("Passthrough", MidiKeyboardSegment::ModePassThrough + kMidiOutputModeComboBoxOffset);
-    //midiOutputModeComboBox.addItem("Monophonic", MidiKeyboardSegment::ModeMonophonic + kMidiOutputModeComboBoxOffset);
-    //midiOutputModeComboBox.addItem("Polyphonic", MidiKeyboardSegment::ModePolyphonic + kMidiOutputModeComboBoxOffset);
     for( const auto& mode : MidiKeyboardSegment::modeNames )
         midiOutputModeComboBox.addItem( mode.second, static_cast< int >( mode.first ) + kMidiOutputModeComboBoxOffset );
 
