@@ -68,7 +68,7 @@ MappingListItem::~MappingListItem()
 
 void MappingListItem::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::white);
+    g.fillAll(juce::Colours::lightgrey);
 
     g.setColour (juce::Colour (0xffa52a60));
     g.fillPath (internalPath1);

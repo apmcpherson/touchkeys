@@ -92,7 +92,7 @@ TouchkeyVibratoMappingShortEditor::~TouchkeyVibratoMappingShortEditor()
 
 void TouchkeyVibratoMappingShortEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::white);
+    g.fillAll(juce::Colours::lightgrey);
 }
 
 void TouchkeyVibratoMappingShortEditor::resized()

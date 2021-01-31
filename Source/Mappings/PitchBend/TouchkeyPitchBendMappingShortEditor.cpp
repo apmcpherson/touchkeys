@@ -64,7 +64,7 @@ TouchkeyPitchBendMappingShortEditor::~TouchkeyPitchBendMappingShortEditor()
 //==============================================================================
 void TouchkeyPitchBendMappingShortEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::white);
+    g.fillAll(juce::Colours::lightgrey);
 }
 
 void TouchkeyPitchBendMappingShortEditor::resized()
