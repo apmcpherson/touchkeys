@@ -336,6 +336,9 @@ void MidiKeyboardSegment::setModeMPE()
 	
 	mode_ = Mode::MPE;
 	mpeZone_ = MPEZone::Lower;
+    
+    // MPE always starts on output channel 2
+    outputChannelLowest_ = 0x01;
 
 	// MPE-DONE - currently supports only the Lower Zone
 	// Set RPN 6 to enable MPE with the appropriate zone
