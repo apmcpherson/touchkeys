@@ -55,7 +55,7 @@ public:
 
     // ***** Accessors / Modifiers *****
     
-    virtual const std::string factoryTypeName() { return "Split\nKeys"; }
+    const std::string factoryTypeName() override { return "Split\nKeys"; }
 
     void setName(const std::string& name);
     

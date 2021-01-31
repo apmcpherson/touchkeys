@@ -105,7 +105,7 @@ MainApplicationController::~MainApplicationController() {
     if(touchkeySensorTestIsRunning())
         touchkeySensorTestStop();
 #endif
-    if(logPlayback_ != 0)
+    if(logPlayback_ != nullptr)
         delete logPlayback_;
     removeAllOscListeners();
     midiInputController_.removeAllSegments();   // Remove segments now to avoid deletion-order problems
@@ -128,10 +128,10 @@ void MainApplicationController::initialise() {
             MidiKeyboardSegment *segment = midiInputController_.segment(0);
             
             MappingFactory *factory = new TouchkeyVibratoMappingFactory(keyboardController_, *segment);
-            if(factory != 0)
+            if(factory != nullptr)
                 segment->addMappingFactory(factory, true);
             factory = new TouchkeyPitchBendMappingFactory(keyboardController_, *segment);
-            if(factory != 0)
+            if(factory != nullptr)
                 segment->addMappingFactory(factory, true);
         }
     }

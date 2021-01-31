@@ -65,11 +65,11 @@ public:
     // This method receives triggers whenever events occur in the touch data or the
     // continuous key position (state changes only). It alters the behavior and scheduling
     // of the mapping but does not itself send OSC messages
-	void triggerReceived(TriggerSource* who, timestamp_type timestamp);
+	void triggerReceived(TriggerSource* who, timestamp_type timestamp) override;
 	
     // This method handles the OSC message transmission. It should be run in the Scheduler
     // thread provided by PianoKeyboard.
-    timestamp_type performMapping();
+    timestamp_type performMapping() override;
     
     // ***** Specific Methods *****
     
@@ -108,8 +108,8 @@ public:
 private:
     // ***** Private Methods *****
     
-    void midiNoteOnReceived(int channel, int velocity);
-    void midiNoteOffReceived(int channel);
+    void midiNoteOnReceived(int channel, int velocity) override;
+    void midiNoteOffReceived(int channel) override;
     
     void sendSegmentMessage(int segment, bool force = false);
     void sendPitchBendMessage(float pitchBendSemitones, bool force = false);

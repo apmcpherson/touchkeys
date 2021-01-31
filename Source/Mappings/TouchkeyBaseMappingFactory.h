@@ -49,7 +49,7 @@ public:
     
 	// Default constructor, containing a reference to the PianoKeyboard class.
     TouchkeyBaseMappingFactory(PianoKeyboard &keyboard, MidiKeyboardSegment& segment) :
-      MappingFactory(keyboard), keyboardSegment_(segment), midiConverter_(0),
+      MappingFactory(keyboard), keyboardSegment_(segment), midiConverter_(nullptr),
       controlName_(""), shortControlName_(""),
       inputRangeMin_(0.0), inputRangeMax_(1.0), inputRangeCenter_(0.0),
       outOfRangeBehavior_(OscMidiConverter::kOutOfRangeClip),
