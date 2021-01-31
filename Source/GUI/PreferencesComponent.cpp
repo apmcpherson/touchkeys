@@ -154,44 +154,4 @@ void PreferencesComponent::synchronize(bool forceUpdates) {
     }
 }
 
-//==============================================================================
-#if 0
-/*  -- Introjucer information section --
-
-    This is where the Introjucer stores the metadata that describe this GUI layout, so
-    make changes in here at your peril!
-
-BEGIN_JUCER_METADATA
-
-<JUCER_COMPONENT documentType="Component" className="PreferencesComponent" componentName=""
-                 parentClasses="public juce::Component" constructorParams="" variableInitialisers="controller_(0)"
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="296" initialHeight="152">
-  <BACKGROUND backgroundColour="ffd2d2d2"/>
-  <COMBOBOX name="Startup preset combo box" id="244410f02f6c1c72" memberName="startupPresetComboBox"
-            virtualName="" explicitFocusOrder="0" pos="16 32 264 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
-  <LABEL name="new label" id="e9b3daa69a8ac5c" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="16 8 160 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Load preset on startup:" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15" bold="0" italic="0" justification="33"/>
-  <TOGGLEBUTTON name="auto start TouchKeys button" id="62c82600413ca060" memberName="startTouchKeysButton"
-                virtualName="" explicitFocusOrder="0" pos="16 64 208 24" buttonText="Start TouchKeys on startup"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <TOGGLEBUTTON name="Autodetect button" id="69a491dfca4ea997" memberName="autodetectButton"
-                virtualName="" explicitFocusOrder="0" pos="16 88 272 24" buttonText="Autodetect TouchKeys octave on each start"
-                connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <TEXTBUTTON name="new button" id="89690e14d6bf00c0" memberName="defaultsButton"
-              virtualName="" explicitFocusOrder="0" pos="16 120 144 24" buttonText="Reset to Defaults..."
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-</JUCER_COMPONENT>
-
-END_JUCER_METADATA
-*/
-#endif
-
-
-//[EndFile] You can add extra defines here...
 #endif      // TOUCHKEYS_NO_GUI
-//[/EndFile]
