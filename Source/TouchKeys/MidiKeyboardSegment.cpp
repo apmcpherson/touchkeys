@@ -1512,7 +1512,7 @@ void MidiKeyboardSegment::modeMPEsendConfigurationMessage( const MPEZone& z, con
 	static const uint8_t lowerZoneMasterChannel { 0x00 };
 	static const uint8_t upperZoneMasterChannel { 0x0F };
 
-	if( midiOutputController_ != nullptr ) {
+	if( midiOutputController_ == nullptr ) {
 		// throw std::runtime_error{ "No MIDI output port present" }
 		return;
 	}
