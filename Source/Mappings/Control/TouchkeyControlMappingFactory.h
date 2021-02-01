@@ -94,6 +94,9 @@ public:
     std::unique_ptr< MappingEditorComponent > createExtendedEditor();
 #endif
     
+    // ****** State Updaters ******
+    void noteWillBegin(int noteNumber, int midiChannel, int midiVelocity);
+    
     // ****** OSC Control Support ******
     OscMessage* oscControlMethod(const char *path, const char *types,
                                  int numValues, lo_arg **values, void *data);
