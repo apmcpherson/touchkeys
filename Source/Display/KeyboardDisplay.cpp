@@ -22,7 +22,9 @@
 */
 
 #include "KeyboardDisplay.h"
+#if JUCE_MAC
 #include <OpenGL/gl.h>
+#endif
 
 // Class constants
 
