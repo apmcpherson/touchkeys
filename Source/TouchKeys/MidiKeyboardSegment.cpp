@@ -1026,12 +1026,11 @@ std::unique_ptr< juce::XmlElement > MidiKeyboardSegment::getPreset() {
 	properties.setValue("retransmitMaxPolyphony", retransmitMaxPolyphony_);
 	properties.setValue("useVoiceStealing", useVoiceStealing_);
 
-	segmentElement->addChildElement(properties.createXml("Properties").get() );
+	segmentElement->addChildElement(properties.createXml("Properties").release() );
 	
 	// Go through mapping factories and add their settings
-	for( auto it = mappingFactories_.begin(); it != mappingFactories_.end(); ++it) {
-		auto factoryElement = (*it)->getPreset();
-		segmentElement->addChildElement( factoryElement.get() );
+	for( auto factory : mappingFactories_ ) {
+		segmentElement->addChildElement( factory->getPreset().release() );
 	}
 	
 	return segmentElement;

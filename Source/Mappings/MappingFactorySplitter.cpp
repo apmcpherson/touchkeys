@@ -140,7 +140,7 @@ void MappingFactorySplitter::removeAllFactories() {
 std::unique_ptr< juce::XmlElement > MappingFactorySplitter::getPreset() {
     auto preset = std::make_unique< juce::XmlElement >("MappingFactory");
     preset->setAttribute("type", "Splitter");
-    return preset;
+    return std::move( preset );
 }
 
 bool MappingFactorySplitter::loadPreset(juce::XmlElement const* preset) {
