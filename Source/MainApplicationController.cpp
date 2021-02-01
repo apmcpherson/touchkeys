@@ -800,11 +800,8 @@ bool MainApplicationController::oscReceiveSetPort(int port) {
 
 // OSC handler method
 bool MainApplicationController::oscHandlerMethod(const char *path, const char *types, int numValues, lo_arg **values, void *data) {
-    std::cout << path << '\n';
-    
 	if(!strcmp(path, "/midi/noteon")) {
         if(touchkeyAutodetecting_ && numValues > 0) {
-            // std::cout << "/midi/noteon\n";
             // Found a MIDI note. Look for a unique touch on this pitch class to
             // determine which octave the keyboard is set to
             if(types[0] != 'i')
