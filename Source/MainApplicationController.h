@@ -229,7 +229,7 @@ public:
 #ifndef TOUCHKEYS_NO_GUI
     void setKeyboardDisplayWindow( juce::DocumentWindow *window) { keyboardDisplayWindow_ = window; }
     void showKeyboardDisplayWindow() {
-        if(keyboardDisplayWindow_ != 0) {
+        if(keyboardDisplayWindow_ != nullptr) {
             keyboardDisplayWindow_->addToDesktop(keyboardDisplayWindow_->getDesktopWindowStyleFlags() 
 						 | juce::ComponentPeer::windowHasCloseButton);
             keyboardDisplayWindow_->setVisible(true);
@@ -238,7 +238,7 @@ public:
     }
     void setPreferencesWindow(PreferencesWindow *window) { preferencesWindow_ = window; }
     void showPreferencesWindow() {
-        if(preferencesWindow_ != 0) {
+        if(preferencesWindow_ != nullptr) {
             preferencesWindow_->addToDesktop(preferencesWindow_->getDesktopWindowStyleFlags() 
 					     | juce::ComponentPeer::windowHasCloseButton);
             preferencesWindow_->setVisible(true);

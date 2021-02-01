@@ -34,7 +34,7 @@ RawSensorDisplay::RawSensorDisplay() {
 
 // Tell the underlying canvas to repaint itself
 void RawSensorDisplay::tellCanvasToRepaint() {
-    if(canvas_ != 0)
+    if(canvas_ != nullptr)
         canvas_->triggerRepaint();
 }
 

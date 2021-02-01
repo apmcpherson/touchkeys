@@ -29,7 +29,7 @@ PianoKeyCalibrator::PianoKeyCalibrator(bool pressValueGoesDown, key_position* wa
 
 // Destructor
 PianoKeyCalibrator::~PianoKeyCalibrator() {
-    if(history_ != 0)
+    if(history_ != nullptr)
         delete history_;
     
 	// warpTable_ is passed in externally-- don't delete it
@@ -63,7 +63,7 @@ key_position PianoKeyCalibrator::evaluate(int rawValue) {
                     calibratedValue = 1.2;
             }
 			
-			if(warpTable_ != 0) {
+			if(warpTable_ != nullptr) {
 				// TODO: warping
 			}
 			return calibratedValue;
@@ -109,7 +109,7 @@ void PianoKeyCalibrator::calibrationStart() {
 		calibrationAbort();					// This will clear the slate
 	
     historyMutex_.enter();
-    if(history_ != 0)
+    if(history_ != nullptr)
         delete history_;
     history_ = new boost::circular_buffer<int>(kPianoKeyCalibrationBufferSize);
     historyMutex_.exit();
@@ -194,7 +194,7 @@ void PianoKeyCalibrator::loadFromXml(const juce::XmlElement& baseElement) {
 	
 	juce::XmlElement *calibrationElement = baseElement.getChildByName("Calibration");
 	
-	if(calibrationElement != 0) {
+	if(calibrationElement != nullptr) {
         if(calibrationElement->hasAttribute("quiescent") &&
            calibrationElement->hasAttribute("press")) {
             quiescent_ = calibrationElement->getIntAttribute("quiescent");
@@ -226,7 +226,7 @@ bool PianoKeyCalibrator::saveToXml(juce::XmlElement& baseElement) {
 // Internal method to clean up after a calibration session.
 void PianoKeyCalibrator::cleanup() {
     juce::ScopedLock sl(historyMutex_);
-    if(history_ != 0)
+    if(history_ != nullptr)
         delete history_;
     history_ = 0;
     newPress_ = missing_value<int>::missing();

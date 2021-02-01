@@ -440,7 +440,7 @@ bool TouchkeyDevice::startAutoGathering() {
 	}
 
 	keyboard_.sendMessage("/touchkeys/allnotesoff", "", LO_ARGS_END);
-	if(keyboard_.gui() != 0) {
+	if(keyboard_.gui() != nullptr) {
 		// Update display: touch sensing enabled, which keys connected, no current touches
 		keyboard_.gui()->setTouchSensingEnabled(true);
 		for( auto it = keysPresent_.begin(); it != keysPresent_.end(); ++it) {
@@ -498,7 +498,7 @@ void TouchkeyDevice::stopAutoGathering(bool writeStopCommandToDevice) {
         if(keyboard_.key(i) != 0)
             keyboard_.key(i)->touchOff(lastTimestamp_);
 								   
-	if(keyboard_.gui() != 0) {
+	if(keyboard_.gui() != nullptr) {
 		// Update display: touch sensing disabled
 		keyboard_.gui()->clearAllTouches();		
 		keyboard_.gui()->setTouchSensingEnabled(false);
@@ -1029,7 +1029,7 @@ void TouchkeyDevice::calibrationFinish() {
 		if(keyCalibrators_[i]->calibrationFinish()) {
             calibratedAtLeastOneKey = true;
             // Update the display if available
-            if(keyboard_.gui() != 0) {
+            if(keyboard_.gui() != nullptr) {
                 keyboard_.gui()->setAnalogCalibrationStatusForKey(i + lowestMidiNote_, true);
             }
         }
@@ -1051,7 +1051,7 @@ void TouchkeyDevice::calibrationAbort() {
 void TouchkeyDevice::calibrationClear() {
 	for(int i = 0; i < keyCalibratorsLength_; i++) {
 		keyCalibrators_[i]->calibrationClear();
-        if(keyboard_.gui() != 0) {
+        if(keyboard_.gui() != nullptr) {
             keyboard_.gui()->setAnalogCalibrationStatusForKey(i + lowestMidiNote_, false);
         }
     }
@@ -1140,7 +1140,7 @@ bool TouchkeyDevice::calibrationLoadFromFile(std::string const& filename) {
 			std::cerr << "TouchkeyDevice: warning: no keys found\n";
 		}
 		else {
-			while(calibratorElement != 0) {
+			while(calibratorElement != nullptr) {
 				int keyId;
                 
                 if(calibratorElement->hasAttribute("id")) {
@@ -1155,7 +1155,7 @@ bool TouchkeyDevice::calibrationLoadFromFile(std::string const& filename) {
         
         calibrationInProgress_ = false;
         isCalibrated_ = true;
-        if(keyboard_.gui() != 0) {
+        if(keyboard_.gui() != nullptr) {
             for(int i = lowestMidiNote_; i <  lowestMidiNote_ + 12*numOctaves_; i++) {
                 keyboard_.gui()->setAnalogCalibrationStatusForKey(i, true);
             }
@@ -1175,7 +1175,7 @@ bool TouchkeyDevice::calibrationLoadFromFile(std::string const& filename) {
 
 // Initialize the calibrators
 void TouchkeyDevice::calibrationInit(int numberOfCalibrators) {
-    if(keyCalibrators_ != 0)
+    if(keyCalibrators_ != nullptr)
         calibrationDeinit();
     if(numberOfCalibrators <= 0)
         return;
@@ -1197,7 +1197,7 @@ void TouchkeyDevice::calibrationDeinit() {
         return;
     
 	for(int i = 0; i < keyCalibratorsLength_; i++) {
-        if(keyCalibrators_[i] != 0)
+        if(keyCalibrators_[i] != nullptr)
             delete keyCalibrators_[i];
         keyCalibrators_[i] = 0;
     }
@@ -2000,7 +2000,7 @@ void TouchkeyDevice::processAnalogFrame(unsigned char * const buffer, const int 
                 timestamp_type timestamp = timestampSynchronizer_.synchronizedTimestamp(frame);
                 keyboard_.key(midiNote)->insertSample(calibratedPosition, timestamp);
             }
-            else if(keyboard_.gui() != 0){
+            else if(keyboard_.gui() != nullptr){
                 
                 //keyboard_.key(midiNote)->insertSample((float)value / 4096.0, timestampSynchronizer_.synchronizedTimestamp(frame));
                 
@@ -2094,7 +2094,7 @@ void TouchkeyDevice::processI2CResponseFrame(unsigned char * const buffer, const
         }
     }
     
-    if(sensorDisplay_ != 0) {
+    if(sensorDisplay_ != nullptr) {
         // Copy response data to display
         std::vector<int> data;
         

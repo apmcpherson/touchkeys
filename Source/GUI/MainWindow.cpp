@@ -46,7 +46,7 @@ MainWindow::MainWindow(MainApplicationController& controller) :
     
     // Window height should change to accommodate it
     juce::Component *actualMenuBar = getMenuBarComponent();
-    if(actualMenuBar != 0) {
+    if(actualMenuBar != nullptr) {
         juce::Rectangle<int> r = actualMenuBar->getBounds();
         setSize(getWidth(), getHeight() + r.getHeight());
     }

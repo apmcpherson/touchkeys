@@ -1105,7 +1105,7 @@ bool MidiKeyboardSegment::loadPreset( juce::XmlElement const* preset) {
 	// Load each mapping factory
 	juce::XmlElement *element = preset->getChildByName("MappingFactory");
 	
-	while(element != 0) {
+	while(element != nullptr) {
 		if(!element->hasAttribute("type"))
 			return false;
 		

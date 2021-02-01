@@ -601,7 +601,7 @@ void ControlWindowMainComponent::updateKeyboardSegments()
     
     KeyboardZoneComponent* currentlySelectedComponent = static_cast<KeyboardZoneComponent*> (keyboardZoneTabbedComponent.getTabContentComponent(currentlySelectedIndex));
     MidiKeyboardSegment* currentlySelectedSegment = 0;
-    if(currentlySelectedComponent != 0)
+    if(currentlySelectedComponent != nullptr)
         currentlySelectedSegment = currentlySelectedComponent->keyboardSegment();
     bool selectedNewTab = false;
     

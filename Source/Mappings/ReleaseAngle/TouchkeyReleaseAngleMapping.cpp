@@ -271,7 +271,7 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
         
 #ifdef TROMBONE
         // KLUDGE: figure out how to do this more elegantly
-        if(keyboard_.midiOutputController() != 0) {
+        if(keyboard_.midiOutputController() != nullptr) {
             if(releaseAngle > 1.0) {
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 36, 64);
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 31, 96);
@@ -286,7 +286,7 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
             }
         }
 #elif defined(TRUMPET)
-        if(keyboard_.midiOutputController() != 0) {
+        if(keyboard_.midiOutputController() != nullptr) {
             if(releaseAngle > 1.0) {
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 48, 64);
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 42, 96);

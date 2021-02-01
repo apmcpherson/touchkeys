@@ -146,7 +146,7 @@ timestamp_type MIDIKeyPositionMapping::performMapping() {
         }
         
         if(aftertouchValue != lastAftertouchValue_) {
-            if(keyboard_.midiOutputController() != 0) {
+            if(keyboard_.midiOutputController() != nullptr) {
                 keyboard_.midiOutputController()->sendAftertouchPoly(0, midiChannel_, noteNumber_, aftertouchValue);
             }
         }
@@ -167,7 +167,7 @@ void MIDIKeyPositionMapping::generateMidiNoteOn() {
     std::pair<timestamp_type, key_velocity> velocityInfo = positionTracker_->pressVelocity();
     
     // MIDI Velocity now available. Send a MIDI message if relevant.
-    if(keyboard_.midiOutputController() != 0) {
+    if(keyboard_.midiOutputController() != nullptr) {
         float midiVelocity = 0.5;
         if(!missing_value<key_velocity>::isMissing(velocityInfo.second))
             midiVelocity = (float)velocityInfo.second / (float)kPianoKeyVelocityForMaxMIDI;
@@ -187,7 +187,7 @@ void MIDIKeyPositionMapping::generateMidiNoteOff() {
     std::pair<timestamp_type, key_velocity> velocityInfo = positionTracker_->releaseVelocity();
     
     // MIDI release velocity now available. Send a MIDI message if relevant
-    if(keyboard_.midiOutputController() != 0) {
+    if(keyboard_.midiOutputController() != nullptr) {
         float midiReleaseVelocity = 0.5;
         if(!missing_value<key_velocity>::isMissing(velocityInfo.second))
             midiReleaseVelocity = (float)velocityInfo.second / (float)kPianoKeyReleaseVelocityForMaxMIDI;
@@ -213,7 +213,7 @@ void MIDIKeyPositionMapping::generateMidiPercussivenessNoteOn() {
     std::cout << "found percussiveness value of " << features.percussiveness << std::endl;
     
     // MIDI Velocity now available. Send a MIDI message if relevant.
-    if(keyboard_.midiOutputController() != 0) {
+    if(keyboard_.midiOutputController() != nullptr) {
         float midiPercVelocity = 0.0;
         if(!missing_value<key_velocity>::isMissing(features.percussiveness))
             midiPercVelocity = features.percussiveness * kDefaultPercussivenessScaler;

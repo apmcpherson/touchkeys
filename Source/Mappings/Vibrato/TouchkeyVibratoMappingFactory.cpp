@@ -286,7 +286,7 @@ void TouchkeyVibratoMappingFactory::configurePitchWheelVibrato() {
     // Range of 0 indicates special case of using global pitch wheel range
     setMidiParameters(MidiKeyboardSegment::kControlPitchWheel, 0.0, 0.0, 0.0);
     
-    if(midiConverter_ != 0) {
+    if(midiConverter_ != nullptr) {
         midiConverter_->listenToIncomingControl(MidiKeyboardSegment::kControlPitchWheel);
     }
 }
@@ -295,7 +295,7 @@ void TouchkeyVibratoMappingFactory::configurePitchWheelVibrato() {
 void TouchkeyVibratoMappingFactory::configureControlChangeVibrato() {
     setMidiParameters(vibratoControl_, 0.0, 127.0, 0.0, 0, 0, 127, 0, false, OscMidiConverter::kOutOfRangeExtrapolate);
     
-    if(midiConverter_ != 0) {
+    if(midiConverter_ != nullptr) {
         midiConverter_->listenToIncomingControl(vibratoControl_);
     }
 }

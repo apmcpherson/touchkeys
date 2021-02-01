@@ -70,7 +70,7 @@ juce::Component* MappingListComponent::refreshComponentForRow(int rowNumber, boo
 
     //std::cout << "refreshing component for row " << rowNumber << " (given " << existingComponentToUpdate << ")\n";
     if(rowNumber < 0 || rowNumber >= getNumRows()) {
-        if(existingComponentToUpdate != 0)
+        if(existingComponentToUpdate != nullptr)
             delete existingComponentToUpdate;
         return nullptr;
     }
@@ -108,7 +108,7 @@ bool MappingListComponent::isComponentSelected(juce::Component *component) {
 
 
 void MappingListComponent::synchronize() {
-    if(keyboardSegment_ != 0) {
+    if(keyboardSegment_ != nullptr) {
         if(lastMappingFactoryIdentifier_ != keyboardSegment_->mappingFactoryUniqueIdentifier()) {
             lastMappingFactoryIdentifier_ = keyboardSegment_->mappingFactoryUniqueIdentifier();
             listBox_.updateContent();
@@ -118,7 +118,7 @@ void MappingListComponent::synchronize() {
     
     for(int i = 0; i < getNumRows(); i++) {
         MappingListItem *listItem = static_cast<MappingListItem*>(listBox_.getComponentForRowNumber(i));
-        if(listItem != 0)
+        if(listItem != nullptr)
             listItem->synchronize();
     }
     

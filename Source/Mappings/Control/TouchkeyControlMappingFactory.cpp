@@ -105,7 +105,7 @@ void TouchkeyControlMappingFactory::setController(int controller) {
     
     // Listen to incoming controls from the keyboard too, if this is enabled
     // in MidiKeyboardSegment
-    if(midiConverter_ != 0) {
+    if(midiConverter_ != nullptr) {
         midiConverter_->listenToIncomingControl(midiControllerNumber_);
     }
 }

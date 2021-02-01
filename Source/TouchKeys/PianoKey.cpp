@@ -98,7 +98,7 @@ void PianoKey::insertSample(key_position pos, timestamp_type ts) {
     
     if((timestamp_diff_type)ts - (timestamp_diff_type)timeOfLastGuiUpdate_ > kPianoKeyGuiUpdateInterval) {
         timeOfLastGuiUpdate_ = ts;
-        if(keyboard_.gui() != 0) {
+        if(keyboard_.gui() != nullptr) {
             keyboard_.gui()->setAnalogValueForKey(noteNumber_, pos);
         }
     }
@@ -233,7 +233,7 @@ void PianoKey::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
                     velocityInfo = positionTracker_.pressVelocity();
                     std::cout << "  escapement time = " << velocityInfo.first << " velocity = " << velocityInfo.second << '\n';
                     
-                    if(keyboard_.graphGUI() != 0) {
+                    if(keyboard_.graphGUI() != nullptr) {
                         keyboard_.graphGUI()->setKeyPressStart(positionTracker_.pressStart().position, positionTracker_.pressStart().timestamp);
                         keyboard_.graphGUI()->setKeyPressFinish(positionTracker_.pressFinish().position, positionTracker_.pressFinish().timestamp);
                         keyboard_.graphGUI()->copyKeyDataFromBuffer(positionBuffer_, positionTracker_.pressStart().index - 10,
@@ -244,7 +244,7 @@ void PianoKey::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
                     //keyboard_.setKeyLEDColorRGB(noteNumber_, 0, 0, 1.0);
                     recentEvent = positionTracker_.releaseStart();
                     std::cout << "  start = (" << recentEvent.index << ", " << recentEvent.position << ", " << recentEvent.timestamp << ")\n";
-                    if(keyboard_.graphGUI() != 0) {
+                    if(keyboard_.graphGUI() != nullptr) {
                         keyboard_.graphGUI()->setKeyReleaseStart(positionTracker_.releaseStart().position, positionTracker_.releaseStart().timestamp);
                         keyboard_.graphGUI()->copyKeyDataFromBuffer(positionBuffer_, positionTracker_.pressStart().index - 10,
                                                                     positionBuffer_.endIndex());
@@ -255,7 +255,7 @@ void PianoKey::triggerReceived(TriggerSource* who, timestamp_type timestamp) {
                     //keyboard_.setKeyLEDColorRGB(noteNumber_, 0.5, 0, 1.0);
                     recentEvent = positionTracker_.releaseFinish();
                     std::cout << "  finish = (" << recentEvent.index << ", " << recentEvent.position << ", " << recentEvent.timestamp << ")\n";
-                    if(keyboard_.graphGUI() != 0) {
+                    if(keyboard_.graphGUI() != nullptr) {
                         keyboard_.graphGUI()->setKeyReleaseStart(positionTracker_.releaseStart().position, positionTracker_.releaseStart().timestamp);
                         keyboard_.graphGUI()->setKeyReleaseFinish(positionTracker_.releaseFinish().position, positionTracker_.releaseFinish().timestamp);
                         keyboard_.graphGUI()->copyKeyDataFromBuffer(positionBuffer_, positionTracker_.pressStart().index - 10,
@@ -301,7 +301,7 @@ void PianoKey::midiNoteOn(MidiKeyboardSegment *who, int velocity, int channel, t
 	midiVelocity_ = velocity;
 	midiOnTimestamp_ = timestamp;
 
-    if(keyboard_.mappingFactory(who) != 0)
+    if(keyboard_.mappingFactory(who) != nullptr)
         keyboard_.mappingFactory(who)->midiNoteOn(noteNumber_, touchIsActive_, (idleDetector_.idleState() == kIdleDetectorActive),
                                                &touchBuffer_, &positionBuffer_, &positionTracker_);
 
@@ -399,13 +399,13 @@ void PianoKey::midiNoteOnHelper(MidiKeyboardSegment *who) {
 	}
     
     // Before the note starts, inform the mapping factory in case there are default values to be sent out.
-    if(keyboard_.mappingFactory(who) != 0)
+    if(keyboard_.mappingFactory(who) != nullptr)
         keyboard_.mappingFactory(who)->noteWillBegin(noteNumber_, midiChannel_, midiVelocity_);
 	
 	keyboard_.sendMessage("/midi/noteon", "iii", noteNumber_, midiChannel_, midiVelocity_, LO_ARGS_END);
     
     // Update GUI if it is available. TODO: fix the ordering problem for real!
-	if(keyboard_.gui() != 0 && midiNoteIsOn_) {
+	if(keyboard_.gui() != nullptr && midiNoteIsOn_) {
 		keyboard_.gui()->setMidiActive(noteNumber_, true);
 	}
 }
@@ -415,7 +415,7 @@ void PianoKey::midiNoteOff(MidiKeyboardSegment *who, timestamp_type timestamp) {
 	midiNoteIsOn_ = false;
 	midiOffTimestamp_ = timestamp;
     
-    if(keyboard_.mappingFactory(who) != 0)
+    if(keyboard_.mappingFactory(who) != nullptr)
         keyboard_.mappingFactory(who)->midiNoteOff(noteNumber_, touchIsActive_, (idleDetector_.idleState() == kIdleDetectorActive),
                                                &touchBuffer_, &positionBuffer_, &positionTracker_);
     
@@ -426,7 +426,7 @@ void PianoKey::midiNoteOff(MidiKeyboardSegment *who, timestamp_type timestamp) {
 	midiAftertouch_.clear();
     
     // Update GUI if it is available
-	if(keyboard_.gui() != 0) {
+	if(keyboard_.gui() != nullptr) {
 		keyboard_.gui()->setMidiActive(noteNumber_, false);
 	}
 }
@@ -603,7 +603,7 @@ void PianoKey::touchInsertFrame(KeyTouchFrame& newFrame, timestamp_type timestam
 	}
 	
 	// Update GUI if it is available
-	if(keyboard_.gui() != 0) {
+	if(keyboard_.gui() != nullptr) {
 		keyboard_.gui()->setTouchForKey(noteNumber_, newFrame);
 	}
 }
@@ -637,7 +637,7 @@ void PianoKey::touchOff(timestamp_type timestamp) {
 	touchBuffer_.clear();
     keyboard_.sendMessage("/touchkeys/off", "i", noteNumber_, LO_ARGS_END);
 	// Update GUI if it is available
-	if(keyboard_.gui() != 0) {
+	if(keyboard_.gui() != nullptr) {
 		keyboard_.gui()->clearTouchForKey(noteNumber_);
 	}
 }

@@ -120,7 +120,7 @@ void MappingListItem::buttonClicked (juce::Button* buttonThatWasClicked)
     {
         // Create an extended editor window
         MappingExtendedEditorWindow *window = listComponent_.extendedEditorWindowForFactory(factory_);
-        if(window != 0) {
+        if(window != nullptr) {
             window->setVisible(true);
             window->toFront(true);
         }

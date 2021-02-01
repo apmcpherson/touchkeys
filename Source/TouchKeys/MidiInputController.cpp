@@ -399,7 +399,7 @@ bool MidiInputController::loadSegmentPreset(juce::XmlElement const* preset) {
     segments_.clear();
     
     juce::XmlElement *element = preset->getChildByName("Segment");
-    while(element != 0) {
+    while(element != nullptr) {
         // Create a new segment and populate its values
         MidiKeyboardSegment *segment = new MidiKeyboardSegment(keyboard_);
         segment->setMidiOutputController(midiOutputController_);

@@ -256,7 +256,7 @@ void TouchkeyPitchBendMappingFactory::setBendParameters() {
     // Range of 0 indicates special case of using global pitch wheel range
     setMidiParameters(MidiKeyboardSegment::kControlPitchWheel, 0.0, 0.0, 0.0);
     
-    if(midiConverter_ != 0) {
+    if(midiConverter_ != nullptr) {
         midiConverter_->listenToIncomingControl(MidiKeyboardSegment::kControlPitchWheel);
     }
 }

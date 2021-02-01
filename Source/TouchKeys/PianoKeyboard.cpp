@@ -64,7 +64,7 @@ void PianoKeyboard::reset() {
 
 void PianoKeyboard::setGUI(KeyboardDisplay* gui) {
 	gui_ = gui;
-	if(gui_ != 0) {
+	if(gui_ != nullptr) {
 		gui_->setKeyboardRange(lowestMidiNote_, highestMidiNote_);
 	}
 }
@@ -99,7 +99,7 @@ void PianoKeyboard::setKeyboardGUIRange(int lowest, int highest) {
 		keys_.push_back(new PianoKey(*this, i, kDefaultKeyHistoryLength));
 	*/
     
-	if(gui_ != 0)
+	if(gui_ != nullptr)
 		gui_->setKeyboardRange(lowestMidiNote_, highestMidiNote_);
 }
 
@@ -150,7 +150,7 @@ void PianoKeyboard::sendMessage(const char * path, const char * type, ...) {
     //    std::cout << "sendMessage(): timeInHandlers = " << timeInHandlers << " for " << numHandlers << " handlers (msg " << path << ")\n";
 
 	// Now send this message to any external OSC sources	
-	if(oscTransmitter_ != 0)
+	if(oscTransmitter_ != nullptr)
 		oscTransmitter_->sendMessage(path, type, msg);
 	
 	lo_message_free(msg);	
@@ -182,19 +182,19 @@ void PianoKeyboard::setNumberOfPedals(int number) {
 // note number of the key, and color can be specified in one of two
 // formats.
 void PianoKeyboard::setKeyLEDColorRGB(const int note, const float red, const float green, const float blue) {
-    if(touchkeyDevice_ != 0) {
+    if(touchkeyDevice_ != nullptr) {
         touchkeyDevice_->rgbledSetColor(note, red, green, blue);
     }
 }
 
 void PianoKeyboard::setKeyLEDColorHSV(const int note, const float hue, const float saturation, const float value) {
-    if(touchkeyDevice_ != 0) {
+    if(touchkeyDevice_ != nullptr) {
         touchkeyDevice_->rgbledSetColorHSV(note, hue, saturation, value);
     }
 }
 
 void PianoKeyboard::setAllKeyLEDsOff() {
-    if(touchkeyDevice_ != 0) {
+    if(touchkeyDevice_ != nullptr) {
         touchkeyDevice_->rgbledAllOff();
     }
 }

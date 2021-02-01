@@ -159,7 +159,7 @@ timestamp_type MRPMapping::performMapping() {
         // TODO: IIR filter on the position data before mapping it
         key_position latestPosition = positionBuffer_->latest();
         int trackerState = kPositionTrackerStateUnknown;
-        if(positionTracker_ != 0)
+        if(positionTracker_ != nullptr)
             trackerState = positionTracker_->currentState();
         
         // Get the latest velocity measurements
@@ -180,7 +180,7 @@ timestamp_type MRPMapping::performMapping() {
                     MRPMapping *neighborMapper = dynamic_cast<MRPMapping*>(keyboard_.mapping(neighborNote));
                     if(neighborMapper == nullptr)
                         continue;
-                    if(neighborMapper->positionTracker_ != 0) {
+                    if(neighborMapper->positionTracker_ != nullptr) {
                         int neighborState = neighborMapper->positionTracker_->currentState();
                         if(neighborState == kPositionTrackerStateDown) {
                             // Here we've found a neighboring note in the Down state. But did it precede our transition?
@@ -212,7 +212,7 @@ timestamp_type MRPMapping::performMapping() {
                     MRPMapping *neighborMapper = dynamic_cast<MRPMapping*>(keyboard_.mapping(neighborNote));
                     if(neighborMapper == nullptr)
                         continue;
-                    if(neighborMapper->positionTracker_ != 0) {
+                    if(neighborMapper->positionTracker_ != nullptr) {
                         int neighborState = neighborMapper->positionTracker_->currentState();
                         if(neighborState == kPositionTrackerStateDown) {
                             // Here we've found a neighboring note in the Down state. But did it precede our transition?

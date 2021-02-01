@@ -662,11 +662,11 @@ public:
 
 	// Copy constructor
 	NodeNonInterpolating( const NodeNonInterpolating<OutputType>& obj ) : numSamples_( obj.numSamples_ ), firstSampleIndex_( obj.firstSampleIndex_ ) {
-		if( obj.buffer_ != 0 )
+		if( obj.buffer_ != nullptr )
 			this->buffer_ = new boost::circular_buffer<OutputType>( *obj.buffer_ );
 		else
 			this->buffer_ = 0;
-		if( obj.timestamps_ != 0 )
+		if( obj.timestamps_ != nullptr )
 			timestamps_ = new boost::circular_buffer<timestamp_type>( *obj.timestamps_ );
 		else
 			this->timestamps_ = 0;

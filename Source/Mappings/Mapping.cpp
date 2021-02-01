@@ -81,9 +81,9 @@ void Mapping::engage() {
     //std::cout << "Mapping::engage(): before TS " << keyboard_.schedulerCurrentTimestamp() << std::endl;
     // Register for trigger updates from touch data and state updates if either one is present.
     // Don't register for triggers on each new key sample
-    if(touchBuffer_ != 0)
+    if(touchBuffer_ != nullptr)
         registerForTrigger(touchBuffer_);
-    if(positionTracker_ != 0)
+    if(positionTracker_ != nullptr)
         registerForTrigger(positionTracker_);
     nextScheduledTimestamp_ = keyboard_.schedulerCurrentTimestamp();
     //std::cout << "Mapping::engage(): mid TS " << keyboard_.schedulerCurrentTimestamp() << std::endl;
@@ -105,9 +105,9 @@ void Mapping::disengage(bool shouldDelete) {
     keyboard_.unscheduleEvent(this/*, nextScheduledTimestamp_*/);
 #endif
     // Unregister for updates from touch data
-    if(touchBuffer_ != 0)
+    if(touchBuffer_ != nullptr)
         unregisterForTrigger(touchBuffer_);
-    if(positionTracker_ != 0)
+    if(positionTracker_ != nullptr)
         unregisterForTrigger(positionTracker_);
     //std::cerr << "Mapping::disengage(): done\n";
     

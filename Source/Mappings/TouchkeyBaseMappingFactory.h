@@ -60,7 +60,7 @@ public:
     
     virtual ~TouchkeyBaseMappingFactory()  {
         removeAllMappings();
-        if(midiConverter_ != 0 && controlName_ != "")
+        if(midiConverter_ != nullptr && controlName_ != "")
             midiConverter_->removeControl(controlName_.c_str());
         if(midiControllerNumber_ >= 0) {
             keyboardSegment_.releaseOscMidiConverter(midiControllerNumber_);
@@ -214,14 +214,14 @@ public:
         std::stringstream ss;
         
         // Remove listener on previous name (if any)
-        if(midiConverter_ != 0 && controlName_ != "")
+        if(midiConverter_ != nullptr && controlName_ != "")
             midiConverter_->removeControl(controlName_.c_str());
         
         ss << "/touchkeys/mapping/segment" << (int)keyboardSegment_.outputPort() << "/" << name;
         controlName_ = ss.str();
 
         // Add listener for new name
-        if(midiConverter_ != 0)
+        if(midiConverter_ != nullptr)
             midiConverter_->addControl(controlName_.c_str(), 1, inputRangeMin_, inputRangeMax_, inputRangeCenter_, outOfRangeBehavior_);
     }
     

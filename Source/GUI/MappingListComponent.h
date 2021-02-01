@@ -49,12 +49,12 @@ public:
     // Attach the user interface to the controller and vice-versa
     void setMainApplicationController(MainApplicationController *controller) {
         controller_ = controller;
-        if(keyboardSegment_ != 0)
+        if(keyboardSegment_ != nullptr)
             listBox_.updateContent();
     }
     void setKeyboardSegment(MidiKeyboardSegment *segment) {
         keyboardSegment_ = segment;
-        if(controller_ != 0)
+        if(controller_ != nullptr)
             listBox_.updateContent();
     }
     

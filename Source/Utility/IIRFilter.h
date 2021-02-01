@@ -54,11 +54,11 @@ public:
 	// Copy constructor
 	IIRFilterNode(IIRFilterNode<DataType> const& obj) : Node<DataType>(obj), input_(obj.input_), autoCalculate_(obj.autoCalculate_),
      aCoefficients_(obj.aCoefficients_), bCoefficients_(obj.bCoefficients_), lastInputIndex_(obj.lastInputIndex_) {
-         if(obj.inputHistory_ != 0)
+         if(obj.inputHistory_ != nullptr)
              inputHistory_ = new boost::circular_buffer<DataType>(*obj.inputHistory_);
          else
              inputHistory_ = 0;
-         if(obj.outputHistory_ != 0)
+         if(obj.outputHistory_ != nullptr)
              outputHistory_ = new boost::circular_buffer<DataType>(*obj.outputHistory_);
          else
              outputHistory_ = 0;
@@ -71,9 +71,9 @@ public:
     
     // ***** Destructor *****
     ~IIRFilterNode() {
-        if(inputHistory_ != 0)
+        if(inputHistory_ != nullptr)
             delete inputHistory_;
-        if(outputHistory_ != 0)
+        if(outputHistory_ != nullptr)
             delete outputHistory_;
     }
 	
@@ -216,12 +216,12 @@ private:
     
     // Clear the recent history of input/output data and fill it with zeros
     void clearInputOutputHistory() {
-        if(inputHistory_ != 0) {
+        if(inputHistory_ != nullptr) {
             inputHistory_->clear();
             while(!inputHistory_->full())
                 inputHistory_->push_back(DataType());
         }
-        if(outputHistory_ != 0) {
+        if(outputHistory_ != nullptr) {
             outputHistory_->clear();
             while(!outputHistory_->full())
                 outputHistory_->push_back(DataType());

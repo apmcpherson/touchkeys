@@ -179,7 +179,7 @@ bool MainApplicationController::touchkeyDeviceStartupSequence(const char * path)
     // Step 3: update the display
     keyboardDisplay_.setKeyboardRange(touchkeyController_.lowestKeyPresentMidiNote(), touchkeyController_.highestMidiNote());
 #ifndef TOUCHKEYS_NO_GUI
-    if(keyboardDisplayWindow_ != 0) {
+    if(keyboardDisplayWindow_ != nullptr) {
         keyboardDisplayWindow_->getConstrainer()->setFixedAspectRatio(keyboardDisplay_.keyboardAspectRatio());
         
         juce::Rectangle<int> bounds = keyboardDisplayWindow_->getBounds();
@@ -480,7 +480,7 @@ void MainApplicationController::playLogWithDialog() {
 #ifndef TOUCHKEYS_NO_GUI
                 // Always show 88 keys for log playback since we won't know which keys were actually recorded
                 keyboardDisplay_.setKeyboardRange(21, 108);
-                if(keyboardDisplayWindow_ != 0) {
+                if(keyboardDisplayWindow_ != nullptr) {
                     keyboardDisplayWindow_->getConstrainer()->setFixedAspectRatio(keyboardDisplay_.keyboardAspectRatio());
                     
                     juce::Rectangle<int> bounds = keyboardDisplayWindow_->getBounds();
@@ -499,7 +499,7 @@ void MainApplicationController::stopPlayingLog() {
     if(!isPlayingLog_)
         return;
     
-    if(logPlayback_ != 0) {
+    if(logPlayback_ != nullptr) {
         logPlayback_->stopPlayback();
         logPlayback_->closeLogFiles();
         delete logPlayback_;
@@ -1453,7 +1453,7 @@ bool MainApplicationOSCController::oscHandlerMethod(const char *path, const char
                 // All other segment messages are handled within MidiKeyboardSegment
                 
                 OscMessage* response = controller_.midiInputController_.oscControlMessageForSegment(segmentNumber, subpath.c_str(), types, numValues, values, data);
-                if(response != 0) {
+                if(response != nullptr) {
                     // Add the right prefix to the response. If it is a simple result status,
                     // then give it the generic prefix. Otherwise add the zone beforehand
                     if(!strcmp(response->path(), "/result"))

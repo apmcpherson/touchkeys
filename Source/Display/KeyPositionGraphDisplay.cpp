@@ -40,7 +40,7 @@ KeyPositionGraphDisplay::KeyPositionGraphDisplay()
 
 // Tell the underlying canvas to repaint itself
 void KeyPositionGraphDisplay::tellCanvasToRepaint() {
-    if(canvas_ != 0)
+    if(canvas_ != nullptr)
         canvas_->triggerRepaint();
 }
 
