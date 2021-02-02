@@ -336,6 +336,9 @@ void MidiKeyboardSegment::setModeMPE()
 	
 	mode_ = Mode::MPE;
 	mpeZone_ = MPEZone::Lower;
+    
+    // MPE always starts on output channel 2
+    outputChannelLowest_ = 0x01;
 
 	// MPE-DONE - currently supports only the Lower Zone
 	// Set RPN 6 to enable MPE with the appropriate zone
@@ -1509,7 +1512,7 @@ void MidiKeyboardSegment::modeMPEsendConfigurationMessage( const MPEZone& z, con
 	static const uint8_t lowerZoneMasterChannel { 0x00 };
 	static const uint8_t upperZoneMasterChannel { 0x0F };
 
-	if( midiOutputController_ != nullptr ) {
+	if( midiOutputController_ == nullptr ) {
 		// throw std::runtime_error{ "No MIDI output port present" }
 		return;
 	}

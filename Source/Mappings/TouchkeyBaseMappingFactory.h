@@ -345,7 +345,6 @@ public:
         if(midiConverter_ == nullptr)
             return;
         midiConverter_->clearLastValues(midiChannel, true);
-        //midiConverter_->sendDefaultValue(midiChannel);
     }
     
     // ****** OSC Control ******

@@ -333,8 +333,8 @@ void OscMidiConverter::setControlOutOfRangeBehavior(const std::string& oscPath, 
 }
 
 // Reset any active previous values on the given channel
-// 'send' indicated whether to send the value when finished
-// even if it hasn't changed
+// 'send' indicates whether to send the value when finished
+// if items were erased
 void OscMidiConverter::clearLastValues(int channel, bool send) {
     auto it = lastValues_.begin();
     
@@ -355,7 +355,7 @@ void OscMidiConverter::clearLastValues(int channel, bool send) {
     
     // If any last values were erased and send is enabled,
     // resend the current values
-    if(erased || send)
+    if(erased && send)
         sendDefaultValue(channel);
 }
 

@@ -21,6 +21,9 @@
 */
 
 #include "RawSensorDisplay.h"
+#if JUCE_MAC
+#include <OpenGL/gl.h>
+#endif
 
 RawSensorDisplay::RawSensorDisplay() {
 	// Initialize OpenGL settings: 2D only

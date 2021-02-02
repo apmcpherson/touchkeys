@@ -228,6 +228,18 @@ std::unique_ptr< MappingEditorComponent > TouchkeyControlMappingFactory::createE
 }
 #endif
 
+// ****** State Updaters ******
+void TouchkeyControlMappingFactory::noteWillBegin(int noteNumber, int midiChannel, int midiVelocity) {
+    if(midiConverter_ == nullptr)
+        return;
+    
+    // Suppress default value except for note-onset-relative control mappings, to avoid a
+    // spurious value at the beginning of a note
+    
+    bool sendDefault = (inputType_ == TouchkeyControlMapping::kTypeNoteOnsetRelative);
+    midiConverter_->clearLastValues(midiChannel, sendDefault);
+}
+
 // ****** OSC Control Support ******
 OscMessage* TouchkeyControlMappingFactory::oscControlMethod(const char *path, const char *types,
                                                             int numValues, lo_arg **values, void *data) {

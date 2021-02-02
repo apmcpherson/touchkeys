@@ -26,7 +26,6 @@
 
 #include "../TouchkeyBaseMappingFactory.h"
 #include "TouchkeyKeyDivisionMapping.h"
-#include "TouchkeyKeyDivisionMappingShortEditor.h"
 #include "../../Display/KeyboardDisplay.h"
 
 class TouchkeyKeyDivisionMappingFactory : public TouchkeyBaseMappingFactory<TouchkeyKeyDivisionMapping> {

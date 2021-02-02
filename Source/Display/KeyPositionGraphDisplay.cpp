@@ -23,6 +23,9 @@
 */
 
 #include "KeyPositionGraphDisplay.h"
+#if JUCE_MAC
+#include <OpenGL/gl.h>
+#endif
 
 KeyPositionGraphDisplay::KeyPositionGraphDisplay()
 {
