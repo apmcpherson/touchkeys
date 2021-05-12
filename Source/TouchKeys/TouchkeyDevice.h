@@ -209,6 +209,37 @@ public:
         int green;
         int blue;
     };
+    
+private:
+    // Data structure to keep track of stray touches. Implements a state machine
+    // to check what state each touch is in along with some other information on where
+    // it is located and when it started
+    class StrayTouchRecord {
+    public:
+        typedef enum {
+            StateOff = 0,
+            StateWaitingOff,
+            StateWaitingOn,
+            StateSuppressed,
+            StateActive,
+        } TouchState;
+        
+        StrayTouchRecord(TouchState _state,
+                         timestamp_type _startingTimestamp,
+                         float _startingPosition, float _currentPosition,
+                         bool _midiNoteIsOn)
+        : state(_state), startingTimestamp(_startingTimestamp),
+          startingPosition(_startingPosition), currentPosition(_currentPosition),
+          midiNoteIsOn(_midiNoteIsOn), matched(false)
+        {}
+        
+        TouchState state;
+        timestamp_type startingTimestamp;
+        float startingPosition;
+        float currentPosition;
+        bool midiNoteIsOn;
+        bool matched;
+    };
 	
 public:
 	// ***** Constructor *****
@@ -255,6 +286,9 @@ public:
 	bool setKeyMinimumCentroidSize(int octave, int key, int value);
 	bool setKeyNoiseThreshold(int octave, int key, int value);
     bool setKeyUpdateBaseline(int octave, int key);
+    
+    // Set whether to ignore stray touches that might not be actual finger touch events
+    void setSuppressStrayTouches(int level);
     
     // Jump to device internal bootloader
     void jumpToBootloader();
@@ -379,6 +413,10 @@ private:
     int expectedLengthBlack_;   // How long the black key data blocks are
     float whiteMaxX_, whiteMaxY_;   // Maximum sensor values for white keys
     float blackMaxX_, blackMaxY_;   // Maximum sensor values for black keys
+    
+    int strayTouchSuppression_; // Whether to suppress stray touches on the keys
+    bool strayTouchSuppressionWasEnabled_; // Internal cache of whether suppression was enabled, in case it turns off on the fly
+    std::vector<StrayTouchRecord> strayTouchRegister_[128];  // Information on active and stray touches
     
     // Frame counter for analog data, to detect dropped frames
     unsigned int analogLastFrame_[4];    // Max 4 boards

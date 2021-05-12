@@ -43,7 +43,8 @@ verbose_(0), numOctaves_(0), lowestMidiNote_(48), lowestKeyPresentMidiNote_(48),
 updatedLowestMidiNote_(48), lowestNotePerOctave_(0),
 deviceSoftwareVersion_(-1), deviceHardwareVersion_(-1),
 expectedLengthWhite_(kTransmissionLengthWhiteNewHardware),
-expectedLengthBlack_(kTransmissionLengthBlackNewHardware), deviceHasRGBLEDs_(false),
+expectedLengthBlack_(kTransmissionLengthBlackNewHardware),
+strayTouchSuppression_(0), strayTouchSuppressionWasEnabled_(false), deviceHasRGBLEDs_(false),
 ledThread_(boost::bind(&TouchkeyDevice::ledUpdateLoop, this, _1), "TouchKeyDevice::ledThread"),
 isCalibrated_(false), calibrationInProgress_(false),
 keyCalibrators_(0), keyCalibratorsLength_(0), sensorDisplay_(0)
@@ -767,6 +768,17 @@ bool TouchkeyDevice::setKeyUpdateBaseline(int octave, int key) {
 
 	// Return value depends on ACK or NAK received
 	return checkForAck(100);
+}
+
+// Set whether to ignore stray touches that might not be actual finger touch events
+void TouchkeyDevice::setSuppressStrayTouches(int level)
+{
+    if(level <= 0)
+        strayTouchSuppression_ = 0;
+    else {
+        strayTouchSuppression_ = level;
+        strayTouchSuppressionWasEnabled_ = true;
+    }
 }
 
 // Jump to the built-in bootloader of the TouchKeys device
@@ -1707,6 +1719,9 @@ int TouchkeyDevice::processKeyCentroid(int frame, int octave, int key, timestamp
 	
 	int white = (kKeyColor[key] == kKeyColorWhite);
 	int midiNote = octaveKeyToMidi(octave, key);
+    
+    if(midiNote < 0 || midiNote > 127)
+        return -1;
 	
 	// Check that the received data is actually valid and not left over from a previous scan (which
 	// can happen when the scan rate is too high).  0x88 is a special "warning" marker for this case
@@ -1834,9 +1849,171 @@ int TouchkeyDevice::processKeyCentroid(int frame, int octave, int key, timestamp
             std::cout << "Warning: No PianoKey available for touchkey MIDI note " << midiNote << '\n';
 		return bytesParsed;
 	}
-    
+        
     // From here on out, grab the performance data mutex so no MIDI events can show up in the middle
     juce::ScopedLock ksl(keyboard_.performanceDataMutex_);
+    
+    // Check for stray touches, usually caused by moisture on the keys in the absence of a key press
+    if(strayTouchSuppression_ > 0) {
+        // strayTouchSuppression_ ranges from 1 (least suppression) to 5 (most suppression)
+        const float positionTolerance = (float)strayTouchSuppression_ * 0.02;
+        const float sizeTolerance = (float)strayTouchSuppression_ * 0.04;
+        const timestamp_diff_type timeoutTolerance = milliseconds_to_timestamp(250);
+        
+        if(touchCount > 0) {
+            // Look through the active touches and assign touch records as needed
+            for(int i = 0; i < touchCount; i++) {
+                bool suppressTouch = false;
+                
+                float position = sliderPosition[i];
+                int recordIndex = -1;
+
+                // Look for a record matching this position, based on position
+                for(int j = 0; j < strayTouchRegister_[midiNote].size(); j++) {
+                    if(fabs(strayTouchRegister_[midiNote][j].currentPosition - position) < positionTolerance) {
+                        recordIndex = j;
+                        break;
+                    }
+                }
+                
+                if(recordIndex < 0) {
+                    // Need a new record. Sanity check that they are not growing without bound;
+                    // they will be cleared when all touches go off.
+                    if(strayTouchRegister_[midiNote].size() >= 16)
+                        strayTouchRegister_[midiNote].clear();
+                    
+                    strayTouchRegister_[midiNote].push_back(
+                        StrayTouchRecord(StrayTouchRecord::TouchState::StateWaitingOff,
+                                         timestamp,
+                                         position,
+                                         position,
+                                         keyboard_.key(midiNote)->midiNoteIsOn()));
+                    
+                    // Work with the record we just added
+                    recordIndex = (int)strayTouchRegister_[midiNote].size() - 1;
+                }
+
+                // Examine the state of the current touch
+                StrayTouchRecord& record(strayTouchRegister_[midiNote][recordIndex]);
+                
+                switch(record.state) {
+                    case StrayTouchRecord::TouchState::StateWaitingOff:
+                    case StrayTouchRecord::TouchState::StateWaitingOn:
+                        // Look for movement or increase in size to go to Active
+                        // Look for MIDI note to go to Active
+                        if(fabs(position - record.startingPosition) >= positionTolerance) {
+                            record.state = StrayTouchRecord::TouchState::StateActive;
+                            suppressTouch = false;
+                        }
+                        else if(sliderSize[i] >= sizeTolerance) {
+                            record.state = StrayTouchRecord::TouchState::StateActive;
+                            suppressTouch = false;
+                        }
+                        else if(keyboard_.key(midiNote)->midiNoteIsOn())  {
+                            record.state = StrayTouchRecord::TouchState::StateActive;
+                            suppressTouch = false;
+                        }
+                        else if(fabs(timestamp - record.startingTimestamp) >= timeoutTolerance) {
+                            // Look for elapsed time without the above conditions to go to Suppressed
+                            record.state = StrayTouchRecord::TouchState::StateSuppressed;
+                            suppressTouch = true;
+                            // std::cout << "Suppressing Note " << midiNote << " touch " << i << " with position " << position << " size " << sliderSize[i] << std::endl;
+                        }
+                        else {
+                            // Whether we suppress it for now depends on which state we're in
+                            suppressTouch = (record.state == StrayTouchRecord::TouchState::StateWaitingOff);
+                        }
+                     
+                        break;
+                    case StrayTouchRecord::TouchState::StateSuppressed:
+                        // Look for movement or increase in size to go to Active
+                        if(fabs(position - record.startingPosition) >= positionTolerance) {
+                            record.state = StrayTouchRecord::TouchState::StateActive;
+                            suppressTouch = false;
+                        }
+                        else if(sliderSize[i] >= sizeTolerance) {
+                            record.state = StrayTouchRecord::TouchState::StateActive;
+                            suppressTouch = false;
+                        }
+                        else {
+                            // Otherwise stay in suppressed state
+                            suppressTouch = true;
+                        }
+                        break;
+                    case StrayTouchRecord::TouchState::StateActive:
+                        // Look for a MIDI note release to go to Waiting state
+                        if(record.midiNoteIsOn && !keyboard_.key(midiNote)->midiNoteIsOn()) {
+                            record.state = StrayTouchRecord::TouchState::StateWaitingOn;
+                            // Update new starting position and timestamp from where the note was released
+                            record.startingTimestamp = timestamp;
+                            record.startingPosition = position;
+                            
+                            // std::cout << "Reverting Note " << midiNote << " touch " << i << " with position " << position << " size " << sliderSize[i] << std::endl;
+                        }
+                        suppressTouch = false;
+                        break;
+                    case StrayTouchRecord::TouchState::StateOff:
+                    default:
+                        suppressTouch = true;
+                        break;
+                }
+                
+                // Update the current position and MIDI state for next time
+                record.currentPosition = position;
+                record.midiNoteIsOn = keyboard_.key(midiNote)->midiNoteIsOn();
+                
+                // Indicate we found a match for pruning later on
+                record.matched = true;
+                
+                // Remove the touch if it is suppressed
+                if(suppressTouch) {
+                    sliderPosition[i] = -1.0;
+                    sliderSize[i] = 0.0;
+                }
+            }
+            
+            // Go through and update the touch records to remove suppressed touches
+            for(int i = 0; i < touchCount; i++) {
+                if(sliderPosition[i] < 0.0) {
+                    // Remove this touch and renumber the others
+                    for(int j = i; j < touchCount - 1; j++) {
+                        sliderPosition[j] = sliderPosition[j + 1];
+                        sliderSize[j] = sliderSize[j + 1];
+                    }
+                    touchCount--;
+                }
+            }
+            
+            // Prune any records that didn't match an active touch
+            int i = 0;
+            while(i < strayTouchRegister_[midiNote].size()) {
+                if(!strayTouchRegister_[midiNote][i].matched) {
+                    // Remove this record, which will decrease size by 1
+                    // std::cout << "Removing Note " << midiNote << " record " << i << " with position " << strayTouchRegister_[midiNote][i].currentPosition << std::endl;
+                    strayTouchRegister_[midiNote].erase(strayTouchRegister_[midiNote].begin() + i);
+
+                }
+                else {
+                    // Reset the matched flag
+                    strayTouchRegister_[midiNote][i].matched = false;
+                    i++;
+                }
+            }
+        }
+        else if(!strayTouchRegister_[midiNote].empty()) {
+            // std::cout << "All touches off on Note " << midiNote << " (were " << strayTouchRegister_[midiNote].size() << " elements)" << std::endl;
+
+            // Remove any touch records from this note
+            strayTouchRegister_[midiNote].clear();
+        }
+    }
+    else if(strayTouchSuppressionWasEnabled_) {
+        // Clear out any left over touch records if stray touch suppression goes off
+        for(int i = 0; i < 128; i++) {
+            strayTouchRegister_[i].clear();
+        }
+        strayTouchSuppressionWasEnabled_ = false;
+    }
 
 	// Turn off touch activity on this key if there's no active touches
 	if(touchCount == 0) {

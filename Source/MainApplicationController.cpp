@@ -189,7 +189,10 @@ bool MainApplicationController::touchkeyDeviceStartupSequence(const char * path)
     }
 #endif
     
-    // Step 4: start data collection from the device
+    // Step 4: suppress stray touches if enabled
+    touchkeyController_.setSuppressStrayTouches(getPrefsSuppressStrayTouches());
+        
+    // Step 5: start data collection from the device
     if(!startTouchkeyDevice()) {
         touchkeyErrorMessage_ = "Failed to start";
         touchkeyErrorOccurred_ = true;
@@ -1014,6 +1017,19 @@ juce::String MainApplicationController::getPrefsStartupPreset() {
     return applicationProperties_.getUserSettings()->getValue("StartupPreset");
 }
 
+// Whether to suppress stray touches from the TouchKeys device
+int MainApplicationController::getPrefsSuppressStrayTouches() {
+    if(!applicationProperties_.getUserSettings()->containsKey("TouchKeysSuppressStrayTouches"))
+        return 0;
+    return applicationProperties_.getUserSettings()->getIntValue("TouchKeysSuppressStrayTouches");
+}
+void MainApplicationController::setPrefsSuppressStrayTouches(int level) {
+    applicationProperties_.getUserSettings()->setValue("TouchKeysSuppressStrayTouches", level);
+    
+    // Update the TouchKeys device right away in case it's already running
+    touchkeyController_.setSuppressStrayTouches(level);
+}
+
 // Reset application preferences to defaults
 void MainApplicationController::resetPreferences() {
     // TODO: reset settings now, not after restart
@@ -1021,6 +1037,7 @@ void MainApplicationController::resetPreferences() {
     
     setPrefsStartupPresetVibratoPitchBend();
     setPrefsAutodetectOctave(true);
+    setPrefsSuppressStrayTouches(0);
 }
 
 // Load the current devices from a global preferences file

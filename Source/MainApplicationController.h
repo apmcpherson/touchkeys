@@ -309,6 +309,10 @@ public:
     void setPrefsStartupPreset(juce::String const& path);
     juce::String getPrefsStartupPreset();
     
+    // Whether to suppress stray touches from the TouchKeys device
+    int getPrefsSuppressStrayTouches();
+    void setPrefsSuppressStrayTouches(int level);
+    
     // Reset all preferences
     void resetPreferences();
     
