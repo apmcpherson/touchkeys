@@ -68,7 +68,7 @@ public:
     
 	// Send MIDI messages
 	void sendNoteOn(int port, unsigned char channel, unsigned char note, unsigned char velocity);
-    void sendNoteOff(int port, unsigned char channel, unsigned char note, unsigned char velocity = 64);
+    void sendNoteOff(int port, unsigned char channel, unsigned char note, unsigned char velocity);
 	void sendControlChange(int port, unsigned char channel, unsigned char control, unsigned char value);
 	void sendProgramChange(int port, unsigned char channel, unsigned char value);
 	void sendAftertouchChannel(int port, unsigned char channel, unsigned char value);
