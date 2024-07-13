@@ -152,7 +152,9 @@ std::unique_ptr< juce::XmlElement > TouchkeyKeyDivisionMappingFactory::getPreset
     
     storeCommonProperties(properties);
     
-    // No properties for now
+    properties.setValue("tuningPreset", tuningPreset_);
+    properties.setValue("detectionParameter", detectionParameter_);
+    properties.setValue("retriggerable", retriggerable_);
     
     auto preset = properties.createXml("MappingFactory");
     preset->setAttribute("type", "KeyDivision");
@@ -170,7 +172,9 @@ bool TouchkeyKeyDivisionMappingFactory::loadPreset(juce::XmlElement const* prese
     if(!loadCommonProperties(properties))
         return false;
 
-    // Nothing specific to do for now
+    setDetectionParameter(properties.getIntValue("detectionParameter"));
+    setRetriggerable(properties.getBoolValue("retriggerable"));
+    setTuningPreset(properties.getIntValue("tuningPreset"));
     
     return true;
 }
