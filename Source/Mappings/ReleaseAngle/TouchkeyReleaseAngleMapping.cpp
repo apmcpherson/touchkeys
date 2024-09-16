@@ -248,7 +248,7 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
             
             for(int i = RELEASE_ANGLE_MAX_SEQUENCE_LENGTH - 1; i >= 0; i--) {
                 if(upNotes_[i] != 0)
-                    keyboard_.midiOutputController()->sendNoteOff(port, ch, upNotes_[i]);
+                    keyboard_.midiOutputController()->sendNoteOff(port, ch, upNotes_[i], upVelocities_[i]);
             }
         }
         else if(releaseAngle < 0 && fabs(releaseAngle) >= downMinimumAngle_ && downEnabled_) {
@@ -263,7 +263,7 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
             
             for(int i = RELEASE_ANGLE_MAX_SEQUENCE_LENGTH - 1; i >= 0; i--) {
                 if(downNotes_[i] != 0)
-                    keyboard_.midiOutputController()->sendNoteOff(port, ch, downNotes_[i]);
+                    keyboard_.midiOutputController()->sendNoteOff(port, ch, downNotes_[i], downVelocities_[i]);
             }
         }
         
@@ -275,14 +275,14 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
             if(releaseAngle > 1.0) {
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 36, 64);
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 31, 96);
-                keyboard_.midiOutputController()->sendNoteOff(0, 0, 31);
-                keyboard_.midiOutputController()->sendNoteOff(0, 0, 36);
+                keyboard_.midiOutputController()->sendNoteOff(0, 0, 31, 64);
+                keyboard_.midiOutputController()->sendNoteOff(0, 0, 36, 94);
             }
             else if(releaseAngle < -1.5) {
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 36, 64);
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 33, 80);
-                keyboard_.midiOutputController()->sendNoteOff(0, 0, 33);
-                keyboard_.midiOutputController()->sendNoteOff(0, 0, 36);
+                keyboard_.midiOutputController()->sendNoteOff(0, 0, 33, 80);
+                keyboard_.midiOutputController()->sendNoteOff(0, 0, 36, 64);
             }
         }
 #elif defined(TRUMPET)
@@ -290,8 +290,8 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
             if(releaseAngle > 1.0) {
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 48, 64);
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 42, 96);
-                //keyboard_.midiOutputController()->sendNoteOff(0, 0, 42);
-                keyboard_.midiOutputController()->sendNoteOff(0, 0, 48);
+                //keyboard_.midiOutputController()->sendNoteOff(0, 0, 42, 96);
+                keyboard_.midiOutputController()->sendNoteOff(0, 0, 48, 64);
                 keyboard_.scheduleEvent(this, boost::bind(&TouchkeyReleaseAngleMapping::releaseKeySwitch, this),
                                         keyboard_.schedulerCurrentTimestamp() + milliseconds_to_timestamp(250));
             }
@@ -299,7 +299,7 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 48, 64);
                 keyboard_.midiOutputController()->sendNoteOn(0, 0, 46, 96);
                 //keyboard_.midiOutputController()->sendNoteOff(0, 0, 47);
-                keyboard_.midiOutputController()->sendNoteOff(0, 0, 48);
+                keyboard_.midiOutputController()->sendNoteOff(0, 0, 48, 64);
                 keyboard_.scheduleEvent(this, boost::bind(&TouchkeyReleaseAngleMapping::releaseKeySwitch, this),
                                         keyboard_.schedulerCurrentTimestamp() + milliseconds_to_timestamp(250));
             }
@@ -315,8 +315,8 @@ void TouchkeyReleaseAngleMapping::sendReleaseAngleMessage(float releaseAngle, bo
 }
 
 timestamp_type TouchkeyReleaseAngleMapping::releaseKeySwitch() {
-    keyboard_.midiOutputController()->sendNoteOff(0, 0, 42);
-    keyboard_.midiOutputController()->sendNoteOff(0, 0, 46);
+    keyboard_.midiOutputController()->sendNoteOff(0, 0, 42, 96);
+    keyboard_.midiOutputController()->sendNoteOff(0, 0, 46, 96);
     
     // Check if we're suppose to clean up now
     /*finished_ = true;

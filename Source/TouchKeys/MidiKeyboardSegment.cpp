@@ -550,7 +550,7 @@ bool MidiKeyboardSegment::oscHandlerMethod(const char *path, const char *types, 
 				return true;
 			if(noteNumber >= 0 && noteNumber < 128) {
 				// Generate MIDI note off for this message
-				juce::MidiMessage msg( juce::MidiMessage::noteOff(1, noteNumber));
+				juce::MidiMessage msg( juce::MidiMessage::noteOff(1, noteNumber, (juce::uint8)64));
 				midiHandlerMethod(0, msg);
 			}
 			return true;
@@ -1172,11 +1172,11 @@ void MidiKeyboardSegment::modePassThroughHandler( juce::MidiInput* source, const
 	else if(message.isNoteOff()) {
 		int note = message.getNoteNumber();
 		if(keyboard_.key(note) != nullptr)
-			keyboard_.key(note)->midiNoteOff(this, keyboard_.schedulerCurrentTimestamp());
+			keyboard_.key(note)->midiNoteOff(this, message.getVelocity(), keyboard_.schedulerCurrentTimestamp());
 		
 		// Retransmit, possibly with transposition
 		if(midiOutputController_ != nullptr) {
-			const auto newMessage = juce::MidiMessage::noteOff(message.getChannel(), note + outputTransposition_);
+			const auto newMessage = juce::MidiMessage::noteOff(message.getChannel(), note + outputTransposition_, message.getVelocity());
 			midiOutputController_->sendMessage(outputPortNumber_, newMessage);
 		}
 	}
@@ -1222,7 +1222,7 @@ void MidiKeyboardSegment::modeMonophonicHandler(juce::MidiInput* source, const j
 		// First stop this note
 		int note = message.getNoteNumber();
 		if(keyboard_.key(note) != nullptr)
-			keyboard_.key(note)->midiNoteOff(this, keyboard_.schedulerCurrentTimestamp());
+			keyboard_.key(note)->midiNoteOff(this, message.getVelocity(), keyboard_.schedulerCurrentTimestamp());
 		
 		// Then reactivate the most recent note's mappings
 		if(keyboard_.mappingFactory(this) != nullptr) {
@@ -1280,7 +1280,7 @@ void MidiKeyboardSegment::modePolyphonicHandler(juce::MidiInput* source, const j
 
 	}else if(message.isNoteOff()) {
 
-		modePolyphonicNoteOff(message.getNoteNumber());
+		modePolyphonicNoteOff(message.getNoteNumber(), message.getVelocity());
 
 	}else if(message.isAllNotesOff() || message.isAllSoundOff()) {
 
@@ -1408,7 +1408,7 @@ void MidiKeyboardSegment::modePolyphonicNoteOn( const uint8_t note, const uint8_
 
 // Handle note off message in polyphonic mode.  Release any channel
 // associated with this note.
-void MidiKeyboardSegment::modePolyphonicNoteOff(const uint8_t note, const bool forceOff) {    
+void MidiKeyboardSegment::modePolyphonicNoteOff(const uint8_t note, const uint8_t velocity, const bool forceOff) {
 	// If no channel associated with this note, ignore it
 	if(retransmitChannelForNote_.count(note) == 0) {
 		if(note >= 0 && note < 128)
@@ -1417,7 +1417,7 @@ void MidiKeyboardSegment::modePolyphonicNoteOff(const uint8_t note, const bool f
 	}
 	
 	if(keyboard_.key(note) != nullptr) {
-		keyboard_.key(note)->midiNoteOff(this, keyboard_.schedulerCurrentTimestamp());
+		keyboard_.key(note)->midiNoteOff(this, velocity, keyboard_.schedulerCurrentTimestamp());
 	}
 
 	int oldNoteChannel = retransmitChannelForNote_[note];
@@ -1440,7 +1440,7 @@ void MidiKeyboardSegment::modePolyphonicNoteOff(const uint8_t note, const bool f
 		}
 		else {
 			// Send a Note Off message to the appropriate channel
-			midiOutputController_->sendNoteOff(outputPortNumber_, oldNoteChannel, note + outputTransposition_);
+			midiOutputController_->sendNoteOff(outputPortNumber_, oldNoteChannel, note + outputTransposition_, velocity);
 		}
 	}
 	
@@ -1609,7 +1609,7 @@ void MidiKeyboardSegment::modeMPEHandler(juce::MidiInput* source, const juce::Mi
 
 	} else if( message.isNoteOff() ) {
 
-		modeMPENoteOff( message.getNoteNumber() );
+		modeMPENoteOff( message.getNoteNumber(), message.getVelocity());
 
 	} else if( message.isAllNotesOff() || message.isAllSoundOff() ) {
 
@@ -1755,7 +1755,7 @@ void MidiKeyboardSegment::modeMPENoteOn(const uint8_t note, const uint8_t veloci
 
 // MPE-TODO Handle note off message in MPE mode.  Release any channel
 // associated with this note.
-void MidiKeyboardSegment::modeMPENoteOff( const uint8_t note, const bool forceOff ) {
+void MidiKeyboardSegment::modeMPENoteOff( const uint8_t note, const uint8_t velocity, const bool forceOff ) {
 	// If no channel associated with this note, ignore it
 	if( retransmitChannelForNote_.count( note ) == 0 ) {
 		if( note >= 0 && note < 128 )
@@ -1764,7 +1764,7 @@ void MidiKeyboardSegment::modeMPENoteOff( const uint8_t note, const bool forceOf
 	}
 
 	if( keyboard_.key( note ) != nullptr ) {
-		keyboard_.key( note )->midiNoteOff( this, keyboard_.schedulerCurrentTimestamp() );
+		keyboard_.key( note )->midiNoteOff( this, velocity, keyboard_.schedulerCurrentTimestamp() );
 	}
 
 	int oldNoteChannel = retransmitChannelForNote_[ note ];
@@ -1789,7 +1789,7 @@ void MidiKeyboardSegment::modeMPENoteOff( const uint8_t note, const bool forceOf
 			sendCC( kMidiControlAllSoundOff, 0 );
 		} else {
 			// Send a Note Off message to the appropriate channel
-			midiOutputController_->sendNoteOff( outputPortNumber_, oldNoteChannel, note + outputTransposition_ );
+			midiOutputController_->sendNoteOff( outputPortNumber_, oldNoteChannel, note + outputTransposition_, velocity );
 		}
 	}
 

@@ -125,7 +125,7 @@ public:
 	// If MIDI input is used to control this note, the controller should call these functions
 	
 	void midiNoteOn(MidiKeyboardSegment *who, int velocity, int channel, timestamp_type timestamp);
-	void midiNoteOff(MidiKeyboardSegment *who, timestamp_type timestamp);
+	void midiNoteOff(MidiKeyboardSegment *who, int velocity, timestamp_type timestamp);
 	void midiAftertouch(MidiKeyboardSegment *who, int value, timestamp_type timestamp);
 	
 	bool midiNoteIsOn() { return midiNoteIsOn_; }

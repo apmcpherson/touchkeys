@@ -411,17 +411,18 @@ void PianoKey::midiNoteOnHelper(MidiKeyboardSegment *who) {
 }
 
 // Note Off message from associated MIDI keyboard.  Clear all old MIDI state.
-void PianoKey::midiNoteOff(MidiKeyboardSegment *who, timestamp_type timestamp) {
+void PianoKey::midiNoteOff(MidiKeyboardSegment *who, int velocity, timestamp_type timestamp) {
 	midiNoteIsOn_ = false;
+	midiVelocity_ = velocity;
 	midiOffTimestamp_ = timestamp;
     
     if(keyboard_.mappingFactory(who) != nullptr)
         keyboard_.mappingFactory(who)->midiNoteOff(noteNumber_, touchIsActive_, (idleDetector_.idleState() == kIdleDetectorActive),
                                                &touchBuffer_, &positionBuffer_, &positionTracker_);
     
-	keyboard_.sendMessage("/midi/noteoff", "ii", noteNumber_, midiChannel_, LO_ARGS_END);
+	keyboard_.sendMessage("/midi/noteoff", "iii", noteNumber_, midiChannel_, midiVelocity_, LO_ARGS_END);
     
-    midiVelocity_ = 0;
+    midiVelocity_ = velocity;
 	midiChannel_ = -1;
 	midiAftertouch_.clear();
     

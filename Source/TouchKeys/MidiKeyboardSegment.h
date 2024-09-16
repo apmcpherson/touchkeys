@@ -326,7 +326,7 @@ private:
     
 	void modePolyphonicHandler(juce::MidiInput* source, const juce::MidiMessage& message);
 	void modePolyphonicNoteOn(const uint8_t note, const uint8_t velocity);
-	void modePolyphonicNoteOff(const uint8_t note, const bool forceOff = false);
+	void modePolyphonicNoteOff(const uint8_t note, const uint8_t velocity, const bool forceOff = false);
 	void modePolyphonicMPENoteOnCallback(const char *path, const char *types, int numValues, lo_arg **values);
 
     /*
@@ -352,7 +352,7 @@ private:
     void modeMPEsendConfigurationMessage( const MPEZone& z = MPEZone::Lower, const int singleZoneRange = 0x0F, const int dualZoneRange = 0x07 );
     void modeMPEHandler(juce::MidiInput* source, const juce::MidiMessage& message);
     void modeMPENoteOn(const uint8_t note, const uint8_t velocity);
-    void modeMPENoteOff(const uint8_t note, const bool forceOff = false);
+    void modeMPENoteOff(const uint8_t note, const uint8_t velocity, const bool forceOff = false);
 
     // Helper functions for polyphonic mode
     void modePolyphonicSetupHelper();
